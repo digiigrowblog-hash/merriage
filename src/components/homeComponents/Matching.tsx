@@ -13,7 +13,7 @@ import { useState } from "react";
 const verified = [
   {
     id: 1,
-    name: "John Doe",
+    name: "Mansi Singh",
     age: 28,
     location: "New York",
     profession: "Software Engineer",

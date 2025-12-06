@@ -12,13 +12,9 @@ interface PhoneInputProps {
   loginMode?: boolean; // ✅ NEW: Disable internal OTP
 }
 
-
-
-function PhoneInputs({ value, onChange, onOtpVerify }: PhoneInputProps) {
+function PhoneInputs({ value, onChange, onOtpVerify, loginMode }: PhoneInputProps) {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
-
-
 
   // ✅ Force IN as initial country on mount
   useEffect(() => {
@@ -37,6 +33,24 @@ function PhoneInputs({ value, onChange, onOtpVerify }: PhoneInputProps) {
   const handleVerifyOTP = () => {
     onOtpVerify(otp);
   };
+
+  if (loginMode) {
+    return (
+      <div className="phone-input-wrapper">
+        <PhoneInput
+          international
+          countryCallingCodeEditable={false}
+          defaultCountry="IN"
+          value={value}
+          onChange={onChange}
+          placeholder="Enter phone number"
+          inputClassName="phone-input-custom h-16 px-4 py-3 text-lg border-2 border-gray-200 
+          rounded-xl focus:border-orange-400 focus:outline-none focus:ring-2 
+          focus:ring-orange-200/50 transition-all duration-200 w-full!"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
@@ -101,4 +115,4 @@ function PhoneInputs({ value, onChange, onOtpVerify }: PhoneInputProps) {
     </div>
   );
 }
-export default PhoneInputs
+export default PhoneInputs;

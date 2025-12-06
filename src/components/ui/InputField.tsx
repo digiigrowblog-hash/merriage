@@ -13,6 +13,7 @@ interface InputFieldProps {
   required?: boolean;
   min?: number;
   max?: number;
+  readOnly?: boolean;
 }
 
 const InputField = ({
@@ -26,7 +27,8 @@ const InputField = ({
   className,
   required,
   min,
-  max
+  max,
+  readOnly
 }: InputFieldProps) => {
   return (
     <div className={`space-y-2 ${className || ""}`}>
@@ -41,12 +43,13 @@ const InputField = ({
         placeholder={placeholder}
         min={min}
         max={max}
+        readOnly={readOnly}
         className={`w-full px-4 py-3 border rounded-xl 
             focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all 
             duration-200 ${error
             ? 'border-red-300 bg-red-50 ring-1 ring-red-200'
             : 'border-gray-200 hover:border-gray-300'
-          }`}
+          } ${readOnly ? 'bg-gray-100 cursor-not-allowed text-gray-500' : ''}`}
       />
       {error && (
         <p className="text-sm text-red-600 mt-1">

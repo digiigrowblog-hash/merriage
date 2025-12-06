@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
-import { useLoadScript, Autocomplete } from '@react-google-maps/api';
+import { useLoadScript, Autocomplete, GoogleMap, Marker } from '@react-google-maps/api';
 
 const LIBRARIES: ("places")[] = ["places"];
 
@@ -9,8 +9,13 @@ interface GoogleAddressPickerProps {
   apiKey: string;
 }
 
+const DEFAULT_CENTER = { lat: 20.5937, lng: 78.9629 }; // India
+const MAP_CONTAINER_STYLE = { width: '100%', height: '300px', borderRadius: '12px' };
+
 export function GoogleAddressPicker({ onSelect, apiKey }: GoogleAddressPickerProps) {
   const [address, setAddress] = useState('');
+  const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
+  const [markerPosition, setMarkerPosition] = useState<google.maps.LatLngLiteral | null>(null);
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -33,6 +38,8 @@ export function GoogleAddressPicker({ onSelect, apiKey }: GoogleAddressPickerPro
       const formatted = place.formatted_address || '';
 
       setAddress(formatted);
+      setMapCenter({ lat, lng });
+      setMarkerPosition({ lat, lng });
       onSelect({ lat, lng, formatted });
     }
   };
@@ -70,6 +77,22 @@ export function GoogleAddressPicker({ onSelect, apiKey }: GoogleAddressPickerPro
           className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent"
         />
       </Autocomplete>
+
+      <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+        <GoogleMap
+          mapContainerStyle={MAP_CONTAINER_STYLE}
+          center={mapCenter}
+          zoom={markerPosition ? 15 : 5}
+          options={{
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+          }}
+        >
+          {markerPosition && <Marker position={markerPosition} />}
+        </GoogleMap>
+      </div>
+
       <p className="text-xs text-gray-500">Search for your address or enter manually</p>
     </div>
   );

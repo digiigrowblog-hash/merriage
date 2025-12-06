@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import OTPInput from "react-otp-input";
+import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Stepper } from '@/components/ui/Stepper';
 import InputField from '@/components/ui/InputField';
@@ -41,6 +43,8 @@ export default function SignupPage() {
     email: '',
     emailOtp: '',
   });
+  const [emailOtpSent, setEmailOtpSent] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
 
   // Persist to localStorage
   useEffect(() => {
@@ -51,6 +55,37 @@ export default function SignupPage() {
 
   const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setFormData(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleSendEmailOTP = async () => {
+    if (!formData.email) return;
+    // API call mock
+    console.log("Sending OTP to", formData.email);
+    setEmailOtpSent(true);
+  };
+
+  const handleVerifyEmailOTP = () => {
+    // API call mock verification
+    if (formData.emailOtp.length === 6) {
+      console.log("Email Verified");
+      setIsEmailVerified(true);
+    }
+  };
+
+  const validateStep = (step: number, data: FormData): boolean => {
+    switch (step) {
+      case 1: return !!data.phone && !!data.phoneOtp;
+      case 2: return !!data.name && !!data.age;
+      case 3: return !!data.address.formatted;
+      case 4: return !!data.eating;
+      case 5: return !!data.gender;
+      case 6: return !!data.orientation;
+      case 7: return !!data.preference;
+      case 10: return data.hobbies.length > 0;
+      case 11: return data.images.length === 4;
+      case 12: return isEmailVerified;
+      default: return true;
+    }
   };
 
   const nextStep = () => {
@@ -263,20 +298,73 @@ export default function SignupPage() {
       case 12:
         return (
           <div className="space-y-6">
-            <InputField
-              label="Email Address *"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={v => updateField('email', v as string)}
-              required
-            />
-            {/* Email OTP similar to Phone OTP */}
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
-              <p className="text-sm text-blue-800">
-                Email verification will be sent after form submission
-              </p>
-            </div>
+            {!isEmailVerified ? (
+              <>
+                <div className="relative">
+                  <InputField
+                    label="Email Address *"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={v => updateField('email', v as string)}
+                    required
+                    readOnly={emailOtpSent}
+                  />
+                  {emailOtpSent && (
+                    <button
+                      onClick={() => setEmailOtpSent(false)}
+                      className="absolute right-0 top-8 text-xs text-orange-600 font-medium px-2 py-1 hover:text-orange-700"
+                    >
+                      Change
+                    </button>
+                  )}
+                </div>
+
+                {!emailOtpSent ? (
+                  <button
+                    onClick={handleSendEmailOTP}
+                    disabled={!formData.email.includes('@')}
+                    className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  >
+                    Send Verification Code
+                  </button>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                      <p className="text-sm text-blue-800 mb-3 text-center font-medium">
+                        Enter verification code sent to your email
+                      </p>
+                      <OTPInput
+                        value={formData.emailOtp}
+                        onChange={(otp) => updateField('emailOtp', otp)}
+                        numInputs={6}
+                        inputStyle="w-10 h-10 md:w-12 md:h-12 mx-1 border-2 border-gray-200 rounded-lg text-center text-lg font-medium focus:border-blue-500 focus:outline-none bg-white"
+                        containerStyle="justify-center"
+                        renderInput={(inputProps) => <input {...inputProps} />}
+                      />
+                    </div>
+                    <button
+                      onClick={handleVerifyEmailOTP}
+                      disabled={formData.emailOtp.length !== 6}
+                      className="w-full py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+                    >
+                      Verify Email
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-8 space-y-4">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                  <Check className="w-10 h-10 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Email Verified!</h3>
+                <p className="text-gray-600">Your email {formData.email} has been successfully verified.</p>
+                <div className="p-4 bg-orange-50 rounded-xl border border-orange-100 text-sm text-orange-800">
+                  You are all set! Click "Create Account" below to finish signing up.
+                </div>
+              </div>
+            )}
           </div>
         );
 
@@ -286,9 +374,9 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 py-12 px-3 sm:px-6 lg:px-8 sm:pt-6 pt-20">
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-8 md:p-12">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-5 md:p-12">
           <Stepper
             activeStep={activeStep}
             totalSteps={TOTAL_STEPS}
@@ -296,15 +384,16 @@ export default function SignupPage() {
           />
 
           <div className="mt-8">
-            <div className="min-h-[200px]">
+            <div className="min-h-[180px]">
               {renderStepContent()}
             </div>
 
-            <div className="mt-12 flex items-center justify-between pt-8 border-t border-gray-200">
+            <div className="md:mt-12 mt-20 flex items-center justify-between pt-8 border-t border-gray-200">
               <button
                 onClick={prevStep}
                 disabled={activeStep === 1}
-                className="px-8 py-3 rounded-2xl border-2 border-gray-200 text-gray-700 font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center space-x-2"
+                className="md:px-8 px-5 py-3 rounded-2xl border-2 border-gray-200 text-gray-700 font-medium hover:bg-gray-50 
+                disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center space-x-1 text-sm md:text-base"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -315,7 +404,9 @@ export default function SignupPage() {
               <button
                 onClick={nextStep}
                 disabled={!canNext}
-                className="px-12 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold hover:from-orange-600 hover:to-pink-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center space-x-2"
+                className="md:px-12 md:py-3 px-5 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 text-white 
+                font-semibold hover:from-orange-600 hover:to-pink-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 
+                disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center space-x-1 text-sm md:text-base"
               >
                 <span>{activeStep === TOTAL_STEPS ? 'Create Account' : 'Next Step'}</span>
                 {activeStep === TOTAL_STEPS ? (
@@ -342,20 +433,4 @@ export default function SignupPage() {
       </div>
     </div>
   );
-}
-
-function validateStep(step: number, data: FormData): boolean {
-  switch (step) {
-    case 1: return !!data.phone && !!data.phoneOtp;
-    case 2: return !!data.name && !!data.age;
-    case 3: return !!data.address.formatted;
-    case 4: return !!data.eating;
-    case 5: return !!data.gender;
-    case 6: return !!data.orientation;
-    case 7: return !!data.preference;
-    case 10: return data.hobbies.length > 0;
-    case 11: return data.images.length === 4;
-    case 12: return !!data.email;
-    default: return true;
-  }
 }

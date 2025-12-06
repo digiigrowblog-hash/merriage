@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import  InputField  from '@/components/ui/InputField';
-import  PhoneInput  from '@/components/ui/PhoneInput';
+import InputField from '@/components/ui/InputField';
+import PhoneInput from '@/components/ui/PhoneInput';
 import { X } from 'lucide-react';
 
 export default function LoginPage() {
@@ -18,6 +18,12 @@ export default function LoginPage() {
 
   const updateField = <K extends keyof typeof credentials>(key: K, value: string) => {
     setCredentials(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleLoginTypeChange = (type: 'email' | 'phone') => {
+    setLoginType(type);
+    setStep('enter');
+    setCredentials(prev => ({ ...prev, otp: '' }));
   };
 
   const sendOTP = async () => {
@@ -47,7 +53,7 @@ export default function LoginPage() {
       //   [loginType]: credentials[loginType], 
       //   otp: credentials.otp 
       // }) });
-      
+
       console.log('Login successful:', loginType, credentials.otp);
       router.push('/home');
     } catch (error) {
@@ -57,8 +63,8 @@ export default function LoginPage() {
     }
   };
 
-  const isValidInput = loginType === 'email' 
-    ? credentials.email.includes('@') 
+  const isValidInput = loginType === 'email'
+    ? credentials.email.includes('@')
     : !!credentials.phone;
 
   const canSendOTP = step === 'enter' && isValidInput && !loading;
@@ -83,22 +89,20 @@ export default function LoginPage() {
           {/* Login Type Toggle */}
           <div className="flex bg-gray-100 rounded-2xl p-1">
             <button
-              onClick={() => setLoginType('email')}
-              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
-                loginType === 'email'
+              onClick={() => handleLoginTypeChange('email')}
+              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${loginType === 'email'
                   ? 'bg-white shadow-sm text-orange-600'
                   : 'text-gray-600 hover:text-gray-900'
-              }`}
+                }`}
             >
               Email
             </button>
             <button
-              onClick={() => setLoginType('phone')}
-              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
-                loginType === 'phone'
+              onClick={() => handleLoginTypeChange('phone')}
+              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${loginType === 'phone'
                   ? 'bg-white shadow-sm text-orange-600'
                   : 'text-gray-600 hover:text-gray-900'
-              }`}
+                }`}
             >
               Phone
             </button>
@@ -121,7 +125,8 @@ export default function LoginPage() {
                 <PhoneInput
                   value={credentials.phone}
                   onChange={phone => updateField('phone', phone || '')}
-                  onOtpVerify={() => {}} // Not used here
+                  onOtpVerify={() => { }} // Not used here
+                  loginMode={true}
                 />
               )}
 

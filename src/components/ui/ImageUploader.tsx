@@ -9,21 +9,21 @@ interface ImageUploaderProps {
 }
 
 export function ImageUploader({ images, onChange, maxFiles = 4 }: ImageUploaderProps) {
-  const [dragActive, setDragActive] = useState(false);
 
-  const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setDragActive(false);
-    const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
-    if (files.length > 0 && images.length + files.length <= maxFiles) {
-      onChange([...images, ...files.slice(0, maxFiles - images.length)]);
-    }
-  }, [images, onChange, maxFiles]);
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>, indexToReplace?: number) => {
     const files = Array.from(e.target.files || []).filter(file => file.type.startsWith('image/'));
-    if (files.length > 0 && images.length + files.length <= maxFiles) {
-      onChange([...images, ...files.slice(0, maxFiles - images.length)]);
+    if (files.length === 0) return;
+
+    if (indexToReplace !== undefined) {
+      // Replace specific image
+      const newImages = [...images];
+      newImages[indexToReplace] = files[0];
+      onChange(newImages);
+    } else {
+      // Append new images
+      const remainingSlots = maxFiles - images.length;
+      const filesToAdd = files.slice(0, remainingSlots);
+      onChange([...images, ...filesToAdd]);
     }
   };
 
@@ -34,67 +34,66 @@ export function ImageUploader({ images, onChange, maxFiles = 4 }: ImageUploaderP
   return (
     <div className="space-y-4">
       <label className="block text-sm font-medium text-gray-700">
-        Profile Photos * (Select {maxFiles} images, max 5MB each)
+        Profile Photos * (Select {maxFiles} images)
       </label>
-      
-      <div
-        className={`p-8 border-2 border-dashed rounded-xl transition-all duration-200 text-center ${
-          dragActive
-            ? 'border-orange-400 bg-orange-50 ring-2 ring-orange-200'
-            : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
-        }`}
-        onDragEnter={(e) => e.preventDefault()}
-        onDragLeave={(e) => e.preventDefault()}
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
-        onDragEnterCapture={() => setDragActive(true)}
-        onDragLeaveCapture={() => setDragActive(false)}
-      >
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={handleFileSelect}
-          className="hidden"
-          id="image-upload"
-        />
-        <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center border-2 ${
-            dragActive ? 'border-orange-400 bg-orange-100' : 'border-gray-300 bg-gray-100'
-          }`}>
-            {dragActive ? <Upload className="w-8 h-8 text-orange-500" /> : <ImageIcon className="w-8 h-8 text-gray-400" />}
-          </div>
-          <div>
-            <p className="text-lg font-medium text-gray-900">Drop images here or click to browse</p>
-            <p className="text-sm text-gray-500">PNG, JPG up to 5MB</p>
-          </div>
-        </label>
+
+      <div className="grid grid-cols-2 gap-4">
+        {Array.from({ length: maxFiles }).map((_, index) => {
+          const image = images[index];
+          const isFilled = !!image;
+
+          return (
+            <div key={index} className="aspect-square relative">
+              {isFilled ? (
+                <div className="w-full h-full relative group rounded-2xl overflow-hidden border-2 border-orange-200">
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt={`Upload ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button
+                      onClick={() => removeImage(index)}
+                      className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <label className="w-full h-full border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-orange-400 hover:bg-orange-50 transition-all duration-200 group">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileSelect}
+                    className="hidden overflow-hidden"
+                    disabled={index !== images.length} // Force filling in order
+                  />
+                  <div className={`w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2 group-hover:bg-orange-100 transition-colors ${index !== images.length ? 'opacity-50' : ''
+                    }`}>
+                    <Upload className={`w-6 h-6 text-gray-400 group-hover:text-orange-500 transition-colors`} />
+                  </div>
+                  <span className={`text-sm text-gray-500 font-medium ${index !== images.length ? 'opacity-50' : ''
+                    }`}>
+                    Add Photo
+                  </span>
+                </label>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      {images.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {images.map((image, index) => (
-            <div key={index} className="relative group">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Preview ${index + 1}`}
-                className="w-full h-24 object-cover rounded-xl shadow-md"
-              />
-              <button
-                onClick={() => removeImage(index)}
-                className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-lg"
-              >
-                <X className="w-4 h-4" />
-              </button>
-              <p className="text-xs text-gray-500 mt-1 truncate">{image.name}</p>
-            </div>
-          ))}
-        </div>
-      )}
-      
-      {images.length < maxFiles && (
-        <p className="text-sm text-orange-600">Add {maxFiles - images.length} more images</p>
-      )}
+      <p className="text-sm text-gray-500 text-center">
+        {images.length} / {maxFiles} photos added
+      </p>
     </div>
   );
 }
+
+
+
+
+
+
+      
