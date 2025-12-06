@@ -125,18 +125,20 @@ function Sparkles() {
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime()
     if (!ref.current) return
-    ;(ref.current.material as THREE.PointsMaterial).size =
-      0.035 + Math.sin(t * 3) * 0.015
+      ; (ref.current.material as THREE.PointsMaterial).size =
+        0.035 + Math.sin(t * 3) * 0.015
   })
 
   return (
     <points ref={ref}>
       <bufferGeometry>
         <bufferAttribute
-                  attach="attributes-position"
-                  array={positions}
-                  count={positions.length / 3}
-                  itemSize={3} args={[]}        />
+          attach="attributes-position"
+          array={positions}
+          count={positions.length / 3}
+          itemSize={3}
+          args={[positions, 3]}
+        />
       </bufferGeometry>
       <pointsMaterial
         color="#ffe3b5"

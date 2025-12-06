@@ -20,20 +20,26 @@ export default function Header() {
     pathname === href || (href !== "/" && pathname.startsWith(href))
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 bg-linear-to-b from-[#f3b886]/95 to-[#e89b7c]/80 backdrop-blur-md border-b border-white/20">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 lg:px-8">
+    <header className="lexend-headers fixed inset-x-0 top-0 z-40 
+    bg-linear-to-b from-[#f3b886]/95 to-[#e89b7c]/80 backdrop-blur-md 
+    border-b border-white/20">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between 
+      px-4 py-3 md:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 shadow-md">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full 
+          bg-white/90 shadow-md">
             <Heart className="h-5 w-5 text-[#d45b4a]" />
           </div>
-          <span className="text-xl md:text-2xl font-semibold tracking-[0.18em] uppercase text-white">
+          <span className="text-xl md:text-2xl font-semibold tracking-[0.18em] 
+          uppercase text-white">
             FinD<span className="text-[#4d2b22]">Me</span>
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-8 text-sm font-medium text-white/90 md:flex">
+        <div className="hidden items-center gap-8 text-sm font-medium text-white/90 
+        md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -49,8 +55,10 @@ export default function Header() {
           ))}
 
           <Link
-            href="/get-started"
-            className="rounded-full bg-white/95 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-[#c45340] shadow-md hover:bg-white"
+             href={`/signup`}
+            
+            className="rounded-full bg-white/95 px-5 py-2 text-xs font-semibold 
+            uppercase tracking-wide text-[#c45340] shadow-md hover:bg-white"
           >
             Get Started
           </Link>
@@ -84,7 +92,7 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/get-started"
+              href={`/signup`}
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-white/95 px-4 py-2 text-center text-xs font-semibold uppercase tracking-wide text-[#c45340] shadow-md"
             >

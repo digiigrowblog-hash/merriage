@@ -1,0 +1,104 @@
+'use client';
+import { useState, useEffect } from "react";
+import PhoneInput from "react-phone-number-input/input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import OTPInput from "react-otp-input";
+
+interface PhoneInputProps {
+  value: string;
+  onChange: (value?: string) => void;
+  onOtpVerify: (otp: string) => void;
+  loginMode?: boolean; // ✅ NEW: Disable internal OTP
+}
+
+
+
+function PhoneInputs({ value, onChange, onOtpVerify }: PhoneInputProps) {
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState("");
+
+
+
+  // ✅ Force IN as initial country on mount
+  useEffect(() => {
+    if (!value) {
+      onChange("+91"); // Pre-populate with India format
+    }
+  }, []);
+
+  const handleSendOTP = async () => {
+    if (isValidPhoneNumber(value)) {
+      // API call: POST /api/send-otp
+      setOtpSent(true);
+    }
+  };
+
+  const handleVerifyOTP = () => {
+    onOtpVerify(otp);
+  };
+
+  return (
+    <div className="space-y-4">
+      {!otpSent ? (
+        <>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Phone Number *
+          </label>
+          <div className="phone-input-wrapper">
+            <PhoneInput
+              international
+              countryCallingCodeEditable={false}
+              defaultCountry="IN"
+              // ✅ Remove countries prop - let defaultCountry work
+              value={value}
+              onChange={onChange}
+              placeholder="Enter phone number"
+              inputClassName="phone-input-custom h-16 px-4 py-3 text-lg border-2 border-gray-200 
+              rounded-xl focus:border-orange-400 focus:outline-none focus:ring-2 
+              focus:ring-orange-200/50 transition-all duration-200 w-full!"
+            />
+          </div>
+          <button
+            onClick={handleSendOTP}
+            disabled={!isValidPhoneNumber(value)}
+            className="w-full bg-orange-500 text-white py-3 px-4 rounded-xl hover:bg-orange-600 disabled:bg-gray-400 transition-all duration-200 font-medium"
+          >
+            Send OTP
+          </button>
+        </>
+      ) : (
+        // OTP section unchanged...
+        <>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Enter OTP
+          </label>
+          <OTPInput
+            value={otp}
+            onChange={setOtp}
+            numInputs={6}
+            inputStyle="w-12 h-12 mx-1 border-2 border-gray-200 rounded-xl text-center text-lg font-medium focus:border-orange-400 focus:outline-none"
+            containerStyle="justify-center mb-4"
+            renderInput={(inputProps) => <input {...inputProps} />}
+          />
+          <div className="flex gap-2">
+            <button
+              onClick={handleVerifyOTP}
+              disabled={otp.length !== 6}
+              className="flex-1 bg-orange-500 text-white py-3 px-4 rounded-xl hover:bg-orange-600 disabled:bg-gray-400 transition-all duration-200 font-medium"
+            >
+              Verify OTP
+            </button>
+            <button
+              onClick={() => setOtpSent(false)}
+              className="px-6 bg-gray-100 text-gray-700 py-3 rounded-xl hover:bg-gray-200 transition-all duration-200"
+            >
+              Edit
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+export default PhoneInputs
