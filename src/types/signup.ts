@@ -1,4 +1,3 @@
-// types/signup.ts
 export interface FormData {
   phone: string;
   phoneOtp: string;
@@ -12,13 +11,28 @@ export interface FormData {
   preference: 'women' | 'men' | 'both' | '';
   company: string;
   jobRole: string;
-  salary?: string;
+  salary: string;
   health: string[];
+  religion: string;
+  caste: string;
+  idVerification: 'pan' | 'aadhar' | 'passport' | '';
+  idNumber: string;  // ✅ Fixed: proper type definition
   hobbies: string[];
   images: File[];
   email: string;
   emailOtp: string;
 }
+
+
+export const RELIGIONS = [
+  { value: 'hindu', label: 'Hindu' },
+  { value: 'muslim', label: 'Muslim' },
+  { value: 'christian', label: 'Christian' },
+  { value: 'sikh', label: 'Sikh' },
+  { value: 'jain', label: 'Jain' },
+  { value: 'buddhist', label: 'Buddhist' },
+  { value: 'other', label: 'Other' }
+];
 
 export const HOBBIES = [
   { value: 'music', label: 'Music' },

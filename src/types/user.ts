@@ -1,4 +1,4 @@
-interface FormData {
+export interface FormData {
   phone: string; otp: string;
   name: string; age: number; height: string;
   address: { lat: number; lng: number; formatted: string }; pincode: string;

@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Frequency {
+  NEVER
+  SOMETIMES
+  OFTEN
+}
+
+enum IdVerificationType {
+  PAN
+  AADHAR
+  PASSPORT
+}
+
+model User {
+  id              Int       @id @default(autoincrement())
+  phone           String    @unique
+  phoneOtp        String
+  name            String
+  age             Int
+  heightCm        Float?    @map("height_cm")
+  address         Json      @db.JsonB
+  eating          String
+  gender          String
+  orientation     String
+  preference      String
+  company         String?   
+  jobRole         String?   @map("job_role")
+  salary          Float?
+  health          Json      @db.JsonB
+  hobbies         String[]
+  images          String[]
+  religion        String
+  caste           String
+  email           String    @unique
+  emailOtp        String?   @map("email_otp")
+  emailVerified   Boolean   @default(false) @map("email_verified")
+  idVerification  IdVerificationType? @map("id_verification")
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  @@map("users")
+}
