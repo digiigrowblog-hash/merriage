@@ -31,14 +31,6 @@ export function ReligionCasteStep({ formData, updateField }: ReligionCasteStepPr
               </option>
             ))}
           </select>
-          <svg 
-            className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none transition-colors" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
         </div>
         <p className="text-xs text-gray-500 mt-1">
           This helps us show you better matches

@@ -12,7 +12,12 @@ export interface FormData {
   company: string;
   jobRole: string;
   salary: string;
-  health: string[];
+  health: {
+    chronicDisease: boolean;
+    smoking: 'sometimes' | 'often' | 'never' | '';
+    drinking: 'sometimes' | 'often' | 'never' | '';
+    drugs: 'sometimes' | 'often' | 'never' | '';
+  };
   religion: string;
   caste: string;
   idVerification: 'pan' | 'aadhar' | 'passport' | '';

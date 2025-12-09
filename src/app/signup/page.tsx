@@ -57,7 +57,12 @@ export default function SignupPage() {
     company: "",
     jobRole: "",
     salary: "",
-    health: [],
+    health: {
+      chronicDisease: false,
+      smoking: "",
+      drinking: "",
+      drugs: "",
+    },
     religion: "",
     caste: "",
     idVerification: "",
@@ -70,6 +75,9 @@ export default function SignupPage() {
   });
   const [emailOtpSent, setEmailOtpSent] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [idOtpSent, setIdOtpSent] = useState(false);
+  const [idOtpVerified, setIdOtpVerified] = useState(false);
+  const [idOtp, setIdOtp] = useState("");
 
   // Persist to localStorage
   useEffect(() => {
@@ -78,11 +86,15 @@ export default function SignupPage() {
     }
   }, [formData]);
 
-  const updateField = <K extends keyof FormData>(
-    key: K,
-    value: FormData[K]
-  ) => {
+  const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const updateHealth = <K extends keyof FormData["health"]>(
+    key: K,
+    value: FormData["health"][K]
+  ) => {
+    setFormData((prev) => ({ ...prev, health: { ...prev.health, [key]: value } }));
   };
 
   const handleSendEmailOTP = async () => {
@@ -98,26 +110,30 @@ export default function SignupPage() {
     }
   };
 
+  const handleSendIdOTP = () => {
+    if (!formData.idVerification || !formData.idNumber) return;
+    if (!isValidID(formData.idVerification, formData.idNumber)) return;
+    setIdOtpSent(true);
+    setIdOtp("");
+    setIdOtpVerified(false);
+  };
+
+  const handleVerifyIdOTP = () => {
+    if (idOtp.length === 6) {
+      setIdOtpVerified(true);
+    }
+  };
+
  // Add these validation functions BEFORE the component
 const isValidPAN = (pan: string): boolean => {
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
   return panRegex.test(pan.toUpperCase());
 };
 
-const isValidAadhaar = (aadhar: string): boolean => {
-  const cleanAadhaar = aadhaar.replace(/\D/g, '');
-  const aadhaarRegex = /^\d{12}$/;
-  if (!aadhaarRegex.test(cleanAadhaar)) return false;
-  
-  // Simple checksum (Luhn algorithm variant for Aadhaar)
-  let sum = 0;
-  let factor = 2;
-  for (let i = cleanAadhaar.length - 1; i >= 0; i--) {
-    let digit = parseInt(cleanAadhaar[i]) * factor;
-    sum += digit > 9 ? digit - 9 : digit;
-    factor = factor === 2 ? 1 : 2;
-  }
-  return sum % 10 === 0;
+const isValidAadhaar = (aadhaar: string): boolean => {
+  const cleanAadhaar = aadhaar.replace(/\D/g, "");
+  // Aadhaar validation is numeric-only and exactly 12 digits.
+  return /^\d{12}$/.test(cleanAadhaar);
 };
 
 const isValidPassport = (passport: string): boolean => {
@@ -147,8 +163,8 @@ const validateStep = (step: number, data: FormData): boolean => {
     case 8: return true;
     case 9: return !!data.religion;
     case 10: 
-      return !!data.idVerification && !!data.idNumber && isValidID(data.idVerification, data.idNumber);
-    case 11: return data.health.length >= 0;
+      return !!data.idVerification && !!data.idNumber && isValidID(data.idVerification, data.idNumber) && idOtpVerified;
+    case 11: return !!data.health.smoking && !!data.health.drinking && !!data.health.drugs;
     case 12: return data.hobbies.length > 0;
     case 13: return data.images.length >= 1;
     case 14: return isEmailVerified;
@@ -190,7 +206,7 @@ const validateStep = (step: number, data: FormData): boolean => {
         const result = await response.json();
         console.log("User created:", result.user);
         localStorage.removeItem("signup-form");
-        router.push("/home");
+        router.push("/home   ");
       } else {
         const error = await response.json();
         console.error("Signup failed:", error);
@@ -384,6 +400,9 @@ case 10:
             updateField("idVerification", value as 'pan' | 'aadhar' | 'passport' | '');
             // Reset ID number when type changes
             updateField("idNumber", "" as any);
+            setIdOtpSent(false);
+            setIdOtpVerified(false);
+            setIdOtp("");
           }}
           placeholder="Select ID type"
           className="w-full"
@@ -402,7 +421,12 @@ case 10:
             type={formData.idVerification === "aadhar" ? "tel" : "text"}
             placeholder={getIDInputPlaceholder()}
             value={formData.idNumber}
-            onChange={(v) => updateField("idNumber", v as string)}
+            onChange={(v) => {
+              updateField("idNumber", v as string);
+              setIdOtpSent(false);
+              setIdOtpVerified(false);
+              setIdOtp("");
+            }}
             required
             maxLength={formData.idVerification === "aadhar" ? 14 : 9}
           />
@@ -431,6 +455,52 @@ case 10:
               )}
             </div>
           )}
+
+          {/* OTP Actions */}
+          <div className="mt-4 space-y-3">
+            <button
+              type="button"
+              onClick={handleSendIdOTP}
+              disabled={
+                !formData.idVerification ||
+                !formData.idNumber ||
+                !isValidID(formData.idVerification, formData.idNumber)
+              }
+              className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            >
+              {idOtpSent ? "Resend Verification Code" : "Send Verification Code"}
+            </button>
+
+            {idOtpSent && (
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600 text-center">
+                  Enter the 6-digit code sent to your registered contact.
+                </p>
+                <OTPInput
+                  value={idOtp}
+                  onChange={setIdOtp}
+                  numInputs={6}
+                  inputStyle="w-10 h-10 md:w-12 md:h-12 mx-1 border-2 border-gray-200 rounded-lg text-center text-lg font-medium focus:border-blue-500 focus:outline-none bg-white"
+                  containerStyle="justify-center"
+                  renderInput={(inputProps) => <input {...inputProps} />}
+                />
+                <button
+                  type="button"
+                  onClick={handleVerifyIdOTP}
+                  disabled={idOtp.length !== 6}
+                  className="w-full py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+                >
+                  Verify ID OTP
+                </button>
+
+                {idOtpVerified && (
+                  <div className="mt-2 text-xs p-2 rounded-lg bg-green-50 text-green-700 border border-green-200 text-center">
+                    ID verification successful.
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -438,29 +508,96 @@ case 10:
 
       case 11:
         return (
-          <CheckboxGroup
-            title="Health & Lifestyle"
-            options={[
-              {
-                value: "disease",
-                label: "Any chronic disease",
-                tooltip: "Diabetes, hypertension, etc.",
-              },
-              {
-                value: "smoking",
-                label: "I smoke (sometimes/often)",
-                tooltip: "Occasional or regular",
-              },
-              {
-                value: "drinking",
-                label: "I drink alcohol (sometimes/often)",
-                tooltip: "Socially or regularly",
-              },
-              { value: "drugs", label: "I use recreational drugs (sometimes)" },
-            ]}
-            values={formData.health}
-            onChange={(vals) => updateField("health", vals)}
-          />
+          <div className="space-y-6">
+            {/* Chronic disease toggle */}
+            <div className="flex items-center justify-between rounded-2xl border border-gray-200 p-4">
+              <div>
+                <p className="text-sm font-medium text-gray-800">Any chronic disease</p>
+                <p className="text-xs text-gray-500">Diabetes, hypertension, etc.</p>
+              </div>
+              <input
+                type="checkbox"
+                className="h-5 w-5 accent-orange-500"
+                checked={formData.health.chronicDisease}
+                onChange={(e) => updateHealth("chronicDisease", e.target.checked)}
+              />
+            </div>
+
+            {/* Smoking */}
+            <div className="space-y-3">
+              <p className="text-sm font-medium text-gray-800">Do you smoke?</p>
+              <div className="space-y-2">
+                {["sometimes", "often", "never"].map((option) => (
+                  <label
+                    key={`smoking-${option}`}
+                    className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 cursor-pointer hover:border-orange-400 transition"
+                  >
+                    <span className="text-sm capitalize">{option}</span>
+                    <input
+                      type="radio"
+                      name="smoking"
+                      value={option}
+                      checked={formData.health.smoking === option}
+                      onChange={() =>
+                        updateHealth("smoking", option as "sometimes" | "often" | "never")
+                      }
+                      className="h-4 w-4 accent-orange-500"
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Drinking */}
+            <div className="space-y-3">
+              <p className="text-sm font-medium text-gray-800">Do you drink alcohol?</p>
+              <div className="space-y-2">
+                {["sometimes", "often", "never"].map((option) => (
+                  <label
+                    key={`drinking-${option}`}
+                    className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 cursor-pointer hover:border-orange-400 transition"
+                  >
+                    <span className="text-sm capitalize">{option}</span>
+                    <input
+                      type="radio"
+                      name="drinking"
+                      value={option}
+                      checked={formData.health.drinking === option}
+                      onChange={() =>
+                        updateHealth("drinking", option as "sometimes" | "often" | "never")
+                      }
+                      className="h-4 w-4 accent-orange-500"
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Drugs */}
+            <div className="space-y-3">
+              <p className="text-sm font-medium text-gray-800">Do you take drugs?</p>
+              <div className="space-y-2">
+                {["sometimes", "often", "never"].map((option) => (
+                  <label
+                    key={`drugs-${option}`}
+                    className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 cursor-pointer hover:border-orange-400 transition"
+                  >
+                    <span className="text-sm capitalize">{option}</span>
+                    <input
+                      type="radio"
+                      name="drugs"
+                      value={option}
+                      checked={formData.health.drugs === option}
+                      onChange={() =>
+                        updateHealth("drugs", option as "sometimes" | "often" | "never")
+                      }
+                      className="h-4 w-4 accent-orange-500"
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
         );
 
       case 12:

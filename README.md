@@ -1,3 +1,12 @@
+## Database connection
+
+Set the `DATABASE_URL` env var (e.g. in `.env.local`) to a valid Postgres connection string:
+
+```
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DBNAME?schema=public"
+```
+
+Prisma 7+ now requires datasource URLs in `prisma.config.ts` (not in `schema.prisma`). This repo includes `prisma.config.ts` wired to `DATABASE_URL`. Ensure the env var is set before running `npx prisma db pull`, `npx prisma migrate dev`, or `npm run dev`.
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
