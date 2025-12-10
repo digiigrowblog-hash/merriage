@@ -73,8 +73,8 @@ export async function POST(req: NextRequest) {
       {
         success: true,
         userId: user.id,
-        message:
-          "User created. OTPs have been sent to your phone and email. You are logged in; please verify to unlock full features.",
+        message: `User created. OTPs have been sent to your phone and email. 
+          You are logged in; please verify to unlock full features.`,
       },
       { status: 201 }
     );

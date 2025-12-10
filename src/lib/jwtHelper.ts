@@ -30,7 +30,7 @@ export async function createSessionAndTokens(
     .digest("hex");
 
   const refreshExpiresAt = new Date(
-    now.getTime() + REFRESH_TOKEN_EXP_DAYS * 24 * 60 * 60 * 1000
+    now.getTime() + REFRESH_TOKEN_EXP_DAYS * 24 * 60 * 60 * 1000 // 30 days
   );
 
   // 3) Store session in DB
