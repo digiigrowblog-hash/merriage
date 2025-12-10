@@ -11,6 +11,17 @@ model User {
   id             Int                 @id @default(autoincrement())
   phone          String              @unique
   phoneOtp       String
+  phoneOtpExpiresAt DateTime?        @map("phone_otp_expires_at")
+  phoneVerified  Boolean             @default(false) @map("phone_verified")
+
+
+
+
+  email          String              @unique
+  emailOtp       String?             @map("email_otp")
+  emailOtpExpiresAt DateTime?        @map("email_otp_expires_at")
+  emailVerified  Boolean             @default(false) @map("email_verified")
+
   name           String
   age            Int
   heightCm       Float?              @map("height_cm")
@@ -27,14 +38,41 @@ model User {
   images         String[]
   religion       String
   caste          String
-  email          String              @unique
-  emailOtp       String?             @map("email_otp")
-  emailVerified  Boolean             @default(false) @map("email_verified")
-  idVerification IdVerificationType? @map("id_verification")
+
+  // Activity / visibility
+  lastActiveAt   DateTime?           @map("last_active_at")
+  isActive       Boolean             @default(true)  @map("is_active")
+  isHiddenByUser Boolean             @default(false) @map("is_hidden_by_user")
+
+  // ID document type + verification meta
+
+  idVerification       IdVerificationType? @map("id_verification")          // PAN / AADHAR / PASSPORT
+  idVerificationStatus String?             @map("id_verification_status")   // e.g. PENDING / VERIFIED / REJECTED
+  idVerificationRef    String?             @map("id_verification_ref")      // provider txn id or internal ref
+
   createdAt      DateTime            @default(now()) @map("created_at")
+
+  sessions       Session[]
 
   @@map("users")
 }
+
+model Session {
+  id               String   @id @default(cuid())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           Int
+
+  refreshTokenHash String   @map("refresh_token_hash")
+  userAgent        String?  @map("user_agent")
+  ipAddress        String?  @map("ip_address")
+
+  createdAt        DateTime @default(now()) @map("created_at")
+  expiresAt        DateTime @map("expires_at")
+
+  @@index([userId])
+  @@map("sessions")
+}
+
 
 enum Frequency {
   NEVER

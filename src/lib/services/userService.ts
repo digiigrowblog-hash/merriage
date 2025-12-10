@@ -1,14 +1,16 @@
-import { prisma } from '@/lib/prisma'
-import { z } from 'zod'
-import type { User } from '@/types'
+// src/services/userService.ts (adjust path as you like)
+import { prisma } from "@/lib/prisma";
+import { z } from "zod";
 
-// Zod validation schema matching your types
+// Zod schema for incoming signup payload FROM CLIENT
 export const createUserSchema = z.object({
   phone: z.string(),
-  phoneOtp: z.string(),
+  email: z.string().email(),
+
   name: z.string().min(2, "Name must be at least 2 characters"),
   age: z.number().min(18, "Must be 18+").max(100),
-  height: z.number().nullable(),
+
+  heightCm: z.number().nullable(),
   address: z.object({
     lat: z.number().nullable(),
     lng: z.number().nullable(),
@@ -18,32 +20,54 @@ export const createUserSchema = z.object({
   gender: z.string(),
   orientation: z.string(),
   preference: z.string(),
+
   company: z.string().nullable(),
   jobRole: z.string().nullable(),
   salary: z.number().nullable(),
+
   health: z.object({
     chronicDisease: z.boolean(),
-    smoking: z.enum(['never', 'sometimes', 'often']),
-    drinking: z.enum(['never', 'sometimes', 'often']),
-    drugs: z.enum(['never', 'sometimes']),
+    smoking: z.enum(["never", "sometimes", "often"]),
+    drinking: z.enum(["never", "sometimes", "often"]),
+    drugs: z.enum(["never", "sometimes"]),
   }),
+
   hobbies: z.array(z.string()).min(1),
   images: z.array(z.string()).min(1, "At least one image required"),
-  email: z.string().email(),
-  emailOtp: z.string().nullable(),
-  idVerification: z.enum(['PAN', 'AADHAR', 'PASSPORT']).nullable(),
-})
 
-export type CreateUserInput = z.infer<typeof createUserSchema>
+  religion: z.string(),
+  caste: z.string(),
 
-export async function createUser(data: CreateUserInput) {
-  return await prisma.user.create({
+  idVerification: z.enum(["PAN", "AADHAR", "PASSPORT"]).nullable().optional(),
+});
+
+export type CreateUserInput = z.infer<typeof createUserSchema>;
+
+// Internal type used by service: client data + server generated OTPs
+export type CreateUserWithOtp = CreateUserInput & {
+  phoneOtp: string;
+  emailOtp: string;
+  otpExpiresAt: Date;
+};
+
+export async function createUser(data: CreateUserWithOtp) {
+  const now = new Date();
+
+  return prisma.user.create({
     data: {
       phone: data.phone,
       phoneOtp: data.phoneOtp,
+      phoneOtpExpiresAt: data.otpExpiresAt,
+      phoneVerified: false,
+
+      email: data.email,
+      emailOtp: data.emailOtp,
+      emailOtpExpiresAt: data.otpExpiresAt,
+      emailVerified: false,
+
       name: data.name,
       age: data.age,
-      heightCm: data.height,
+      heightCm: data.heightCm,
       address: data.address,
       eating: data.eating,
       gender: data.gender,
@@ -55,28 +79,54 @@ export async function createUser(data: CreateUserInput) {
       health: data.health,
       hobbies: data.hobbies,
       images: data.images,
-      email: data.email,
-      emailOtp: data.emailOtp,
-      idVerification: data.idVerification,
+      religion: data.religion,
+      caste: data.caste,
+
+      lastActiveAt: now,
+      isActive: true,
+      isHiddenByUser: false,
+
+      idVerification: data.idVerification ?? null,
+      idVerificationStatus: "PENDING",
+      idVerificationRef: null,
     },
-  })
+  });
 }
 
+// Basic helpers (you can keep using these)
+
 export async function getUserById(id: number) {
-  return await prisma.user.findUnique({
+  return prisma.user.findUnique({
     where: { id },
-  })
+  });
 }
 
 export async function getUserByPhone(phone: string) {
-  return await prisma.user.findUnique({
+  return prisma.user.findUnique({
     where: { phone },
-  })
+  });
 }
 
+
 export async function updateUserPhoneVerified(id: number) {
-  return await prisma.user.update({
+  return prisma.user.update({
     where: { id },
-    data: { phoneOtp: '' },
-  })
+    data: {
+      phoneVerified: true,
+      phoneOtp: "",
+      phoneOtpExpiresAt: null,
+    },
+  });
+}
+
+
+export async function updateUserEmailVerified(id: number) {
+  return prisma.user.update({
+    where: { id },
+    data: {
+      emailVerified: true,
+      emailOtp: "",
+      emailOtpExpiresAt: null,
+    },
+  });
 }
