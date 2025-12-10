@@ -6,7 +6,11 @@ import { prisma } from "@/lib/prisma";
 const ACCESS_TOKEN_EXP_MIN = 15; 
 const REFRESH_TOKEN_EXP_DAYS = 30;
 
-export async function createSessionAndTokens(userId: number) {
+export async function createSessionAndTokens(
+  userId: number, 
+  opts?: { userAgent?: string; 
+  ipAddress?: string }
+) {
   const now = new Date();
 
   // 1) Access token (JWT)
@@ -34,8 +38,8 @@ export async function createSessionAndTokens(userId: number) {
     data: {
       userId,
       refreshTokenHash,
-      userAgent: "signup", // or pass from request headers
-      ipAddress: null,
+      userAgent: opts?.userAgent?? null, // or pass from request headers
+      ipAddress: opts?.ipAddress?? null, // or pass from request headers
       expiresAt: refreshExpiresAt,
     },
   });

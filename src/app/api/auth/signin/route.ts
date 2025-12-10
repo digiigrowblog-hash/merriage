@@ -71,6 +71,13 @@ export async function POST(req: NextRequest) {
     }
 
     
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+
+    const ua = req.headers.get("user-agent") || "unknown";
+
     const response = NextResponse.json(
       {
         success: true,
@@ -82,7 +89,10 @@ export async function POST(req: NextRequest) {
     );
 
     const { accessToken, refreshToken, refreshTokenExpiresAt } =
-      await createSessionAndTokens(user.id);
+      await createSessionAndTokens(user.id, {
+        ipAddress: ip,
+        userAgent: ua,
+      });
 
     const isProd = process.env.NODE_ENV === "production";
 
@@ -91,7 +101,7 @@ export async function POST(req: NextRequest) {
       secure: isProd,
       sameSite: "lax",
       path: "/",
-      maxAge: 15 * 60, // sync with access token exp
+      maxAge: 15 * 60,
     });
 
     response.cookies.set("refresh_token", refreshToken, {
@@ -99,10 +109,13 @@ export async function POST(req: NextRequest) {
       secure: isProd,
       sameSite: "lax",
       path: "/",
-      // expires: refreshTokenExpiresAt,
-      maxAge: Math.floor((refreshTokenExpiresAt.getTime() - Date.now()) / 1000),
+      maxAge: Math.floor(
+        (refreshTokenExpiresAt.getTime() - Date.now()) / 1000
+      ),
     });
+
     return response;
+    
 
 
   } catch (error) {
