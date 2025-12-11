@@ -6,9 +6,9 @@ import {
   createUserSchema,
   type CreateUserWithOtp,
 } from "@/lib/services/userService";
-import sendEmail from "@/lib/emailService";
-import { sendPhoneOtp } from "@/lib/phoneService";
-import { createSessionAndTokens } from "@/lib/jwtHelper";
+import sendEmail from "@/helper/emailService";
+import { sendPhoneOtp } from "@/helper/phoneService";
+import { createSessionAndTokens } from "@/helper/jwtHelper";
 
 function generateOtp(length = 6): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
       emailOtp,
       otpExpiresAt,
     } as CreateUserWithOtp);
+    console.log("New user created with ID: 1231");
 
     // 5. Send OTPs
     await sendEmail(
@@ -67,6 +68,7 @@ export async function POST(req: NextRequest) {
     // 6. Create session + tokens
     const { accessToken, refreshToken, refreshTokenExpiresAt } =
       await createSessionAndTokens(user.id);
+      console.log("Tokens created during signup for userId:", user.id);
 
     // 7. Set cookies and respond
     const response = NextResponse.json(
@@ -94,7 +96,6 @@ export async function POST(req: NextRequest) {
       secure: isProd,
       sameSite: "lax",
       path: "/",
-      // expires: refreshTokenExpiresAt,
       maxAge: Math.floor((refreshTokenExpiresAt.getTime() - Date.now()) / 1000),
     });
 

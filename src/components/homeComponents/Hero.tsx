@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import MandalaCanvas from "@/components/Mandala";
+import MandalaCanvas from "@/components/animationComponents/Mandala";
 import Header from "../Header";
 
 export default function Hero() {

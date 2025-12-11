@@ -15,7 +15,7 @@ export async function createSessionAndTokens(
 
   // 1) Access token (JWT)
   const accessToken = jwt.sign(
-    { sub: userId },
+    {  userId },
     process.env.JWT_ACCESS_SECRET!,
     { expiresIn: `${ACCESS_TOKEN_EXP_MIN}m` }
   );

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import sendEmail from "@/lib/emailService";
-import { sendPhoneOtp } from "@/lib/phoneService";
-import { createSessionAndTokens } from "@/lib/jwtHelper";
+import sendEmail from "@/helper/emailService";
+import { sendPhoneOtp } from "@/helper/phoneService";
+import { createSessionAndTokens } from "@/helper/jwtHelper";
 
 function generateOtp(length = 6): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -66,8 +66,15 @@ export async function POST(req: NextRequest) {
         "Your login verification code",
         `<p>Your OTP is <b>${otp}</b>. It is valid for 10 minutes.</p>`
       );
-    } else {
+    } else if (user.phone) {
       await sendPhoneOtp(user.phone, otp);
+    } else {
+      // This case should ideally not happen if validation is strict,
+      // but adding a fallback for robustness.
+      return NextResponse.json(
+        { error: "Cannot send OTP: No valid phone number found for user." },
+        { status: 500 }
+      );
     }
 
     

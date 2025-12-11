@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Heart, Instagram, Facebook, Phone, Mail } from "lucide-react";
-import FloatingOrbs from "./FloatingOrbs"; // r3f scene
+import FloatingOrbs from "./animationComponents/FloatingOrbs"; // r3f scene
 
 export default function Footer() {
   return (
