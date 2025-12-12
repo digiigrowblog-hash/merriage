@@ -1,6 +1,6 @@
 import { NextRequest , NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { verifyAccessToken } from "@/helper/authMiddleware"; // Assuming a similar middleware for refresh token
+import { verifyAccessToken } from "@/helper/verifyJwt"; // Assuming a similar middleware for refresh token
 
 
 export async function POST(req: NextRequest) {

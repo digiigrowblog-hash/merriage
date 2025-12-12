@@ -16,7 +16,9 @@ function generateOtp(length = 6): string {
 
 export async function POST(req: NextRequest) {
   try {
+     console.log("hie wassup 2")
     const body = await req.json();
+   
 
     // 1. Validate
     const parsed = createUserSchema.safeParse(body);
@@ -40,7 +42,7 @@ export async function POST(req: NextRequest) {
         { status: 409 }
       );
     }
-
+    console.log("hie wassup 1")
     // 3. Generate OTPs
     const phoneOtp = generateOtp();
     const emailOtp = generateOtp();

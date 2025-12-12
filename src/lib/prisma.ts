@@ -1,6 +1,4 @@
-// lib/prisma.ts
-// Adjust the relative path below if this file is nested differently.
-import { PrismaClient } from '../../generated/prisma';
+import { PrismaClient } from "@prisma/client";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -10,7 +8,9 @@ declare global {
 export const prisma =
   global.prisma ??
   new PrismaClient({
-    log: ['warn', 'error'],
+    log: ["warn", "error"],
   });
 
-if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
+if (process.env.NODE_ENV !== "production") {
+  global.prisma = prisma;
+}

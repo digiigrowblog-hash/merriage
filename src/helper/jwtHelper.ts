@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 
-const ACCESS_TOKEN_EXP_MIN = 15; 
-const REFRESH_TOKEN_EXP_DAYS = 30;
+const ACCESS_TOKEN_EXP_MIN = parseInt(process.env.ACCESS_TOKEN_EXPIRE!);
+const REFRESH_TOKEN_EXP_DAYS = parseInt(process.env.REFRESH_TOKEN_EXPIRY!);
 
 export async function createSessionAndTokens(
   userId: number, 

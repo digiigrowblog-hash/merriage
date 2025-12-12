@@ -4,6 +4,7 @@ import PhoneInput from "react-phone-number-input/input";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import OTPInput from "react-otp-input";
+import { InputHTMLAttributes } from "react";
 
 interface PhoneInputProps {
   value: string;
@@ -12,16 +13,21 @@ interface PhoneInputProps {
   loginMode?: boolean; // ✅ NEW: Disable internal OTP
 }
 
+// Custom Input component to filter unrecognized props
+const CustomInput = ({ countryCallingCodeEditable, ...rest }: InputHTMLAttributes<HTMLInputElement> & {
+  countryCallingCodeEditable?: boolean;
+}) => {
+  return <input {...rest} />;
+};
+
 function PhoneInputs({ value, onChange, onOtpVerify, loginMode }: PhoneInputProps) {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
 
-  // ✅ Force IN as initial country on mount
-  useEffect(() => {
-    if (!value) {
-      onChange("+91"); // Pre-populate with India format
-    }
-  }, []);
+  // ✅ Ensure initial value is '+91' for consistent SSR/CSR
+  const initialValue = value || "+91";
+
+  // Removed: useEffect to force IN as initial country on mount
 
   const handleSendOTP = async () => {
     if (isValidPhoneNumber(value)) {
@@ -38,13 +44,14 @@ function PhoneInputs({ value, onChange, onOtpVerify, loginMode }: PhoneInputProp
     return (
       <div className="phone-input-wrapper">
         <PhoneInput
-          international
-          countryCallingCodeEditable={false}
+            country={'IN'}
+          countryCallingCodeEditable={undefined}
           defaultCountry="IN"
-          value={value}
+          value={initialValue}
           onChange={onChange}
           placeholder="Enter phone number"
-          inputClassName="phone-input-custom h-16 px-4 py-3 text-lg border-2 border-gray-200 
+          inputComponent={CustomInput}
+          className="phone-input-custom h-16 px-4 py-3 text-lg border-2 border-gray-200 
           rounded-xl focus:border-orange-400 focus:outline-none focus:ring-2 
           focus:ring-orange-200/50 transition-all duration-200 w-full!"
         />
@@ -61,14 +68,15 @@ function PhoneInputs({ value, onChange, onOtpVerify, loginMode }: PhoneInputProp
           </label>
           <div className="phone-input-wrapper">
             <PhoneInput
-              international
-              countryCallingCodeEditable={false}
+              // international
+              countryCallingCodeEditable={undefined}
               defaultCountry="IN"
               // ✅ Remove countries prop - let defaultCountry work
-              value={value}
+              value={initialValue}
               onChange={onChange}
               placeholder="Enter phone number"
-              inputClassName="phone-input-custom h-16 px-4 py-3 text-lg border-2 border-gray-200 
+              inputComponent={CustomInput}
+              className="phone-input-custom h-16 px-4 py-3 text-lg border-2 border-gray-200 
               rounded-xl focus:border-orange-400 focus:outline-none focus:ring-2 
               focus:ring-orange-200/50 transition-all duration-200 w-full!"
             />

@@ -1,7 +1,7 @@
+
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
-  engineType = "binary"
+  provider = "prisma-client"
+  output   = "./node_modules/@prisma/client"
 }
 
 datasource db {
@@ -9,72 +9,58 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model User {
-  id             Int                 @id @default(autoincrement())
-  phone          String              @unique
-  phoneOtp       String
-  phoneOtpExpiresAt DateTime?        @map("phone_otp_expires_at")
-  phoneVerified  Boolean             @default(false) @map("phone_verified")
-
-
-
-
-  email          String              @unique
-  emailOtp       String?             @map("email_otp")
-  emailOtpExpiresAt DateTime?        @map("email_otp_expires_at")
-  emailVerified  Boolean             @default(false) @map("email_verified")
-
-  name           String
-  age            Int
-  heightCm       Float?              @map("height_cm")
-  address        Json
-  eating         String
-  gender         String
-  orientation    String
-  preference     String
-  company        String?
-  jobRole        String?             @map("job_role")
-  salary         Float?
-  health         Json
-  hobbies        String[]
-  images         String[]
-  religion       String
-  caste          String
-
-  // Activity / visibility
-  lastActiveAt   DateTime?           @map("last_active_at")
-  isActive       Boolean             @default(true)  @map("is_active")
-  isHiddenByUser Boolean             @default(false) @map("is_hidden_by_user")
-
-  // ID document type + verification meta
-
-  idVerification       IdVerificationType? @map("id_verification")          // PAN / AADHAR / PASSPORT
-  idVerificationStatus String?             @map("id_verification_status")   // e.g. PENDING / VERIFIED / REJECTED
-  idVerificationRef    String?             @map("id_verification_ref")      // provider txn id or internal ref
-
-  createdAt      DateTime            @default(now()) @map("created_at")
-
-  sessions       Session[]
+  id                   Int                 @id @default(autoincrement())
+  phone                String              @unique
+  phoneOtp             String
+  name                 String
+  age                  Int
+  heightCm             Float?              @map("height_cm")
+  address              Json
+  eating               String
+  gender               String
+  orientation          String
+  preference           String
+  company              String?
+  jobRole              String?             @map("job_role")
+  salary               Float?
+  health               Json
+  hobbies              String[]
+  images               String[]
+  religion             String
+  caste                String
+  email                String              @unique
+  emailOtp             String?             @map("email_otp")
+  emailVerified        Boolean             @default(false) @map("email_verified")
+  idVerification       IdVerificationType? @map("id_verification")
+  createdAt            DateTime            @default(now()) @map("created_at")
+  isActive             Boolean             @default(true) @map("is_active")
+  isHiddenByUser       Boolean             @default(false) @map("is_hidden_by_user")
+  lastActiveAt         DateTime?           @map("last_active_at")
+  emailOtpExpiresAt    DateTime?           @map("email_otp_expires_at")
+  idVerificationRef    String?             @map("id_verification_ref")
+  idVerificationStatus String?             @map("id_verification_status")
+  phoneOtpExpiresAt    DateTime?           @map("phone_otp_expires_at")
+  phoneVerified        Boolean             @default(false) @map("phone_verified")
+  sessions             Session[]
 
   @@map("users")
 }
 
 model Session {
   id               String   @id @default(cuid())
-  user             User     @relation(fields: [userId], references: [id])
   userId           Int
-
   refreshTokenHash String   @map("refresh_token_hash")
   userAgent        String?  @map("user_agent")
   ipAddress        String?  @map("ip_address")
-
   createdAt        DateTime @default(now()) @map("created_at")
   expiresAt        DateTime @map("expires_at")
+  user             User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@map("sessions")
 }
-
 
 enum Frequency {
   NEVER
