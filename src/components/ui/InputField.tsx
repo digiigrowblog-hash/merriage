@@ -3,7 +3,7 @@ import { FieldError } from 'react-hook-form';
 
 interface InputFieldProps {
   label: string;
-  type?: "string" | "number" | "boolean" | "date" | "password" | "email";
+  type?: "text" | "number" | "date" | "password" | "email" | "tel";
   name: string;
   placeholder?: string;
   onChange: (value: string | number) => void;
@@ -13,7 +13,9 @@ interface InputFieldProps {
   required?: boolean;
   min?: number;
   max?: number;
+
   readOnly?: boolean;
+  maxLength?: number;
 }
 
 const InputField = ({
@@ -28,7 +30,9 @@ const InputField = ({
   required,
   min,
   max,
-  readOnly
+
+  readOnly,
+  maxLength
 }: InputFieldProps) => {
   return (
     <div className={`space-y-2 ${className || ""}`}>
@@ -43,7 +47,9 @@ const InputField = ({
         placeholder={placeholder}
         min={min}
         max={max}
+
         readOnly={readOnly}
+        maxLength={maxLength}
         className={`w-full px-4 py-3 border rounded-xl 
             focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all 
             duration-200 ${error

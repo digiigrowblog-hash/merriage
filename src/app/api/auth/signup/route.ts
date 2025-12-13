@@ -16,7 +16,7 @@ function generateOtp(length = 6): string {
 
 export async function POST(req: NextRequest) {
   try {
-     console.log("hie wassup 2")
+    
     const body = await req.json();
    
 
@@ -45,7 +45,9 @@ export async function POST(req: NextRequest) {
     console.log("hie wassup 1")
     // 3. Generate OTPs
     const phoneOtp = generateOtp();
+    console.log("ph",phoneOtp)
     const emailOtp = generateOtp();
+    console.log("em",emailOtp)
     const now = new Date();
     const otpExpiryMinutes = 10;
     const otpExpiresAt = new Date(now.getTime() + otpExpiryMinutes * 60 * 1000);
@@ -57,7 +59,7 @@ export async function POST(req: NextRequest) {
       emailOtp,
       otpExpiresAt,
     } as CreateUserWithOtp);
-    console.log("New user created with ID: 1231");
+    console.log(`New user created with ID: ${user.id}`);
 
     // 5. Send OTPs
     await sendEmail(

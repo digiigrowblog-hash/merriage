@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import OTPInput from "react-otp-input";
+import { CustomOTPInput } from "@/components/ui/CustomOTPInput";
 import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Stepper } from "@/components/ui/Stepper";
@@ -70,8 +70,8 @@ export default function SignupPage() {
     images: [],
     email: "",
     emailOtp: "",
-    idNumber: "",  
-    
+    idNumber: "",
+
   });
   const [emailOtpSent, setEmailOtpSent] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
@@ -124,53 +124,53 @@ export default function SignupPage() {
     }
   };
 
- // Add these validation functions BEFORE the component
-const isValidPAN = (pan: string): boolean => {
-  const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
-  return panRegex.test(pan.toUpperCase());
-};
+  // Add these validation functions BEFORE the component
+  const isValidPAN = (pan: string): boolean => {
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    return panRegex.test(pan.toUpperCase());
+  };
 
-const isValidAadhaar = (aadhaar: string): boolean => {
-  const cleanAadhaar = aadhaar.replace(/\D/g, "");
-  // Aadhaar validation is numeric-only and exactly 12 digits.
-  return /^\d{12}$/.test(cleanAadhaar);
-};
+  const isValidAadhaar = (aadhaar: string): boolean => {
+    const cleanAadhaar = aadhaar.replace(/\D/g, "");
+    // Aadhaar validation is numeric-only and exactly 12 digits.
+    return /^\d{12}$/.test(cleanAadhaar);
+  };
 
-const isValidPassport = (passport: string): boolean => {
-  const passportRegex = /^(Z[A-Z][1-9A-Z]{6}[0-9])|([A-Z]{3}[1-9][0-9][A-Z]{3}[0-9]{3})$/;
-  return passportRegex.test(passport);
-};
+  const isValidPassport = (passport: string): boolean => {
+    const passportRegex = /^(Z[A-Z][1-9A-Z]{6}[0-9])|([A-Z]{3}[1-9][0-9][A-Z]{3}[0-9]{3})$/;
+    return passportRegex.test(passport);
+  };
 
-const isValidID = (type: string, number: string): boolean => {
-  switch (type) {
-    case "pan": return isValidPAN(number);
-    case "aadhar": return isValidAadhaar(number);
-    case "passport": return isValidPassport(number);
-    default: return false;
-  }
-};
+  const isValidID = (type: string, number: string): boolean => {
+    switch (type) {
+      case "pan": return isValidPAN(number);
+      case "aadhar": return isValidAadhaar(number);
+      case "passport": return isValidPassport(number);
+      default: return false;
+    }
+  };
 
-// Inside validateStep function, fix case 10:
-const validateStep = (step: number, data: FormData): boolean => {
-  switch (step) {
-    case 1: return !!data.phone && !!data.phoneOtp;
-    case 2: return !!data.name && !!data.age;
-    case 3: return !!data.address.formatted;
-    case 4: return !!data.eating;
-    case 5: return !!data.gender;
-    case 6: return !!data.orientation;
-    case 7: return !!data.preference;
-    case 8: return true;
-    case 9: return !!data.religion;
-    case 10: 
-      return !!data.idVerification && !!data.idNumber && isValidID(data.idVerification, data.idNumber) && idOtpVerified;
-    case 11: return !!data.health.smoking && !!data.health.drinking && !!data.health.drugs;
-    case 12: return data.hobbies.length > 0;
-    case 13: return data.images.length >= 1;
-    case 14: return isEmailVerified;
-    default: return true;
-  }
-};
+  // Inside validateStep function, fix case 10:
+  const validateStep = (step: number, data: FormData): boolean => {
+    switch (step) {
+      case 1: return !!data.phone && !!data.phoneOtp;
+      case 2: return !!data.name && !!data.age;
+      case 3: return !!data.address.formatted;
+      case 4: return !!data.eating;
+      case 5: return !!data.gender;
+      case 6: return !!data.orientation;
+      case 7: return !!data.preference;
+      case 8: return true;
+      case 9: return !!data.religion;
+      case 10:
+        return !!data.idVerification && !!data.idNumber && isValidID(data.idVerification, data.idNumber) && idOtpVerified;
+      case 11: return !!data.health.smoking && !!data.health.drinking && !!data.health.drugs;
+      case 12: return data.hobbies.length > 0;
+      case 13: return data.images.length >= 1;
+      case 14: return isEmailVerified;
+      default: return true;
+    }
+  };
 
   const nextStep = () => {
     if (activeStep === TOTAL_STEPS) {
@@ -361,150 +361,144 @@ const validateStep = (step: number, data: FormData): boolean => {
           <ReligionCasteStep formData={formData} updateField={updateField} />
         );
 
-case 10:
-  const idOptions: DropdownOption[] = [
-    { value: "pan", label: "PAN Card" },
-    { value: "aadhar", label: "Aadhaar Card" },
-    { value: "passport", label: "Passport" },
-  ];
+      case 10:
+        const idOptions: DropdownOption[] = [
+          { value: "pan", label: "PAN Card" },
+          { value: "aadhar", label: "Aadhaar Card" },
+          { value: "passport", label: "Passport" },
+        ];
 
-  const getIDInputLabel = () => {
-    switch (formData.idVerification) {
-      case "pan": return "Enter PAN Number *";
-      case "aadhar": return "Enter Aadhaar Number *";
-      case "passport": return "Enter Passport Number *";
-      default: return "";
-    }
-  };
+        const getIDInputLabel = () => {
+          switch (formData.idVerification) {
+            case "pan": return "Enter PAN Number";
+            case "aadhar": return "Enter Aadhaar Number";
+            case "passport": return "Enter Passport Number";
+            default: return "";
+          }
+        };
 
-  const getIDInputPlaceholder = () => {
-    switch (formData.idVerification) {
-      case "pan": return "ABCDE1234F";
-      case "aadhar": return "1234 5678 9012";
-      case "passport": return "Z1234567 or ABC123456";
-      default: return "";
-    }
-  };
+        const getIDInputPlaceholder = () => {
+          switch (formData.idVerification) {
+            case "pan": return "ABCDE1234F";
+            case "aadhar": return "1234 5678 9012";
+            case "passport": return "Z1234567 or ABC123456";
+            default: return "";
+          }
+        };
 
-  return (
-    <div className="space-y-6">
-      {/* ID Type Selection */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          ID Verification Type *
-        </label>
-        <ReusableDropdown
-          options={idOptions}
-          value={formData.idVerification}
-          onChange={(value) => {
-            updateField("idVerification", value as 'pan' | 'aadhar' | 'passport' | '');
-            // Reset ID number when type changes
-            updateField("idNumber", "" as any);
-            setIdOtpSent(false);
-            setIdOtpVerified(false);
-            setIdOtp("");
-          }}
-          placeholder="Select ID type"
-          className="w-full"
-          searchable
-        />
-      </div>
-
-      {/* Conditional ID Number Input */}
-      {formData.idVerification && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            {getIDInputLabel()}
-          </label>
-          <InputField
-            name="idNumber"
-            type={formData.idVerification === "aadhar" ? "tel" : "text"}
-            placeholder={getIDInputPlaceholder()}
-            value={formData.idNumber}
-            onChange={(v) => {
-              updateField("idNumber", v as string);
-              setIdOtpSent(false);
-              setIdOtpVerified(false);
-              setIdOtp("");
-            }}
-            required
-            maxLength={formData.idVerification === "aadhar" ? 14 : 9}
-          />
-          
-          {/* Real-time Validation Feedback */}
-          {formData.idNumber && (
-            <div className={`mt-2 text-xs p-2 rounded-lg ${
-              isValidID(formData.idVerification, formData.idNumber)
-                ? 'bg-green-50 text-green-700 border border-green-200'
-                : 'bg-red-50 text-red-700 border border-red-200'
-            }`}>
-              {isValidID(formData.idVerification, formData.idNumber) ? (
-                <>
-                  <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Valid {formData.idVerification.toUpperCase()} number
-                </>
-              ) : (
-                <>
-                  <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                  Invalid {formData.idVerification.toUpperCase()} format
-                </>
-              )}
+        return (
+          <div className="space-y-6">
+            {/* ID Type Selection */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                ID Verification Type *
+              </label>
+              <ReusableDropdown
+                options={idOptions}
+                value={formData.idVerification}
+                onChange={(value) => {
+                  updateField("idVerification", value as 'pan' | 'aadhar' | 'passport' | '');
+                  // Reset ID number when type changes
+                  updateField("idNumber", "" as any);
+                  setIdOtpSent(false);
+                  setIdOtpVerified(false);
+                  setIdOtp("");
+                }}
+                placeholder="Select ID type"
+                className="w-full"
+                searchable
+              />
             </div>
-          )}
 
-          {/* OTP Actions */}
-          <div className="mt-4 space-y-3">
-            <button
-              type="button"
-              onClick={handleSendIdOTP}
-              disabled={
-                !formData.idVerification ||
-                !formData.idNumber ||
-                !isValidID(formData.idVerification, formData.idNumber)
-              }
-              className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            >
-              {idOtpSent ? "Resend Verification Code" : "Send Verification Code"}
-            </button>
-
-            {idOtpSent && (
-              <div className="space-y-3">
-                <p className="text-sm text-gray-600 text-center">
-                  Enter the 6-digit code sent to your registered contact.
-                </p>
-                <OTPInput
-                  value={idOtp}
-                  onChange={setIdOtp}
-                  numInputs={6}
-                  inputStyle="w-10 h-10 md:w-12 md:h-12 mx-1 border-2 border-gray-200 rounded-lg text-center text-lg font-medium focus:border-blue-500 focus:outline-none bg-white"
-                  containerStyle="justify-center"
-                  renderInput={(inputProps) => <input {...inputProps} />}
+            {/* Conditional ID Number Input */}
+            {formData.idVerification && (
+              <div>
+                <InputField
+                  label={getIDInputLabel()}
+                  name="idNumber"
+                  type={formData.idVerification === "aadhar" ? "tel" : "text"}
+                  placeholder={getIDInputPlaceholder()}
+                  value={formData.idNumber}
+                  onChange={(v) => {
+                    updateField("idNumber", v as string);
+                    setIdOtpSent(false);
+                    setIdOtpVerified(false);
+                    setIdOtp("");
+                  }}
+                  required
+                  maxLength={formData.idVerification === "aadhar" ? 14 : 9}
                 />
-                <button
-                  type="button"
-                  onClick={handleVerifyIdOTP}
-                  disabled={idOtp.length !== 6}
-                  className="w-full py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
-                >
-                  Verify ID OTP
-                </button>
 
-                {idOtpVerified && (
-                  <div className="mt-2 text-xs p-2 rounded-lg bg-green-50 text-green-700 border border-green-200 text-center">
-                    ID verification successful.
+                {/* Real-time Validation Feedback */}
+                {formData.idNumber && (
+                  <div className={`mt-2 text-xs p-2 rounded-lg ${isValidID(formData.idVerification, formData.idNumber)
+                    ? 'bg-green-50 text-green-700 border border-green-200'
+                    : 'bg-red-50 text-red-700 border border-red-200'
+                    }`}>
+                    {isValidID(formData.idVerification, formData.idNumber) ? (
+                      <>
+                        <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        Valid {formData.idVerification.toUpperCase()} number
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        Invalid {formData.idVerification.toUpperCase()} format
+                      </>
+                    )}
                   </div>
                 )}
+
+                {/* OTP Actions */}
+                <div className="mt-4 space-y-3">
+                  <button
+                    type="button"
+                    onClick={handleSendIdOTP}
+                    disabled={
+                      !formData.idVerification ||
+                      !formData.idNumber ||
+                      !isValidID(formData.idVerification, formData.idNumber)
+                    }
+                    className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  >
+                    {idOtpSent ? "Resend Verification Code" : "Send Verification Code"}
+                  </button>
+
+                  {idOtpSent && (
+                    <div className="space-y-3">
+                      <p className="text-sm text-gray-600 text-center">
+                        Enter the 6-digit code sent to your registered contact.
+                      </p>
+                      <CustomOTPInput
+                        value={idOtp}
+                        onChange={setIdOtp}
+                        length={6}
+                      />
+                      <button
+                        type="button"
+                        onClick={handleVerifyIdOTP}
+                        disabled={idOtp.length !== 6}
+                        className="w-full py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+                      >
+                        Verify ID OTP
+                      </button>
+
+                      {idOtpVerified && (
+                        <div className="mt-2 text-xs p-2 rounded-lg bg-green-50 text-green-700 border border-green-200 text-center">
+                          ID verification successful.
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
-        </div>
-      )}
-    </div>
-  );
+        );
 
       case 11:
         return (
@@ -660,13 +654,10 @@ case 10:
                       <p className="text-sm text-blue-800 mb-3 text-center font-medium">
                         Enter verification code sent to your email
                       </p>
-                      <OTPInput
+                      <CustomOTPInput
                         value={formData.emailOtp}
                         onChange={(otp) => updateField("emailOtp", otp)}
-                        numInputs={6}
-                        inputStyle="w-10 h-10 md:w-12 md:h-12 mx-1 border-2 border-gray-200 rounded-lg text-center text-lg font-medium focus:border-blue-500 focus:outline-none bg-white"
-                        containerStyle="justify-center"
-                        renderInput={(inputProps) => <input {...inputProps} />}
+                        length={6}
                       />
                     </div>
                     <button

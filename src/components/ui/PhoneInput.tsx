@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-number-input/input";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import OTPInput from "react-otp-input";
+import { CustomOTPInput } from "./CustomOTPInput";
 import { InputHTMLAttributes } from "react";
 
 interface PhoneInputProps {
@@ -44,7 +44,7 @@ function PhoneInputs({ value, onChange, onOtpVerify, loginMode }: PhoneInputProp
     return (
       <div className="phone-input-wrapper">
         <PhoneInput
-            country={'IN'}
+          country={'IN'}
           countryCallingCodeEditable={undefined}
           defaultCountry="IN"
           value={initialValue}
@@ -95,13 +95,11 @@ function PhoneInputs({ value, onChange, onOtpVerify, loginMode }: PhoneInputProp
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Enter OTP
           </label>
-          <OTPInput
+          <CustomOTPInput
             value={otp}
             onChange={setOtp}
-            numInputs={6}
-            inputStyle="w-12 h-12 mx-1 border-2 border-gray-200 rounded-xl text-center text-lg font-medium focus:border-orange-400 focus:outline-none"
-            containerStyle="justify-center mb-4"
-            renderInput={(inputProps) => <input {...inputProps} />}
+            length={6}
+            className="mb-4"
           />
           <div className="flex gap-2">
             <button

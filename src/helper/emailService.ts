@@ -9,6 +9,8 @@ const transporter = nodemailer.createTransport({
     pass: process.env.USER_EMAIL_PASSWORD,
   },    
 })
+console.log(process.env.USER_EMAIL ,"user")
+console.log(process.env.USER_EMAIL_PASSWORD ,"pass")
 
 const sendEmail = async (
   to: string,
@@ -16,7 +18,7 @@ const sendEmail = async (
   html: string
 ) => {
   const mailOptions = {
-    from: 'your-email@gmail.com',
+    from: process.env.USER_EMAIL,
     to,
     subject,
     html,
