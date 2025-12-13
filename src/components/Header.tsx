@@ -21,8 +21,8 @@ export default function Header() {
 
   return (
     <header className="lexend-headers fixed inset-x-0 top-0 z-40 
-    bg-linear-to-b from-[#f3b886]/95 to-[#e89b7c]/80 backdrop-blur-md 
-    border-b border-white/20">
+    backdrop-blur-md 
+    ">
       <nav className="mx-auto flex max-w-6xl items-center justify-between 
       px-4 py-3 md:px-6 lg:px-8">
         {/* Logo */}
