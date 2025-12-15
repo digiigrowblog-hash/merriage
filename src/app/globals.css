@@ -1,5 +1,38 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom utilities */
+@layer utilities {
+  /* Chrome, Safari, Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox, Edge, IE */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
+}
+
+
+.marko-one-regular {
+  font-family: "Marko One", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+.kotta-one-regular {
+  font-family: "Kotta One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .pt-serif-regular {
   font-family: "PT Serif", serif;
   font-weight: 400;
