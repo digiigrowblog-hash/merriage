@@ -26,7 +26,7 @@ export default function Setting() {
         />
 
         <div className="flex md:gap-3 gap-2">
-          <Link href="/matchPreference">
+          <Link href="/matchPreference?from=/profile">
             <Settings2 className="rotate-90" />
           </Link>
 
@@ -190,7 +190,7 @@ function MonthlySubscription() {
           visibility on busy evenings/weekends.
         </p>
         <Link
-          href={"/monthlySubscription"}
+          href={"/monthlySubscription?from=/profile"}
           className="bg-white px-8 py-3 rounded-full text-sm font-medium"
         >
           Upgrade

@@ -15,7 +15,7 @@ export default function Setting() {
   };
   return (
     <div className="relative min-h-screen md:max-w-md max-w-full">
-      <div className="right-0 left-0 top-0 h-10 z-30 bg-white/60 absolute fixed" />
+      <div className="right-10 left-10 top-0 h-10  bg-white/60 absolute fixed" />
       {/* back button with title */}
       <div
         className="left-0 right-0 top-0 z-50 w-full bg-white p-2 

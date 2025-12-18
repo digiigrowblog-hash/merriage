@@ -3,10 +3,18 @@
 import { CalendarHeart, CheckCircle, Infinity, MessageCircleMore, Star, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter , useSearchParams} from "next/navigation";
 
 import { motion } from "framer-motion";
 
 export default function MonthlySubscriptionPage() {
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const subscriptionId = searchParams.get("from")!;
+  const handleSubscription = () => {
+    router.push(subscriptionId)
+  }
   return (
     <div className="min-h-screen bg-gray-50 px-2 py-3 bg-red-400/10 space-y-4">
       <motion.button
@@ -31,9 +39,9 @@ export default function MonthlySubscriptionPage() {
         <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500/30 via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
 
         {/* the X icon itself */}
-        <Link href={"/profile"}>
+        <button onClick={handleSubscription}>
         <X className="relative size-5 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
-        </Link>
+        </button>
       </motion.button>
 
       <div className="relative rounded-2xl overflow-hidden max-w-lg mx-auto ">
