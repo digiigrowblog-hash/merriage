@@ -12,9 +12,12 @@ export default function MonthlySubscriptionPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const subscriptionId = searchParams.get("from")!;
+  const membershipPage = searchParams.get("membership")!
   const handleSubscription = () => {
-    router.push(subscriptionId)
-  }
+    // Priority: membership > from > default
+    const redirectTo = membershipPage || subscriptionId || "/home";
+    router.push(redirectTo);
+  };
   return (
     <div className="min-h-screen bg-gray-50 px-2 py-3 bg-red-400/10 space-y-4">
       <motion.button
@@ -30,13 +33,14 @@ export default function MonthlySubscriptionPage() {
           animate={{ opacity: [0.2, 0.6, 0.2], scale: [0.8, 1.1, 0.9] }}
           transition={{
             duration: 1.2,
-            repeat: Infinity,
+           repeat: Number.MAX_SAFE_INTEGER,
             ease: "easeInOut",
           }}
         />
 
         {/* subtle inner red shine */}
-        <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500/30 via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
+        <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500/30 
+        via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
 
         {/* the X icon itself */}
         <button onClick={handleSubscription}>

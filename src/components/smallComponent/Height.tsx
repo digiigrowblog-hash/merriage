@@ -8,9 +8,10 @@ type Props = {
   value: number | null;
   onClose: () => void;
   onChange: (v: number | null) => void;
+  className?: string;
 };
 
-export function HeightPopup({ open, value, onClose, onChange }: Props) {
+export function HeightPopup({ open, value, onClose, onChange , className }: Props) {
   const options = useMemo(() => {
     const arr: number[] = [];
     for (let h = 140; h <= 210; h += 1) arr.push(h);
@@ -21,8 +22,8 @@ export function HeightPopup({ open, value, onClose, onChange }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center
-                 bg-black/40 backdrop-blur-sm"
+      className={`fixed inset-0 z-50 flex items-center justify-center
+                backdrop-blur-sm ${className}` }
       onClick={onClose}
     >
       <div
@@ -53,7 +54,7 @@ export function HeightPopup({ open, value, onClose, onChange }: Props) {
         <button
           className="mt-4 w-full rounded-md bg-pink-600 py-2 text-sm font-medium text-white"
           onClick={onClose}
-        >
+          >
           Done
         </button>
       </div>

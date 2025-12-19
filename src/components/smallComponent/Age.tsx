@@ -7,17 +7,18 @@ type Props = {
   maxAge: number | null;
   onClose: () => void;
   onChange: (min: number | null, max: number | null) => void;
+  className?:string;
 };
 
 const AGES = Array.from({ length: 50 - 21 + 1 }, (_, i) => 21 + i);
 
-export function AgeRangePopup({ open, minAge, maxAge, onClose, onChange }: Props) {
+export function AgeRangePopup({ open, minAge, maxAge, onClose, onChange ,className }: Props) {
   if (!open) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center
-                 bg-black/40 backdrop-blur-sm"
+      className={`fixed inset-0 z-50 flex items-center justify-center
+                  backdrop-blur-sm ${className}`}
       onClick={onClose}
     >
       <div

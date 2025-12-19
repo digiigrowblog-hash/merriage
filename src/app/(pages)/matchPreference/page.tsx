@@ -11,13 +11,15 @@ import { Drinking } from "@/components/smallComponent/Drinking";
 import { FamilyPlan } from "@/components/smallComponent/FamilyPlan";
 import { Education } from "@/components/smallComponent/Education";
 import { HeightPopup } from "@/components/smallComponent/Height";
-import { SalaryPopup } from "@/components/smallComponent/Salaray";
+import { SalaryPopup } from "@/components/smallComponent/Salary";
 import { AgeRangePopup } from "@/components/smallComponent/Age";
-import { ReligionPopup } from "@/components/smallComponent/Religon";
+import { ReligionPopup } from "@/components/smallComponent/Religion";
 import { DistancePopup } from "@/components/smallComponent/MaxDistance";
 import { LocationPopup } from "@/components/smallComponent/MyLocation";
 
 export default function MatchPreference() {
+  const [lock, setLock] = useState(true);
+
   // state for free preferences
   const [interestedIn, setInterestedIn] = useState("Women");
   const [showInterestedPopup, setShowInterestedPopup] = useState(false);
@@ -67,11 +69,11 @@ export default function MatchPreference() {
   const searchParams = useSearchParams();
 
   // safely read `from`, default to "/home"
-  const previousPage = searchParams.get("from") || "/home";
+const previousPage = searchParams.get("from") || "/home";
 
-  const handlePrevPage = () => {
+const handlePrevPage = () => {
     router.push(previousPage);
-  };
+}
 
   const handlePremiumMembership = () => {
     // when going to monthlySubscription, forward the same `from`
@@ -100,7 +102,8 @@ export default function MatchPreference() {
       {/* back button with title */}
       <div
         className="left-0 right-0 top-0 z-50 w-full bg-white p-2 
-          py-3 px-3 border-b-1 border-red-50">
+          py-3 px-3 border-b-1 border-red-50"
+      >
         <div className="flex space-x-2">
           <button onClick={handlePrevPage} className="-mt-2">
             <ChevronLeft className="size-4 stroke-3 mt-2 cursor-pointer " />
@@ -135,30 +138,31 @@ export default function MatchPreference() {
             onChange={(v) => setInterestedIn(v)}
           />
         </div>
-        
+
         <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
           <h2 className="font-bold">My neighbourhood</h2>
           <div>
-          <button
-          type="button"
-          onClick={() => setShowLocationPopup(true)}
-          className="w-full text-left">
-          <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
-            <span className="text-red-300 text-sm ">{locationLabel}</span>
+            <button
+              type="button"
+              onClick={() => setShowLocationPopup(true)}
+              className="w-full text-left"
+            >
+              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+                <span className="text-red-300 text-sm ">{locationLabel}</span>
+              </div>
+            </button>
           </div>
-        </button>
-      </div>
 
-      <LocationPopup
-        open={showLocationPopup}
-        value={locationPos}
-        label={locationLabel}
-        onClose={() => setShowLocationPopup(false)}
-        onChange={(pos, label) => {
-          setLocationPos(pos);
-          setLocationLabel(label);
-        }}
-      />
+          <LocationPopup
+            open={showLocationPopup}
+            value={locationPos}
+            label={locationLabel}
+            onClose={() => setShowLocationPopup(false)}
+            onChange={(pos, label) => {
+              setLocationPos(pos);
+              setLocationLabel(label);
+            }}
+          />
         </div>
 
         {/* Distance */}
@@ -230,11 +234,12 @@ export default function MatchPreference() {
       </div>
 
       {/* paid preference */}
-      
+
       <div className="flex-col px-2">
         <h1 className="rhodium-libre-regular mt-3 text-xl font-semibold text-gray-300">
           Subscriber Preferences
         </h1>
+
         {/* update */}
         <div
           className="px-2 py-3 rounded-lg  gap-3 
@@ -257,7 +262,18 @@ export default function MatchPreference() {
         </div>
 
         {/* HEIGHT */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+                `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+              );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Height</h2>
             <button
@@ -279,13 +295,25 @@ export default function MatchPreference() {
               value={heightCm}
               onClose={() => setShowHeightPopup(false)}
               onChange={setHeightCm}
+              className="bg-black/40"
             />
           </div>
           <LockKeyhole className="size-5 text-gray-400" />
         </div>
 
         {/* family plan */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+      `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+    );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Family plans</h2>
             <button
@@ -310,7 +338,18 @@ export default function MatchPreference() {
         </div>
 
         {/* Drug */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+                `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+              );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Drug</h2>
             <button
@@ -335,7 +374,18 @@ export default function MatchPreference() {
         </div>
 
         {/* smoking */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+                `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+              );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Smoking</h2>
             <button
@@ -355,11 +405,22 @@ export default function MatchPreference() {
               onChange={(v) => setSmoking(v)}
             />
           </div>
-          <LockKeyhole className="size-5 text-gray-400" />
+         { lock && <LockKeyhole className="size-5 text-gray-400" />}
         </div>
 
         {/* drinking */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+                `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+              );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Drinking</h2>
             <button
@@ -379,11 +440,22 @@ export default function MatchPreference() {
               onChange={(v) => setDrinking(v)}
             />
           </div>
-          <LockKeyhole className="size-5 text-gray-400" />
+          { lock && <LockKeyhole className="size-5 text-gray-400" />}
         </div>
 
         {/* education */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+                `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+              );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Education</h2>
             <button
@@ -404,20 +476,22 @@ export default function MatchPreference() {
               onChange={(v) => setEducation(v)}
             />
           </div>
-          <LockKeyhole className="size-5 text-gray-400" />
-        </div>
-
-        {/* caste */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
-          <div className="flex flex-col">
-            <h2 className="font-bold">Cast</h2>
-            <span className="text-red-300 text-sm">Brahmin</span>
-          </div>
-          <LockKeyhole className="size-5 text-gray-400" />
+         { lock && <LockKeyhole className="size-5 text-gray-400" />}
         </div>
 
         {/* salary */}
-        <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
+        <div
+          onClick={() => {
+            if (lock) {
+              router.push(
+                `/monthlySubscription?from=${encodeURIComponent(previousPage)}&membership=matchPreference`
+              );
+            } else {
+              setShowHeightPopup(true);
+            }
+          }}
+          className="flex justify-between items-center border-b border-red-50 p-2 mb-1"
+        >
           <div className="flex flex-col">
             <h2 className="font-bold">Salary</h2>
             <button
@@ -443,8 +517,9 @@ export default function MatchPreference() {
               }}
             />
           </div>
-          <LockKeyhole className="size-5 text-gray-400" />
+          { lock && <LockKeyhole className="size-5 text-gray-400" />}
         </div>
+        
       </div>
     </div>
   );
