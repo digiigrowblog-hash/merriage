@@ -98,7 +98,8 @@ const handlePrevPage = () => {
   };
 
   return (
-    <div className="min-h-screen md:max-w-md max-w-full">
+    <div className="min-h-screen max-w-full">
+
       {/* back button with title */}
       <div
         className="left-0 right-0 top-0 z-50 w-full bg-white p-2 
@@ -521,6 +522,7 @@ const handlePrevPage = () => {
         </div>
         
       </div>
+      
     </div>
   );
 }

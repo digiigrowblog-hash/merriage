@@ -13,7 +13,7 @@ const SuccessRate = () => {
   ]
 
   return (
-          <section className="py-20 bg-white/50 backdrop-blur-sm">
+          <section className="py-20 bg-white/50 backdrop-blur-sm z-30">
         <div className="container mx-auto px-6 lg:px-20 grid md:grid-cols-3 gap-8">
           {stats.map((stat, i) => (
             <motion.div 

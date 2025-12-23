@@ -6,10 +6,9 @@ import { usePathname } from "next/navigation"
 import { Menu, X, Heart } from "lucide-react"
 
 const navLinks = [
-  { href: "/match", label: "Match" },
+  { href: "/", label: "Home" },
   { href: "/premium", label: "Premium" },
-  { href: "/about", label: "About Us" },
-  { href: "/distance", label: "Distance" },
+  { href: "/aboutUs", label: "About Us" },
 ]
 
 export default function Header() {

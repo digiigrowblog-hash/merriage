@@ -14,21 +14,23 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c]"
+    <div className="min-h-screen bg-linear-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c] "
 >
      
       {/* Hero Section */}
       <Hero/>
 
-      {/* Stats Section */}
-       <SuccessRate/>
+      <div className="relative z-[20]">
+        {/* Stats Section */}
+         <SuccessRate/>
 
-      {/* Matching Tabs */}
-       <Matching/>
+        {/* Matching Tabs */}
+         <Matching/>
 
-      {/* CTA Section */}
-      <CTA/>
-      <Footer/>
+        {/* CTA Section */}
+        <CTA/>
+        <Footer/>
+      </div>
 
     </div>
   )

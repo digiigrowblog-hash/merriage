@@ -1,6 +1,6 @@
 "use client";
 
-import { BadgeCheck, ChevronLeft } from "lucide-react";
+import { BadgeCheck, ChevronLeft, Settings } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Toggle } from "@/components/ui/Toggle";
@@ -14,9 +14,12 @@ export default function Setting() {
     setValueChange(value.toString());
   };
   return (
-    <div className="relative min-h-screen md:max-w-md max-w-full">
-      <div className="right-10 left-10 top-0 h-10  bg-white/60 absolute fixed" />
-      {/* back button with title */}
+    <div  className="min-h-screen max-w-full
+    flex flex-col lg:flex-row bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10">
+      <div className="right-10 left-10 top-0 h-10  bg-white/60 absolute fixed " />
+
+      <div className="w-full lg:w-[40%] max-w-full mx-auto border-r-2 border-red-100">
+              {/* back button with title */}
       <div
         className="left-0 right-0 top-0 z-50 w-full bg-white p-2 
           py-3 px-3 border-b-1  border-red-100"
@@ -201,6 +204,15 @@ export default function Setting() {
       </div>
 
       </>
+      </div>
+      <div className="w-full lg:w-[60%] max-w-full h-screen px-2 py-4 mx-auto ">
+         <div className="h-96 w-full flex items-center justify-center sticky top-20
+          border-red-200 rounded-xl">
+          <Settings className="size-20 fixed top-52 fill-black text-white" />
+          
+         </div>
+      </div>
+
     </div>
   );
 }

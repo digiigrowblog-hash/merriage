@@ -73,7 +73,7 @@ const Matching = () => {
   const [activeTab, setActiveTab] = useState("matches");
   return (
     <section className="py-24">
-      <div className="container mx-auto px-3 lg:px-20">
+      <div className="container mx-auto px-3 lg:px-20 z-30">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
