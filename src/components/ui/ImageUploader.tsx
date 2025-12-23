@@ -6,6 +6,7 @@ interface ImageUploaderProps {
   images: File[];
   onChange: (images: File[]) => void;
   maxFiles?: number;
+  title?: string;
 }
 
 export function ImageUploader({ images, onChange, maxFiles = 4 }: ImageUploaderProps) {

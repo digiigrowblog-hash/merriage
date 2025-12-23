@@ -1,12 +1,19 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { signinAsync, clearError } from '@/feature/userAuth/authSlice'; // Adjust path
 import InputField from '@/components/ui/InputField';
 import PhoneInput from '@/components/ui/PhoneInput';
 import { X } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  
+  // Redux state
+  const { status, userId, error } = useAppSelector((state) => state.auth);
+  
   const [loginType, setLoginType] = useState<'email' | 'phone'>('email');
   const [step, setStep] = useState<'enter' | 'verify'>('enter');
   const [credentials, setCredentials] = useState({
@@ -15,6 +22,11 @@ export default function LoginPage() {
     otp: ''
   });
   const [loading, setLoading] = useState(false);
+
+  // Clear Redux errors on mount
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const updateField = <K extends keyof typeof credentials>(key: K, value: string) => {
     setCredentials(prev => ({ ...prev, [key]: value }));
@@ -26,38 +38,26 @@ export default function LoginPage() {
     setCredentials(prev => ({ ...prev, otp: '' }));
   };
 
-  const sendOTP = async () => {
+  // Simplified: Direct login with credentials (your backend handles OTP internally)
+  const handleLogin = async () => {
+    if (status === 'loading') return;
+    
     setLoading(true);
+    
     try {
-      // API call based on login type
-      if (loginType === 'email') {
-        // await fetch('/api/send-email-otp', { method: 'POST', body: JSON.stringify({ email: credentials.email }) });
-        console.log('Sending email OTP to:', credentials.email);
-      } else {
-        // await fetch('/api/send-phone-otp', { method: 'POST', body: JSON.stringify({ phone: credentials.phone }) });
-        console.log('Sending phone OTP to:', credentials.phone);
-      }
-      setStep('verify');
-    } catch (error) {
-      console.error('OTP send failed:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const verifyOTP = async () => {
-    setLoading(true);
-    try {
-      // Verify OTP
-      // await fetch('/api/verify-otp', { method: 'POST', body: JSON.stringify({ 
-      //   [loginType]: credentials[loginType], 
-      //   otp: credentials.otp 
-      // }) });
-
-      console.log('Login successful:', loginType, credentials.otp);
+      // Prepare user data for your auth API
+      const userData = loginType === 'email' 
+        ? { email: credentials.email, password: credentials.otp }  // or OTP
+        : { phone: credentials.phone, password: credentials.otp }; // or OTP
+      
+      // Dispatch Redux thunk
+      const result = await dispatch(signinAsync(userData as any)).unwrap();
+      
+      console.log('Login successful:', result);
       router.push('/home');
-    } catch (error) {
-      console.error('Login failed:', error);
+    } catch (err: any) {
+      console.error('Login failed:', err);
+      // Error is already in Redux state
     } finally {
       setLoading(false);
     }
@@ -67,12 +67,38 @@ export default function LoginPage() {
     ? credentials.email.includes('@')
     : !!credentials.phone;
 
+  const canLogin = step === 'verify' && credentials.otp.length === 6 && !loading;
   const canSendOTP = step === 'enter' && isValidInput && !loading;
-  const canVerifyOTP = step === 'verify' && credentials.otp.length === 6 && !loading;
+
+  // Show global loading state
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-lg font-medium text-gray-700">Signing you in...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
       <div className="max-w-md w-full space-y-8">
+        
+        {/* Redux Error Display */}
+        {error && (
+          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl mx-auto max-w-md">
+            <p className="text-red-800 text-sm">{error}</p>
+            <button
+              onClick={() => dispatch(clearError())}
+              className="text-red-600 text-xs underline mt-1"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
+
         <div>
           <div className="mx-auto h-20 w-20 bg-gradient-to-r from-orange-400 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl">
             <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,19 +116,21 @@ export default function LoginPage() {
           <div className="flex bg-gray-100 rounded-2xl p-1">
             <button
               onClick={() => handleLoginTypeChange('email')}
-              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${loginType === 'email'
+              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
+                loginType === 'email'
                   ? 'bg-white shadow-sm text-orange-600'
                   : 'text-gray-600 hover:text-gray-900'
-                }`}
+              }`}
             >
               Email
             </button>
             <button
               onClick={() => handleLoginTypeChange('phone')}
-              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${loginType === 'phone'
+              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
+                loginType === 'phone'
                   ? 'bg-white shadow-sm text-orange-600'
                   : 'text-gray-600 hover:text-gray-900'
-                }`}
+              }`}
             >
               Phone
             </button>
@@ -125,13 +153,13 @@ export default function LoginPage() {
                 <PhoneInput
                   value={credentials.phone}
                   onChange={phone => updateField('phone', phone || '')}
-                  onOtpVerify={() => { }} // Not used here
+                  onOtpVerify={() => {}} // Not used here
                   loginMode={true}
                 />
               )}
 
               <button
-                onClick={sendOTP}
+                onClick={() => setStep('verify')}
                 disabled={!canSendOTP}
                 className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-4 px-6 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-pink-600 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2 text-lg"
               >
@@ -141,21 +169,21 @@ export default function LoginPage() {
                       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" pathLength="0" className="opacity-25" />
                       <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" stroke="currentColor" strokeWidth="3" pathLength="1" className="opacity-75" />
                     </svg>
-                    <span>Sending...</span>
+                    <span>Processing...</span>
                   </>
                 ) : (
                   <>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
-                    <span>Send OTP</span>
+                    <span>Continue with {loginType === 'email' ? 'Email' : 'Phone'}</span>
                   </>
                 )}
               </button>
             </div>
           )}
 
-          {/* Step 2: Enter OTP */}
+          {/* Step 2: Enter OTP/Password */}
           {step === 'verify' && (
             <div className="space-y-4">
               <div className="text-center">
@@ -165,7 +193,7 @@ export default function LoginPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Enter {loginType === 'email' ? 'Email' : 'Phone'} OTP
+                  Enter {loginType === 'email' ? 'Email' : 'Phone'} Code
                 </h3>
                 <p className="text-sm text-gray-600">
                   We've sent a 6-digit code to your{' '}
@@ -189,16 +217,9 @@ export default function LoginPage() {
                 <div className="flex items-center justify-center text-xs text-gray-500 space-x-1">
                   <span>Didn't receive? </span>
                   <button
-                    onClick={sendOTP}
+                    onClick={() => setStep('enter')}
                     disabled={loading}
                     className="text-orange-600 hover:text-orange-700 font-medium underline transition-colors"
-                  >
-                    Resend OTP
-                  </button>
-                  <span>| </span>
-                  <button
-                    onClick={() => setStep('enter')}
-                    className="text-gray-600 hover:text-gray-900 font-medium underline transition-colors"
                   >
                     Change Number
                   </button>
@@ -206,8 +227,8 @@ export default function LoginPage() {
               </div>
 
               <button
-                onClick={verifyOTP}
-                disabled={!canVerifyOTP}
+                onClick={handleLogin}
+                disabled={!canLogin}
                 className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 px-6 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:from-emerald-600 hover:to-teal-700 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2 text-lg"
               >
                 {loading ? (
@@ -216,7 +237,7 @@ export default function LoginPage() {
                       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" pathLength="0" className="opacity-25" />
                       <path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" stroke="currentColor" strokeWidth="3" pathLength="1" className="opacity-75" />
                     </svg>
-                    <span>Verifying...</span>
+                    <span>Signing In...</span>
                   </>
                 ) : (
                   <>

@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Stepper } from "@/components/ui/Stepper";
 import InputField from "@/components/ui/InputField";
+import { signupAsync, clearError } from "@/feature/userAuth/authSlice";
 import PhoneInput from "@/components/ui/PhoneInput";
 import { RadioGroup } from "@/components/ui/RadioGroup";
 import { CheckboxGroup } from "@/components/ui/CheckboxGroup";
@@ -13,8 +14,9 @@ import { ImageUploader } from "@/components/ui/ImageUploader";
 import { GoogleAddressPicker } from "@/components/ui/GoogleAddressPicker";
 import { TagSelector } from "@/components/ui/TagSelector";
 import { ReusableDropdown } from "@/components/ui/ReusableDropdown";
-import type { FormData } from "@/types/signup";
+import type { FormData as SignupFormData } from "@/types/signup";
 import { ReligionCasteStep } from "@/components/ui/ReligionCasteStep";
+import { useAppDispatch, useAppSelector } from "@/store/hook"
 
 interface DropdownOption {
   value: string;
@@ -41,9 +43,20 @@ const STEPS = [
 const TOTAL_STEPS = STEPS.length;
 
 export default function SignupPage() {
+  const dispatch = useAppDispatch()
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>({
+  const [emailOtpSent, setEmailOtpSent] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [idOtpSent, setIdOtpSent] = useState(false);
+  const [idOtpVerified, setIdOtpVerified] = useState(false);
+  const [idOtp, setIdOtp] = useState("");
+
+  const { status, userId, error } = useAppSelector((state) => state.auth);
+
+
+
+  const [formData, setFormData] = useState<SignupFormData>({
     phone: "",
     phoneOtp: "",
     name: "",
@@ -73,11 +86,15 @@ export default function SignupPage() {
     idNumber: "",
 
   });
-  const [emailOtpSent, setEmailOtpSent] = useState(false);
-  const [isEmailVerified, setIsEmailVerified] = useState(false);
-  const [idOtpSent, setIdOtpSent] = useState(false);
-  const [idOtpVerified, setIdOtpVerified] = useState(false);
-  const [idOtp, setIdOtp] = useState("");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("signup-form");
+      if (saved) {
+        setFormData(JSON.parse(saved));
+      }
+    }
+  }, []);
+
 
   // Persist to localStorage
   useEffect(() => {
@@ -86,15 +103,22 @@ export default function SignupPage() {
     }
   }, [formData]);
 
-  const updateField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
+
+  const updateField = <K extends keyof SignupFormData>(key: K, value: SignupFormData[K]) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
-  const updateHealth = <K extends keyof FormData["health"]>(
+  const updateHealth = <K extends keyof SignupFormData["health"]>(
     key: K,
-    value: FormData["health"][K]
+    value: SignupFormData["health"][K]
   ) => {
-    setFormData((prev) => ({ ...prev, health: { ...prev.health, [key]: value } }));
+    setFormData((prev) => ({
+      ...prev,
+      health: { ...prev.health, [key]: value },
+    }));
   };
 
   const handleSendEmailOTP = async () => {
@@ -151,7 +175,7 @@ export default function SignupPage() {
   };
 
   // Inside validateStep function, fix case 10:
-  const validateStep = (step: number, data: FormData): boolean => {
+  const validateStep = (step: number, data: SignupFormData): boolean => {
     switch (step) {
       case 1: return !!data.phone && !!data.phoneOtp;
       case 2: return !!data.name && !!data.age;
@@ -185,38 +209,58 @@ export default function SignupPage() {
   };
 
   const handleSubmit = async () => {
-    const submitData = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      if (key === "images") {
-        (value as File[]).forEach((file) => {
-          submitData.append("images", file);
-        });
-      } else if (value) {
-        submitData.append(key, String(value));
-      }
-    });
+    if (status === "loading") return;
 
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        body: submitData,
-      });
+      // Helper to convert file to base64
+      const fileToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = (error) => reject(error);
+        });
+      };
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log("User created:", result.user);
-        localStorage.removeItem("signup-form");
-        router.push("/home   ");
-      } else {
-        const error = await response.json();
-        console.error("Signup failed:", error);
-        alert(error.error || "Signup failed");
-      }
-    } catch (error) {
-      console.error("Signup error:", error);
-      alert("Network error. Please try again.");
+      const base64Images = await Promise.all(
+        (formData.images || []).map((img) => fileToBase64(img))
+      );
+
+      const payload = {
+        ...formData,
+        age: Number(formData.age),
+        heightCm: formData.height ? Number(formData.height) : null,
+        salary: formData.salary ? Number(formData.salary) : null,
+        idVerification: formData.idVerification
+          ? (formData.idVerification.toUpperCase() as "PAN" | "AADHAR" | "PASSPORT")
+          : null,
+        images: base64Images,
+      };
+
+      // Dispatch Redux thunk
+      const result = await dispatch(signupAsync(payload)).unwrap();
+
+      console.log("Signup successful:", result);
+      localStorage.removeItem("signup-form");
+      router.push("/home");
+    } catch (err: any) {
+      console.error("Signup failed:", err);
+      // Error is already in Redux state via rejected case
     }
   };
+
+  if (status === "loading" && activeStep === TOTAL_STEPS) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-lg font-medium text-gray-700">Creating your account...</p>
+        </div>
+      </div>
+    );
+  }
+
+
 
   const canNext = validateStep(activeStep, formData);
 
@@ -277,7 +321,7 @@ export default function SignupPage() {
             name="eating"
             title="Eating Preference *"
             value={formData.eating}
-            onChange={(v) => updateField("eating", v as string)}
+            onChange={(v) => updateField("eating", v as SignupFormData["eating"])}
             options={[
               { value: "vegetarian", label: "Vegetarian" },
               { value: "non-veg", label: "Non-vegetarian" },
@@ -292,7 +336,7 @@ export default function SignupPage() {
             name="gender"
             title="Gender *"
             value={formData.gender}
-            onChange={(v) => updateField("gender", v as string)}
+            onChange={(v) => updateField("gender", v as SignupFormData["gender"])}
             options={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
@@ -307,7 +351,7 @@ export default function SignupPage() {
             name="orientation"
             title="Sexual Orientation *"
             value={formData.orientation}
-            onChange={(v) => updateField("orientation", v as string)}
+            onChange={(v) => updateField("orientation", v as SignupFormData["orientation"])}
             options={[
               { value: "straight", label: "Straight" },
               { value: "gay", label: "Gay/Lesbian" },
@@ -322,7 +366,7 @@ export default function SignupPage() {
             name="preference"
             title="Who would you like to date? *"
             value={formData.preference}
-            onChange={(v) => updateField("preference", v as string)}
+            onChange={(v) => updateField("preference", v as SignupFormData["preference"])}
             options={[
               { value: "women", label: "Women" },
               { value: "men", label: "Men" },

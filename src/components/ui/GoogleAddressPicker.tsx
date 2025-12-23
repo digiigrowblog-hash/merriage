@@ -44,6 +44,38 @@ export function GoogleAddressPicker({ onSelect, apiKey }: GoogleAddressPickerPro
     }
   };
 
+  const handleReverseGeocode = (lat: number, lng: number) => {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === "OK" && results && results[0]) {
+        const newAddress = results[0].formatted_address;
+        setAddress(newAddress);
+        onSelect({ lat, lng, formatted: newAddress });
+      } else {
+        console.error("Geocoder failed due to: " + status);
+      }
+    });
+  };
+
+  const onMapClick = (e: google.maps.MapMouseEvent) => {
+    if (e.latLng) {
+      const lat = e.latLng.lat();
+      const lng = e.latLng.lng();
+      setMarkerPosition({ lat, lng });
+      // Don't center map on click to keep context, just move marker
+      handleReverseGeocode(lat, lng);
+    }
+  };
+
+  const onMarkerDragEnd = (e: google.maps.MapMouseEvent) => {
+    if (e.latLng) {
+      const lat = e.latLng.lat();
+      const lng = e.latLng.lng();
+      setMarkerPosition({ lat, lng });
+      handleReverseGeocode(lat, lng);
+    }
+  };
+
   if (loadError) {
     return (
       <div className="space-y-4">
@@ -88,9 +120,16 @@ export function GoogleAddressPicker({ onSelect, apiKey }: GoogleAddressPickerPro
             mapTypeControl: false,
             fullscreenControl: false,
           }}
+          onClick={onMapClick}
         >
-          {markerPosition && <Marker position={markerPosition} />}
-        </GoogleMap>
+          {markerPosition && (
+            <Marker
+              position={markerPosition}
+              draggable={true}
+              onDragEnd={onMarkerDragEnd}
+            />
+          )}
+                                                                                                                                                                                                                               </GoogleMap>
       </div>
 
       <p className="text-xs text-gray-500">Search for your address or enter manually</p>
