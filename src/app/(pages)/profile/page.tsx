@@ -31,6 +31,7 @@ export default function Setting() {
     flex flex-col lg:flex-row bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10"
     >
       {/* header part */}
+      <div className="w-full lg:w-[10%] max-w-full lg:block hidden"><Header/></div>
 
       <div className="w-full lg:w-[40%] max-w-full mx-auto">
         <div className="flex items-center justify-between mt-2 md:p-4 p-3">
@@ -155,7 +156,7 @@ export default function Setting() {
         </div>
       </div>
 
-      <div className="w-full lg:w-[60%] max-w-full h-screen px-2 py-4 mx-auto">
+      <div className="w-full lg:w-[50%] max-w-full h-screen px-2 py-4 mx-auto">
         {/* Top heading bar */}
         <div className="relative bg-red-400/40 rounded-xl border border-pink-200 px-5 py-3 shadow-lg overflow-hidden">
           {/* glow */}
@@ -250,7 +251,10 @@ export default function Setting() {
         </div>
       </div>
 
-      <Header />
+      <div className="w-full lg:hidden block">
+        <Header />
+      </div>
+      
     </div>
   );
 }

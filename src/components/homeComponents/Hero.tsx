@@ -52,24 +52,27 @@ export default function Hero() {
             >
               <motion.span variants={itemVariants} className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-xl border border-white/50 z-[70]">
                 <Sparkles className="w-4 h-4 mr-2 text-[#d45b4a]" />
-                <span className="text-sm font-semibold uppercase tracking-wider text-[#4d2b22]">
+                <span className="text-sm font-semibold uppercase tracking-wider text-[#4d2b22] kotta-one-regular">
                   Find Your Life Partner
                 </span>
               </motion.span>
 
-              <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#d45b4a] via-[#e89b7c] to-[#f3b886] bg-clip-text text-transparent leading-tight z-[70]">
+              <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
+              font-bold bg-gradient-to-r from-[#d45b4a] via-[#e89b7c] to-[#d45b4a] bg-clip-text 
+              text-transparent leading-tight z-[70] ">
                 Discover Your <br />
-                <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Perfect</span> <br />
+                <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl  ">Perfect</span> <br />
                 <span className="text-[#4d2b22]">Match</span>
               </motion.h1>
 
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-[#4d2b22]/90 leading-relaxed max-w-md mx-auto lg:mx-0 z-[70]">
-                Join <span className="font-semibold text-[#d45b4a]">25K+</span> successful 
+              <motion.p variants={itemVariants} className="text-lg md:text-xl text-[#4d2b22]/90 leading-relaxed 
+              max-w-md mx-auto lg:mx-0 z-[70] alike-angular-regular">
+                Join <span className="font-semibold text-[#d45b4a] ">25K+</span> successful 
                 matches. Verified profiles, smart matching, and modern Indian matrimony.
               </motion.p>
 
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start pt-4 z-[70]">
-                <div className="flex items-center gap-6 bg-white/80 backdrop-blur-sm rounded-3xl p-4 shadow-2xl border border-white/50 z-[70]">
+                <div className="alike-angular-regular flex items-center gap-6 bg-white/80 backdrop-blur-sm rounded-3xl p-4 shadow-2xl border border-white/50 z-[70]">
                   <div className="text-center">
                     <div className="text-2xl md:text-3xl font-bold text-[#d45b4a]">25K+</div>
                     <div className="text-xs uppercase text-[#4d2b22]/80 tracking-wide">Happy Couples</div>
@@ -85,7 +88,7 @@ export default function Hero() {
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-[#d45b4a] to-[#e89b7c] text-white font-bold px-8 py-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg lg:text-xl tracking-wide uppercase z-[80]"
+                  className="alike-angular-regular bg-gradient-to-r from-[#d45b4a] to-[#e89b7c] text-white font-bold px-8 py-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg lg:text-xl tracking-wide uppercase z-[80]"
                 >
                   Start Now
                 </motion.button>

@@ -21,7 +21,7 @@ const SuccessRate = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="text-center p-8 rounded-2xl bg-linear-to-b from-beige-50 to-terracotta-50 border border-teal-100"
+              className="alike-angular-regular text-center p-8 rounded-2xl bg-linear-to-b from-beige-50 to-terracotta-50 border border-teal-100"
             >
               <stat.icon className="w-16 h-16 text-mustard-500 mx-auto mb-4" />
               <div className="text-3xl md:text-4xl font-bold text-teal-900 mb-2">{stat.num}</div>

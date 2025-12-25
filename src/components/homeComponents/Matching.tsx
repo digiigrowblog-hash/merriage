@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const verified = [
+const profiles = [
   {
     id: 1,
     name: "Mansi Singh",
@@ -19,6 +19,7 @@ const verified = [
     profession: "Software Engineer",
     image: "/images/img1.png",
     verified: true,
+    premium: false,
   },
   {
     id: 2,
@@ -27,7 +28,8 @@ const verified = [
     location: "LosAngeles",
     profession: "Doctor",
     image: "/images/img2.png",
-    verified: true,
+    verified: false,
+    premium: true,
   },
   {
     id: 3,
@@ -37,15 +39,17 @@ const verified = [
     profession: "Graphic Designer",
     image: "/images/img3.png",
     verified: true,
+    premium: true,
   },
   {
     id: 4,
     name: "Rike Brown",
     age: 30,
     location: "Houston",
-    Profession: "Fashion Designer",
+    profession: "Fashion Designer",
     image: "/images/img4.png",
     verified: true,
+    premium: false,
   },
   {
     id: 5,
@@ -54,7 +58,8 @@ const verified = [
     location: "Phoenix",
     profession: "Chef",
     image: "/images/img5.png",
-    verified: true,
+    verified: false,
+    premium: false,
   },
   {
     id: 6,
@@ -64,13 +69,23 @@ const verified = [
     profession: "Architecture",
     image: "/images/img6.png",
     verified: true,
+    premium: true,
   },
 ];
 
-
-
 const Matching = () => {
-  const [activeTab, setActiveTab] = useState("matches");
+  const [activeTab, setActiveTab] = useState<
+    "matches" | "verified" | "premium"
+  >("matches");
+
+  const filterMatches =
+    activeTab === "matches"
+      ? profiles
+      : activeTab === "verified"
+      ? profiles.filter((p) => p.verified === true)
+      : profiles.filter((p) => p.premium === true );
+
+
   return (
     <section className="py-24">
       <div className="container mx-auto px-3 lg:px-20 z-30">
@@ -81,7 +96,7 @@ const Matching = () => {
         >
           <span
             className="bg-white/80 backdrop-blur-sm rounded-2xl 
-           md:px-4 px-3 py-1 shadow-xl"
+           md:px-4 px-3 py-1 shadow-xl berkshire-swash-regular"
           >
             Perfect Matches Waiting
           </span>
@@ -89,11 +104,11 @@ const Matching = () => {
 
         <div className="flex justify-center mb-12">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-1 shadow-xl">
-            {["matches", "verified", "premium"].map((tab) => (
+            {(["matches", "verified", "premium"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`md:px-8 md:py-3 px-5 py-2 rounded-xl font-semibold transition-all ${
+                className={`alike-angular-regular md:px-8 md:py-3 px-5 py-2 rounded-xl font-semibold transition-all ${
                   activeTab === tab
                     ? "bg-linear-to-r from-mustard-500 to-terracotta-500 text-orange-600 shadow-md"
                     : "text-teal-800 hover:text-mustard-600"
@@ -107,9 +122,9 @@ const Matching = () => {
 
         {/* Profile Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {verified.map((item, i) => (
+          {filterMatches.map((item) => (
             <motion.div
-              key={i}
+              key={item.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="group h-full bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden 
@@ -126,6 +141,7 @@ const Matching = () => {
                   fill
                   className="object-cover rounded-t-2xl group-hover:brightness-110"
                 />
+
                 <div
                   className="absolute top-4 right-4 bg-mustard-500/90 text-white px-3 py-1 
                   rounded-full text-sm font-semibold"
@@ -133,17 +149,22 @@ const Matching = () => {
                   95% Match
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0
+                <div
+                  className="absolute bottom-0 left-0 right-0
                  bg-white/95 backdrop-blur-sm flex flex-col gap-3 rounded-t-3xl 
-                 shadow-2xl p-6 mx-4 mb-4">
-                  <div className="flex items-start justify-start gap-2 mb-3">
-                    <div className="w-5 h-4 bg-mustard-500 rounded-full flex items-center justify-center -mt-0.5">
-                      <BadgeCheck className="w-4 h-3 text-teal-500" />
+                 shadow-2xl p-6 mx-4 mb-4"
+                >
+                  {item.verified && (
+                    <div className="flex items-start justify-start gap-2 mb-3">
+                      <div className="w-5 h-4 bg-mustard-500 rounded-full flex items-center justify-center -mt-0.5">
+                        <BadgeCheck className="w-4 h-3 text-teal-500" />
+                      </div>
+                      <span className="text-teal-700 font-semibold text-xs uppercase tracking-wider">
+                        Verified
+                      </span>
                     </div>
-                    <span className="text-teal-700 font-semibold text-xs uppercase tracking-wider">
-                      Verified
-                    </span>
-                  </div>
+                  )}
+
                   <h3 className="text-2xl font-bold text-mustard-900 mb-2 leading-tight">
                     {item.name}
                   </h3>
@@ -152,10 +173,7 @@ const Matching = () => {
                   </p>
                   <div className="flex items-center justify-between pt-1">
                     <span className="text-xl font-bold text-mustard-600 flex items-center gap-2">
-                      <Heart
-                        className="w-5 h-5 cursor-pointer"
-                        
-                      />
+                      <Heart className="w-5 h-5 cursor-pointer" />
                       Connect
                     </span>
                     <motion.button

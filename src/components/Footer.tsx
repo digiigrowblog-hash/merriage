@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <>
     
-    <footer className="relative bg-linear-to-t from-[#3a2520] via-[#4b3027] to-[#4b3027]">
+    <footer className="relative bg-linear-to-t from-[#3a2520] via-[#4b3027] to-[#4b3027] ">
         <div className="pointer-events-none  inset-x-0 top-0 h-40 opacity-80 overflow-hidden">
         <FloatingOrbs />
       </div>
@@ -25,11 +25,11 @@ export default function Footer() {
                 FinD<span className="text-[#f3c871]">Me</span>
               </span>
             </div>
-            <p className="text-sm text-white/70">
+            <p className="text-sm text-white/70 road-rage-regular">
               Modern Indian matchmaking where warm tradition meets contemporary,
               app‑first experience.
             </p>
-            <p className="text-xs text-white/50">
+            <p className="text-xs text-white/50 road-rage-regular">
               Built for 25–35 year olds who want curated, verified and
               value‑aligned matches.
             </p>
@@ -38,13 +38,13 @@ export default function Footer() {
           {/* Links */}
           <div className="grid flex-1 gap-10 text-sm md:grid-cols-3">
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871]">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871] rosarivo-regular">
                 Explore
               </h4>
-              <ul className="space-y-2 text-white/75">
+              <ul className="space-y-2 text-white/75 road-rage-regular">
                 <li>
-                  <Link href="/match" className="hover:text-white">
-                    Match
+                  <Link href="/home" className="hover:text-white">
+                    Home
                   </Link>
                 </li>
                 <li>
@@ -57,19 +57,14 @@ export default function Footer() {
                     Success Stories
                   </Link>
                 </li>
-                <li>
-                  <Link href="/distance" className="hover:text-white">
-                    Distance Match
-                  </Link>
-                </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871]">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871] rosarivo-regular">
                 Company
               </h4>
-              <ul className="space-y-2 text-white/75">
+              <ul className="space-y-2 text-white/75 road-rage-regular">
                 <li>
                   <Link href="/about" className="hover:text-white">
                     About Us
@@ -85,29 +80,24 @@ export default function Footer() {
                     FAQs
                   </Link>
                 </li>
-                <li>
-                  <Link href="/contact" className="hover:text-white">
-                    Contact
-                  </Link>
-                </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871]">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871] rosarivo-regular">
                 Connect
               </h4>
-              <ul className="space-y-2 text-white/75">
+              <ul className="space-y-2 text-white/75 road-rage-regular">
                 <li className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
                   <a href="tel:+919999999999" className="hover:text-white">
-                    +91 99 9999 9999
+                    +91 7866755983
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
                   <a href="mailto:hello@findme.in" className="hover:text-white">
-                    hello@findme.in
+                    findMe@gmail.om
                   </a>
                 </li>
                 <li className="flex items-center gap-3 pt-1">

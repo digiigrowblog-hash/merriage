@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const HeaderPath = [
-  { id: 1, href: "/home", label: "Home" },
+  { id: 1, href: "/home", label: "Home"  },
   { id: 2, href: "/like", label: "Like" },
   { id: 3, href: "/message", label: "Message" },
   { id: 5, href: "/spotlight", label: "Spotlight" },
@@ -18,12 +18,13 @@ const Header = () => {
 
   return (
     <>
-    {/* <div className="w-20 h-auto p-2 "> 
+    <div className="w-20 h-auto hidden lg:block "> 
       <div className="flex-col justify-center items-center w-auto  ">
-                  <nav className="flex-col justify-around items-center gap-2 text-sm">
+          <nav className="flex-col justify-around items-center gap-2 text-sm p-2 rounded-sm">
             {HeaderPath.map((item) => {
               const isActive = pathName === item.href;
               return (
+                <>
                 <Link
                   href={item.href}
                   key={item.id}
@@ -84,17 +85,21 @@ const Header = () => {
                     )}
                   </div>
                 </Link>
+                <p className={` font-semibold ${isActive ? "text-red-400" : "text-gray-600"}`}>
+                  {item.label}
+                </p>
+                </>
+                
               );
             })}
           </nav>
         
       </div>
-    </div> */}
+    </div>
 
 
-      <div
-        className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 
-    backdrop-blur-md border-t border-gray-200 shadow-2xl"
+      <div  className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 
+      backdrop-blur-md border-t border-gray-200 shadow-2xl lg:hidden block"
       >
         <div className="max-w-4xl mx-auto px-1 py-1">
           <nav className="flex justify-around items-center gap-2 text-sm">

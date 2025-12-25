@@ -1,195 +1,246 @@
-// app/aboutUs/page.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Heart, Users, CheckCircle, ArrowRight, BadgeCheck, Award } from "lucide-react";
-import Header from "@/components/Header"; // Adjust path to your Header
+import { Heart, Brain, Users, Sparkles, ArrowRight } from "lucide-react";
+import Header from "@/components/Header";
+import Image from "next/image";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const services = [
+const focusAreas = [
   {
-    icon: Heart,
-    title: "Matrimony Platform",
-    desc: "Our in-house FinDMe app connects hearts with smart matching & verified profiles.",
+    step: "01",
+    title: "Modern First Impressions",
+    desc: "What actually works in bios, prompts, and photos for Indian singles today.",
   },
   {
-    icon: Users,
-    title: "Digital Marketing",
-    desc: "Grow your brand with targeted campaigns, SEO, and social media strategies.",
+    step: "02",
+    title: "Better Matches",
+    desc: "How values, language, and family expectations shape long‑term compatibility.",
   },
   {
-    icon: Award,
-    title: "Web Development",
-    desc: "Modern Next.js apps, e-commerce, and custom platforms built to scale.",
+    step: "03",
+    title: "Real Connections",
+    desc: "What turns a right swipe into real conversations, dates, and relationships.",
   },
   {
-    icon: CheckCircle,
-    title: "Graphics Design",
-    desc: "Branding, logos, and wedding creatives that capture your unique story.",
+    step: "04",
+    title: "Avoiding Burnout",
+    desc: "How to keep dating healthy, respectful, and drama‑free for everyone.",
   },
 ];
 
-export default function AboutUsPage() {
+export default function LabsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-t from-[#f3c871] via-[#f3b886] to-[#e89b7c] overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c]">
       <Header />
-      
 
-
-      {/* Who We Are */}
-      <section className="py-24 px-4 lg:px-20">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div variants={itemVariants} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <h2 className="text-4xl md:text-5xl font-bold text-mustard-900 mb-6 leading-tight">
-              Digiigrow: <span className="bg-gradient-to-r from-mustard-600 to-terracotta-600 bg-clip-text text-transparent">
-                Creators of FinDMe
-              </span>
-            </h2>
-            <div className="space-y-6 text-terracotta-800 text-lg leading-relaxed">
-              <p>
-                We blend digital expertise with heartfelt matchmaking to create FinDMe – a platform 
-                that respects tradition while embracing modern love stories.
-              </p>
-              <p>
-                From full-stack development to targeted marketing, our team builds products and 
-                services that help people and businesses find their perfect match.
-              </p>
-            </div>
-            <Link
-              href="/services"
-              className="mt-8 inline-flex items-center bg-gradient-to-r from-mustard-500 to-terracotta-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+      {/* Mission – left heading, right copy */}
+      <section className="px-4 lg:px-20 pt-24 pb-16 bg-white/70">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.4fr,1fr] gap-12 items-start">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <motion.p
+              variants={itemVariants}
+              className="text-sm font-semibold tracking-[0.18em] uppercase text-terracotta-500 mb-6"
             >
-              Our Services <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
+              FinDMe Labs · The Mission
+            </motion.p>
+
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl md:text-6xl lg:text-7xl font-semibold text-mustard-900 leading-tight rhodium-libre-regular"
+            >
+              Getting{" "}
+              <span className="inline-block">
+                modern{" "}
+                <span className="relative">
+                  matchmaking
+                  <span className="pointer-events-none absolute -bottom-1 left-0 right-0 h-2 border-[3px] border-terracotta-500/80 rounded-full translate-y-1" />
+                </span>
+              </span>{" "}
+              down to an art.
+            </motion.h1>
           </motion.div>
 
           <motion.div
             variants={itemVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
-            className="relative"
+            viewport={{ once: true, amount: 0.5 }}
+            className="text-base md:text-lg text-terracotta-800 leading-relaxed alike-angular-regular"
           >
-            <div className="bg-gradient-to-br from-terracotta-100 to-beige-100 rounded-3xl p-8 shadow-2xl border border-mustard-100">
-              <div className="grid grid-cols-2 gap-6">
-                {services.map((service, i) => (
-                  <motion.div
-                    key={service.title}
-                    variants={itemVariants}
-                    className="group p-6 rounded-2xl bg-white/70 backdrop-blur-sm hover:bg-white hover:shadow-xl transition-all duration-300 border border-teal-100 hover:border-mustard-200"
-                  >
-                    <service.icon className="w-10 h-10 text-terracotta-600 group-hover:scale-110 transition-transform mb-3" />
-                    <h3 className="font-bold text-mustard-900 text-lg mb-2">{service.title}</h3>
-                    <p className="text-terracotta-700 text-sm leading-relaxed">{service.desc}</p>
-                  </motion.div>
-                ))}
+            <p className="mb-4">
+              When FinDMe says it is built for serious relationships, it means
+              it. FinDMe Labs studies how new‑generation Indians actually date —
+              from the first like to the roka ceremony.
+            </p>
+            <p>
+              We combine data, culture, and real stories to fine‑tune every
+              screen, so your next first date can move confidently towards a
+              forever match, not endless swiping.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Research hero: text left, image / visual right */}
+      <section className="px-4 lg:px-20 py-20 bg-gradient-to-r from-white/80 via-beige-50/80 to-white/60">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr,1fr] gap-12 items-center">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <motion.p
+              variants={itemVariants}
+              className="text-sm font-semibold tracking-[0.18em] uppercase text-terracotta-500 mb-4"
+            >
+              FinDMe Labs
+            </motion.p>
+            <motion.h2
+              variants={itemVariants}
+              className="text-4xl md:text-5xl font-semibold text-mustard-900 mb-6 rhodium-libre-regular"
+            >
+              Research to help you find love — the Indian way.
+            </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="text-lg text-terracotta-800 leading-relaxed alike-angular-regular"
+            >
+              Our team blends psychology, tech, and desi lived experiences to
+              understand what makes a match feel right — shared values, family
+              comfort, and personal chemistry.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="relative w-full h-72 md:h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl"
+          >
+            {/* Background image */}
+            <Image
+              src="/images/coupleLab.avif" // put your image in /public/images
+              alt="Couple talking on a date"
+              fill
+              priority
+              className="object-cover"
+            />
+
+            {/* Soft gradient overlay on top of image */}
+            <div className="absolute inset-0 bg-gradient-to-br from-terracotta-300/40 via-mustard-200/40 to-rose-200/40" />
+
+            {/* Bottom-left info pill */}
+            <div className="absolute inset-0 flex items-end justify-start p-6">
+              <div className="bg-white/85 rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3">
+                <Brain className="w-6 h-6 text-terracotta-600" />
+                <span className="text-sm font-semibold text-mustard-900">
+                  10K+ conversations analysed for deeper insights
+                </span>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-24 px-4 lg:px-20 bg-white/30 backdrop-blur-sm rounded-4xl mx-8 lg:mx-20 -mt-12 relative z-10">
+      {/* Focus / What the team researches */}
+      <section className="px-4 lg:px-20 py-24 bg-white">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+          viewport={{ once: true, amount: 0.4 }}
+          className="max-w-6xl mx-auto"
         >
-          <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center bg-gradient-to-r from-mustard-500 to-terracotta-500 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl mb-8">
-              <BadgeCheck className="w-5 h-5 mr-2" />
-              Built with Love in India
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-mustard-900 mb-8">
-              From Digital Agency to <span className="bg-gradient-to-r from-terracotta-600 to-mustard-600 bg-clip-text text-transparent">Matchmakers</span>
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8 mt-16">
-              {[
-                {
-                  step: "01",
-                  title: "Digital Roots",
-                  desc: "Started as full-stack agency building websites, apps & marketing campaigns.",
-                },
-                {
-                  step: "02", 
-                  title: "Observed Pain",
-                  desc: "Saw families struggling with outdated, cluttered matrimony platforms.",
-                },
-                {
-                  step: "03",
-                  title: "Built FinDMe",
-                  desc: "Created modern, verified, culturally-aware matchmaking solution.",
-                },
-              ].map((item) => (
-                <motion.div
-                  key={item.title}
-                  variants={itemVariants}
-                  className="group p-8 rounded-3xl bg-gradient-to-b from-white/80 to-beige-50 backdrop-blur-sm shadow-xl hover:shadow-2xl border border-mustard-100 hover:border-terracotta-200 transition-all duration-500 hover:-translate-y-4"
-                >
-                  <div className="w-12 h-12 text-gray-200 bg-gradient-to-r from-mustard-500 to-terracotta-500 
-                  rounded-2xl flex items-center justify-center  font-bold text-xl mb-6 shadow-lg">
-                    {item.step}
-                  </div>
-                  <h3 className="font-bold text-xl text-mustard-900 mb-4">{item.title}</h3>
-                  <p className="text-terracotta-700 leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <motion.p
+            variants={itemVariants}
+            className="text-sm font-semibold tracking-[0.18em] uppercase text-terracotta-500 mb-4"
+          >
+            The Focus
+          </motion.p>
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-semibold text-mustard-900 mb-4 rhodium-libre-regular"
+          >
+            What the FinDMe Labs team studies.
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="max-w-2xl text-base md:text-lg text-terracotta-800 mb-10 alike-angular-regular"
+          >
+            We look at the full journey of Indian daters — from creating a
+            profile to meeting families — so we can design features that reduce
+            noise and increase meaningful, long‑term matches.
+          </motion.p>
+
+          <div className="grid md:grid-cols-4 gap-10 pt-6">
+            {focusAreas.map((item) => (
+              <motion.div
+                key={item.step}
+                variants={itemVariants}
+                className="flex flex-col gap-3"
+              >
+                <span className="text-4xl md:text-5xl text-terracotta-600 rhodium-libre-regular">
+                  {item.step}
+                </span>
+                <h3 className="text-lg font-semibold text-mustard-900">
+                  {item.title}
+                </h3>
+                <p className="text-sm md:text-base text-terracotta-700 leading-relaxed">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-4 lg:px-20 mt-24">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center bg-gradient-to-r from-mustard-500 via-terracotta-500 to-mustard-600 rounded-4xl p-16 shadow-3xl"
-        >
-          <motion.div variants={itemVariants}>
-            <Heart className="w-20 h-20 text-white mx-auto mb-8 animate-pulse" />
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
-              Ready to Find Your Match?
-            </h2>
-            <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join thousands finding love through our verified, modern matrimony platform.
+      {/* Small CTA bar like “designed to be deleted” */}
+      <section className="px-4 lg:px-20 py-20 bg-gradient-to-r from-[#f3c871] via-[#f3b886] to-[#e89b7c]">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.18em] uppercase text-terracotta-700 mb-3">
+              Designed for forever, not endless swipes
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/signup"
-                className="bg-white text-mustard-900 font-bold px-12 py-5 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 text-lg"
-              >
-                Get Started Free
-              </Link>
-              <Link
-                href="/premium"
-                className="border-2 border-white/50 text-white font-bold px-12 py-5 rounded-3xl backdrop-blur-sm hover:bg-white/20 transition-all duration-300 hover:scale-105 text-lg"
-              >
-                View Premium
-              </Link>
-            </div>
-          </motion.div>
-        </motion.div>
+            <h3 className="text-3xl md:text-4xl font-semibold text-mustard-900 rhodium-libre-regular">
+              FinDMe is built to be celebrated, not re‑installed.
+            </h3>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/signup"
+              className="inline-flex items-center justify-center bg-white text-mustard-900 font-semibold px-8 py-4 rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 text-base"
+            >
+              Join FinDMe <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+            <Link
+              href="/about-us"
+              className="inline-flex items-center justify-center bg-transparent border border-white/70 text-white font-semibold px-8 py-4 rounded-3xl hover:bg-white/10 transition-all duration-300 text-base"
+            >
+              About the team
+            </Link>
+          </div>
+        </div>
       </section>
     </main>
   );

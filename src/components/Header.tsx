@@ -8,7 +8,7 @@ import { Menu, X, Heart } from "lucide-react"
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/premium", label: "Premium" },
-  { href: "/aboutUs", label: "About Us" },
+  { href: "/aboutUs", label: "Mission" },
 ]
 
 export default function Header() {
@@ -49,15 +49,15 @@ export default function Header() {
                   : "text-white/80 hover:text-white transition"
               }
             >
-              <p className="">{link.label}</p>
+              <p className="rosarivo-regular-italic">{link.label}</p>
             </Link>
           ))}
 
           <Link
              href={`/signup`}
             
-            className="rounded-full bg-white/95 px-5 py-2 text-xs font-semibold 
-            uppercase tracking-wide text-[#c45340] shadow-md hover:bg-white"
+            className="rosarivo-regular rounded-full bg-white/95 px-5 py-2 text-xs font-semibold 
+            uppercase tracking-wide text-[#c45340] shadow-md hover:bg-white "
           >
             Get Started
           </Link>
