@@ -41,8 +41,8 @@ export default function Setting() {
   };
 
   return (
-    <div className="min-h-screen max-w-full flex flex-col lg:flex-row bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10">
-      <div className="right-10 left-10 top-0 h-10 bg-white/60 absolute fixed" />
+    <div className="min-h-screen max-w-full flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10">
+      <div className="right-10 left-10 top-0 h-10 bg-white/60 absolute " />
 
       {/* LEFT SIDEBAR - CONTENT HEIGHT + SCROLLABLE */}
       <div
@@ -50,7 +50,8 @@ export default function Setting() {
                       lg:min-h-screen lg:overflow-y-auto scrollbar-thin lg:scrollbar-thumb-gray-300 lg:scrollbar-track-transparent"
       >
         {/* back button with title */}
-        <div className="left-0 right-0 top-0 z-50 w-full bg-white p-2 py-3 px-3 border-b-1 border-red-100 sticky top-0 bg-white/90 backdrop-blur-sm">
+        <div className="left-0 right-0 top-0 z-50 w-full  
+        p-2 py-3 px-3 border-b border-red-100 sticky  bg-white/90 backdrop-blur-sm">
           <div className="flex space-x-2">
             <Link href="/profile">
               <ChevronLeft className="size-4 stroke-3 mt-2 cursor-pointer" />
@@ -233,7 +234,7 @@ export default function Setting() {
         </div>
 
         {/* Logout  Account */}
-        <div className="space-y-3 mt-5 p-2 border-t-1 border-red-100 mx-auto">
+        <div className="space-y-3 mt-5 p-2 border-t border-red-100 mx-auto">
           <div className="text-center">
             <button
               className="font-medium text-gray-600 hover:text-red-700 hover:bg-red-50 px-6 py-3 
@@ -245,7 +246,7 @@ export default function Setting() {
           </div>
         </div>
         {/* Delete Account  */}
-        <div className="space-y-3 mt-3 p-2 border-t-1 border-red-100 mb-8">
+        <div className="space-y-3 mt-3 p-2 border-t border-red-100 mb-8">
           <div className="text-center">
             <button
               className="font-medium text-gray-600 hover:text-red-700 hover:bg-red-50 px-6 py-3 
@@ -391,13 +392,13 @@ function DeleteModalMobile({
             <div className="flex gap-4 w-full max-w-xs mx-auto">
               <button
                 onClick={onConfirm}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all shadow-xl hover:shadow-2xl"
+                className="flex-1 bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all shadow-xl hover:shadow-2xl"
               >
                 Delete
               </button>
               <button
                 onClick={onClose}
-                className="flex-1 bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all shadow-xl hover:shadow-2xl"
+                className="flex-1 bg-linear-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all shadow-xl hover:shadow-2xl"
               >
                 Cancel
               </button>

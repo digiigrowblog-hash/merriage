@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function YearlySubscriptionPage() {
   return (
-    <div className="min-h-screen bg-gray-50 px-2 py-3 bg-red-400/10 space-y-4">
+    <div className="min-h-screen bg-gray-50 px-2 py-3  space-y-4">
       {/* Close Button */}
       <motion.button
         type="button"
@@ -32,7 +32,7 @@ export default function YearlySubscriptionPage() {
             ease: "easeInOut",
           }}
         />
-        <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500/30 via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
+        <span className="absolute inset-0 rounded-full bg-linear-to-tr from-red-500/30 via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
         <Link href="/profile">
         <X className="relative size-5 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
         </Link>
@@ -46,7 +46,7 @@ export default function YearlySubscriptionPage() {
           alt="Premium Match"
           width={800}
           height={500}
-          className="h-[120px] w-full object-cover grayscale"
+          className="h-30 w-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-red-400/40 flex flex-col items-center justify-center text-center px-4">
           <h2 className="text-white text-2xl font-semibold mb-2">

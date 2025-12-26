@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/components/mainHeaderFooter/HeaderMain";
+import { useRouter } from "next/navigation";
 import {
   Settings2,
   X,
@@ -19,28 +20,34 @@ import { useState } from "react";
 const tabs = ["1m-subscription", "12m-subscription"] as const;
 
 export default function Setting() {
+  const router =  useRouter ()
+  const handleProfile = ()=>{
+    router.push("/profileupdate")
+  }
 
   const handlecarnival = () => {
     alert("Carnival event added to your calendar!");
   }
-  const [activeTab, setActiveTab] =
-    useState<(typeof tabs)[number]>("1m-subscription");
+  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]>("1m-subscription");
   return (
     <div
       className="min-h-screen max-w-full
-    flex flex-col lg:flex-row bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10"
+    flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10"
     >
       {/* header part */}
       <div className="w-full lg:w-[10%] max-w-full lg:block hidden"><Header/></div>
 
-      <div className="w-full lg:w-[40%] max-w-full mx-auto">
-        <div className="flex items-center justify-between mt-2 md:p-4 p-3">
+      <div  className="w-full lg:w-[40%] max-w-full mx-auto ">
+
+        <div  className="flex items-center justify-between mt-2 md:p-4 p-3 ">
+         
           <Image
             src="/images/2.png"
             alt="logo"
             width={100}
             height={100}
-            className="md:w-48 md:h-10 w-24 h-5 object-cover "
+            className="md:w-48 md:h-10 w-24 h-5 object-cover cursor-pointer "
+            
           />
 
           <div className="flex md:gap-3 gap-2">
@@ -53,13 +60,14 @@ export default function Setting() {
             </Link>
           </div>
         </div>
+        
 
         {/* profile shows */}
         <div className="flex flex-col md:items-start md:justify-start items-center justify-center mx-auto relative md:px-8">
           {/* Avatar */}
-          <div className="w-34 h-34 relative flex items-center md:justify-start justify-center">
+          <div onClick={handleProfile} className="cursor-pointer w-34 h-34 relative flex items-center md:justify-start justify-center">
             <div className="w-32 h-32 rounded-full border-4 border-[#FF5F6B] flex items-center justify-center">
-              <div className="w-30 h-30 rounded-full border-3 border-white overflow-hidden">
+              <div className="w-30 h-30 rounded-full border-3 border-white overflow-hidden ">
                 <Image
                   src="/images/img1.png"
                   alt="personLogo"
@@ -117,7 +125,7 @@ export default function Setting() {
             <div
               className="
         w-12 h-12 rounded-full relative
-        bg-gradient-to-br from-rose-200 via-pink-200 to-rose-200
+        bg-linear-to-br from-rose-200 via-pink-200 to-rose-200
         shadow-md ring-2 ring-rose-200/60
         flex items-center justify-center
       "
@@ -160,7 +168,7 @@ export default function Setting() {
         {/* Top heading bar */}
         <div className="relative bg-red-400/40 rounded-xl border border-pink-200 px-5 py-3 shadow-lg overflow-hidden">
           {/* glow */}
-          <div className="pointer-events-none absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_white,transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,white,transparent_60%)]" />
 
           <div className="relative flex items-center justify-between gap-3">
             {/* left: title + subtitle */}
@@ -209,7 +217,7 @@ export default function Setting() {
             />
 
             {/* Glass overlay with icon + title */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/20 to-transparent" />
 
             <motion.div
               className="absolute left-4 bottom-28 right-4 rounded-full px-3 py-2 flex items-center justify-center"
@@ -249,6 +257,7 @@ export default function Setting() {
             </p>
           </div>
         </div>
+
       </div>
 
       <div className="w-full lg:hidden block">
@@ -278,7 +287,7 @@ function Tab({
       {label}
 
       {isActive && (
-        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-red-500" />
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-red-500" />
       )}
     </button>
   );
@@ -293,7 +302,7 @@ function MonthlySubscription() {
         alt="Get more"
         width={800}
         height={500}
-        className="h-[220px] w-full object-cover grayscale"
+        className="h-55 w-full object-cover grayscale"
       />
       <div
         className="absolute inset-0 bg-red-400/40 flex flex-col items-center 
@@ -325,7 +334,7 @@ function YearlySubscription() {
         alt="Get more"
         width={800}
         height={500}
-        className="h-[220px] w-full object-cover grayscale"
+        className="h-55 w-full object-cover grayscale"
       />
       <div
         className="absolute inset-0 bg-red-400/40 flex flex-col items-center 

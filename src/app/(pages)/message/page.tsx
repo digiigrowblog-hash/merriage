@@ -8,7 +8,7 @@ export default function Message() {
 
       <div className="flex mt-12">
         {/* Left header */}
-        <div className="w-full md:w-auto max-h-full">
+        <div className="w-full md:w-auto max-h-full lg:block hidden">
           <Header />
         </div>
 
@@ -26,6 +26,10 @@ export default function Message() {
           </div>
         </div>
       </div>
+      <div className="w-full lg:hidden block">
+      <Header/>
+      </div>
+      
     </div>
   );
 }

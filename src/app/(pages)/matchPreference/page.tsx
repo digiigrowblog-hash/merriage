@@ -103,7 +103,7 @@ const handlePrevPage = () => {
       {/* back button with title */}
       <div
         className="left-0 right-0 top-0 z-50 w-full bg-white p-2 
-          py-3 px-3 border-b-1 border-red-50"
+          py-3 px-3 border-b border-red-50"
       >
         <div className="flex space-x-2">
           <button onClick={handlePrevPage} className="-mt-2">
@@ -121,14 +121,14 @@ const handlePrevPage = () => {
           Member Preferences
         </h1>
         {/* preference */}
-        <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+        <div className="flex-col border-b border-red-50 p-2 mb-1">
           <h2 className="font-bold">I'm interested in</h2>
           <button
             type="button"
             onClick={() => setShowInterestedPopup(true)}
             className="w-full text-left"
           >
-            <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+            <div className="flex-col border-b border-red-50 p-2 mb-1">
               <span className="text-red-300 text-sm ">{interestedIn}</span>
             </div>
           </button>
@@ -140,7 +140,7 @@ const handlePrevPage = () => {
           />
         </div>
 
-        <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+        <div className="flex-col border-b border-red-50 p-2 mb-1">
           <h2 className="font-bold">My neighbourhood</h2>
           <div>
             <button
@@ -148,7 +148,7 @@ const handlePrevPage = () => {
               onClick={() => setShowLocationPopup(true)}
               className="w-full text-left"
             >
-              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+              <div className="flex-col border-b border-red-50 p-2 mb-1">
                 <span className="text-red-300 text-sm ">{locationLabel}</span>
               </div>
             </button>
@@ -167,14 +167,14 @@ const handlePrevPage = () => {
         </div>
 
         {/* Distance */}
-        <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+        <div className="flex-col border-b border-red-50 p-2 mb-1">
           <h2 className="font-bold">Max Distance</h2>
           <button
             type="button"
             onClick={() => setShowDistancePopup(true)}
             className="w-full text-left"
           >
-            <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+            <div className="flex-col border-b border-red-50 p-2 mb-1">
               <span className="text-red-300 text-sm ">{distanceKm} km</span>
             </div>
           </button>
@@ -188,14 +188,14 @@ const handlePrevPage = () => {
         </div>
 
         {/* age */}
-        <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+        <div className="flex-col border-b border-red-50 p-2 mb-1">
           <h2 className="font-bold">Age range</h2>
           <button
             type="button"
             onClick={() => setShowAgePopup(true)}
             className="w-full text-left"
           >
-            <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+            <div className="flex-col border-b border-red-50 p-2 mb-1">
               <span className="text-red-300 text-sm ">{ageLabel()}</span>
             </div>
           </button>
@@ -213,14 +213,14 @@ const handlePrevPage = () => {
         </div>
 
         {/* religion */}
-        <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+        <div className="flex-col border-b border-red-50 p-2 mb-1">
           <h2 className="font-bold">Religion</h2>
           <button
             type="button"
             onClick={() => setShowReligionPopup(true)}
             className="w-full text-left"
           >
-            <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+            <div className="flex-col border-b border-red-50 p-2 mb-1">
               <span className="text-red-300 text-sm ">{religionLabel}</span>
             </div>
           </button>
@@ -244,7 +244,7 @@ const handlePrevPage = () => {
         {/* update */}
         <div
           className="px-2 py-3 rounded-lg  gap-3 
-          bg-gradient-to-br from-rose-200 via-pink-200 to-rose-200
+          bg-linear-to-br from-rose-200 via-pink-200 to-rose-200
           flex justify-between items-center mb-1"
         >
           <Link
@@ -324,7 +324,7 @@ const handlePrevPage = () => {
               }}
               className="w-full text-left"
             >
-              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+              <div className="flex-col border-b border-red-50 p-2 mb-1">
                 <span className="text-red-300 text-sm ">{familyPlan}</span>
               </div>
             </button>
@@ -360,7 +360,7 @@ const handlePrevPage = () => {
               }}
               className="w-full text-left"
             >
-              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+              <div className="flex-col border-b border-red-50 p-2 mb-1">
                 <span className="text-red-300 text-sm ">{drug}</span>
               </div>
             </button>
@@ -394,7 +394,7 @@ const handlePrevPage = () => {
               onClick={() => setShowSmokingPopup(true)}
               className="w-full text-left"
             >
-              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+              <div className="flex-col border-b border-red-50 p-2 mb-1">
                 <span className="text-red-300 text-sm ">{smoking}</span>
               </div>
             </button>
@@ -429,7 +429,7 @@ const handlePrevPage = () => {
               onClick={() => setShowDrinkingPopup(true)}
               className="w-full text-left"
             >
-              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+              <div className="flex-col border-b border-red-50 p-2 mb-1">
                 <span className="text-red-300 text-sm ">{drinking}</span>
               </div>
             </button>
@@ -466,7 +466,7 @@ const handlePrevPage = () => {
               }}
               className="w-full text-left"
             >
-              <div className="flex-col border-b-1 border-red-50 p-2 mb-1">
+              <div className="flex-col border-b border-red-50 p-2 mb-1">
                 <span className="text-red-300 text-sm ">{education}</span>
               </div>
             </button>

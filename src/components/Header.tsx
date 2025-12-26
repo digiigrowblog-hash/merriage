@@ -87,7 +87,7 @@ export default function Header() {
                   (isActive(link.href) ? "font-semibold text-white" : "text-white/90")
                 }
               >
-                {link.label}
+                <span className="rosarivo-regular-italic text-xl">{link.label}</span>
               </Link>
             ))}
             <Link
