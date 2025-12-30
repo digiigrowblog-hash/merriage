@@ -28,13 +28,13 @@ export default function YearlySubscriptionPage() {
           animate={{ opacity: [0.2, 0.6, 0.2], scale: [0.8, 1.1, 0.9] }}
           transition={{
             duration: 1.2,
-            repeat: Infinity,
+            repeat: Number.MAX_SAFE_INTEGER,
             ease: "easeInOut",
           }}
         />
         <span className="absolute inset-0 rounded-full bg-linear-to-tr from-red-500/30 via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
         <Link href="/profile">
-        <X className="relative size-5 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
+        <X className="relative size-5 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]"/>
         </Link>
         
       </motion.button>

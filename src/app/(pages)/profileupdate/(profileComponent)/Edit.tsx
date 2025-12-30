@@ -107,7 +107,8 @@ const Edit = () => {
                  md:px-2 md:py-1 px-1 py-0.5 rounded-full text-xs md:text-sm font-semibold 
                 text-mustard-900 shadow-lg flex gap-1 md:gap-2 bg-black/60 md:w-20 w-16 h-5 md:h-6"
                 >
-                  <Check className="size-4 md:size-12" /> Prompt
+                  <Check className="size-4 md:size-12 font-bold" strokeWidth="3"/> Prompt
+                  
                 </button>
               </div>
             ))}
@@ -141,7 +142,7 @@ const Edit = () => {
                   Edit
                 </button>
               </div>
-              <p className="text-sm md:text-base text-terracotta-800 leading-relaxed">
+              <p className="text-xs md:text-base text-gray-500 road-rage-regular leading-relaxed">
                 {user.bio.length > 0 ? (
                   user.bio
                 ) : (
@@ -209,7 +210,7 @@ const Edit = () => {
                 {user.interests.map((chip) => (
                   <button
                     key={chip}
-                    className="inline-flex items-center gap-1 rounded-full bg-terracotta-100 px-3 py-1 text-xs font-medium text-terracotta-800"
+                    className="inline-flex road-rage-regular items-center gap-1 rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-terracotta-800"
                   >
                     {chip}
                     <X className="w-3 h-3 opacity-70" />
@@ -229,7 +230,7 @@ const Edit = () => {
                   <p className="text-xs font-semibold tracking-[0.18em] uppercase text-terracotta-600">
                     Prompts(3)
                   </p>
-                  <p className="text-xs text-terracotta-700 mt-2">
+                  <p className="text-xs text-gray-400 road-rage-regular mt-2">
                     Add 3 strong answers to show your personality.
                   </p>
                 </div>
@@ -242,11 +243,13 @@ const Edit = () => {
               {user.prompts.map((p) => (
                 <div
                   key={p.label}
-                  className="rounded-lg bg-white/95 backdrop-blur-sm  px-4 py-3 md:p-6 shadow-md border 
+                  className="rounded-lg bg-white/95 backdrop-blur-sm  px-4 py-3 md:p-6 
+                  shadow-md border 
                     border-gray-200"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-terracotta-500">
+                    <p className="text-[11px] font-medium   uppercase 
+                    text-black">
                       {p.question}
                     </p>
                     <button className="text-[11px] font-semibold text-terracotta-700 flex items-center gap-1">
@@ -254,22 +257,13 @@ const Edit = () => {
                       Edit
                     </button>
                   </div>
-                  <p className="text-sm text-mustard-900 leading-relaxed">
+                  <p className="text-xs text-gray-400 road-rage-regular leading-relaxed">
                     {p.answer}
                   </p>
                 </div>
               ))}
             </motion.div>
             {/* Save button */}
-            {/* <motion.div variants={item} className="pt-2">
-              <button className="w-full inline-flex items-center justify-center gap-2 
-              rounded-3xl bg-linear-to-r from-mustard-500 to-terracotta-500 
-              font-semibold py-4 shadow-xl hover:shadow-2xl hover:scale-[1.02] transition
-              text-black">
-                <Sparkles className="w-5 h-5" />
-                Save changes & update matches
-              </button>
-            </motion.div> */}
           </motion.div>
 
           {/* RIGHT - DRINK , DRUG , SMOKING */}
@@ -289,8 +283,8 @@ const Edit = () => {
                   {user.drinking}
                 </p>
                 <button className="text-xs font-semibold text-terracotta-700 flex items-center gap-1">
-                  <Plus className="w-3 h-3" />
-                  Add
+                  <Pencil className="w-3 h-3" />
+                  Edit
                 </button>
               </div>
 
@@ -300,8 +294,8 @@ const Edit = () => {
                   {user.smoking}
                 </p>
                 <button className="text-xs font-semibold text-terracotta-700 flex items-center gap-1">
-                  <Plus className="w-3 h-3" />
-                  Add
+                  <Pencil className="w-3 h-3" />
+                  Edit
                 </button>
               </div>
 
@@ -311,8 +305,8 @@ const Edit = () => {
                   {user.drug}
                 </p>
                 <button className="text-xs font-semibold text-terracotta-700 flex items-center gap-1">
-                  <Plus className="w-3 h-3" />
-                  Add
+                  <Pencil className="w-3 h-3" />
+                  Edit
                 </button>
               </div>
 
@@ -325,13 +319,13 @@ const Edit = () => {
   );
 };
 
-function Detail({ label, value }: { label: string; value: string }) {
+function Detail({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-2xl border border-gray-300 bg-beige-50/80 px-3 py-2">
-      <p className="text-[11px] uppercase tracking-[0.16em] text-terracotta-500 mb-1">
+      <p className="text-[11px] uppercase tracking-[0.16em] text-black mb-1">
         {label}
       </p>
-      <p className="text-xs font-medium text-mustard-900 leading-snug">
+      <p className="text-xs font-medium text-gray-400  leading-snug">
         {value}
       </p>
     </div>

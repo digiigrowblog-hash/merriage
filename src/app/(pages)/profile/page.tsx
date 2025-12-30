@@ -20,34 +20,31 @@ import { useState } from "react";
 const tabs = ["1m-subscription", "12m-subscription"] as const;
 
 export default function Setting() {
-  const router =  useRouter ()
-  const handleProfile = ()=>{
-    router.push("/profileupdate")
-  }
+  const router = useRouter();
+  const handleProfile = () => {
+    router.push("/profileupdate");
+  };
 
   const handlecarnival = () => {
     alert("Carnival event added to your calendar!");
-  }
+  };
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]>("1m-subscription");
   return (
     <div
-      className="min-h-screen max-w-full
+      className="min-h-auto max-w-full
     flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10"
     >
       {/* header part */}
       <div className="w-full lg:w-[10%] max-w-full lg:block hidden"><Header/></div>
 
-      <div  className="w-full lg:w-[40%] max-w-full mx-auto ">
-
-        <div  className="flex items-center justify-between mt-2 md:p-4 p-3 ">
-         
+      <div className="w-full lg:w-[40%] max-w-full mx-auto ">
+        <div className="flex items-center justify-between mt-2 md:p-4 p-3 ">
           <Image
             src="/images/2.png"
             alt="logo"
             width={100}
             height={100}
             className="md:w-48 md:h-10 w-24 h-5 object-cover cursor-pointer "
-            
           />
 
           <div className="flex md:gap-3 gap-2">
@@ -60,7 +57,6 @@ export default function Setting() {
             </Link>
           </div>
         </div>
-        
 
         {/* profile shows */}
         <div className="flex flex-col md:items-start md:justify-start items-center justify-center mx-auto relative md:px-8">
@@ -95,7 +91,6 @@ export default function Setting() {
         </div>
 
         {/* Subscription */}
-
         <div className="w-full max-w-md mx-auto md:mx-0">
           {/* Tabs */}
           <div className="flex border-b border-gray-200">
@@ -118,8 +113,8 @@ export default function Setting() {
           </div>
         </div>
 
-        {/* Weekend carnival */}
-        <div className="w-full max-w-md mx-auto md:mx-0 mt-4 px-2 mb-20">
+        {/* Weekend carnival - REMOVED md:mb-20 mb-6 */}
+        <div className="w-full max-w-md mx-auto md:mx-0 mt-4 px-2">
           <div className="flex p-1 border border-gray-300 rounded-2xl bg-white gap-3">
             {/* Rose Icon */}
             <div
@@ -164,11 +159,15 @@ export default function Setting() {
         </div>
       </div>
 
-      <div className="w-full lg:w-[50%] max-w-full h-screen px-2 py-4 mx-auto">
+      {/* Right column - CHANGED h-screen to h-auto */}
+      <div className="w-full lg:w-[50%] max-w-full h-auto px-2 md:py-4 mx-auto pt-4">
+
         {/* Top heading bar */}
-        <div className="relative bg-red-400/40 rounded-xl border border-pink-200 px-5 py-3 shadow-lg overflow-hidden">
+        <div className="relative bg-red-400/40 rounded-xl border border-pink-200 
+        px-5 py-3 shadow-lg overflow-hidden">
           {/* glow */}
-          <div className="pointer-events-none absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,white,transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 opacity-40 
+          bg-[radial-gradient(circle_at_top,white,transparent_60%)]" />
 
           <div className="relative flex items-center justify-between gap-3">
             {/* left: title + subtitle */}
@@ -185,16 +184,17 @@ export default function Setting() {
             </div>
 
             {/* right: glass pill with icon */}
-            <div className="backdrop-blur-xl bg-white/15 border border-white/40 rounded-full px-4 py-2 flex items-center gap-2 shadow-md">
+            <div className="backdrop-blur-xl bg-white/15 border border-white/40 
+            rounded-full px-4 py-2 flex items-center gap-2 shadow-md">
               <span
                 className="inline-flex h-6 w-6 items-center justify-center 
-      rounded-full bg-violet-500/20 text-[10px] font-bold text-white shadow"
+        rounded-full bg-violet-500/20 text-[10px] font-bold text-white shadow"
               >
                 Sat
               </span>
               <span
                 className="inline-flex h-6 w-6 items-center justify-center 
-      rounded-full bg-pink-500/20 text-[10px] font-bold text-white shadow"
+        rounded-full bg-pink-500/20 text-[10px] font-bold text-white shadow"
               >
                 Sun
               </span>
@@ -206,11 +206,11 @@ export default function Setting() {
         </div>
 
         {/* Main carnival card */}
-        <div className="mt-4 bg-red-400/40 rounded-xl p-3">
+        <div className="mt-4 bg-red-400/40 rounded-xl p-3 ">
           <div className="relative w-full h-72 rounded-xl overflow-hidden">
             {/* Your carnival image */}
             <Image
-              src="/images/carnivalFest.png" // put your file in public/images/ as carnivalFest.jpg
+              src="/images/carnivalFest.png" 
               alt="Carnival couple"
               fill
               className="object-cover"
@@ -246,24 +246,22 @@ export default function Setting() {
           </div>
 
           {/* Text content under image */}
-          <div className="mt-4 bg-white/70 rounded-xl p-4 border border-pink-100">
+          <div className="mt-4 bg-white/70 rounded-xl p-4 border border-pink-100 ">
             <h2 className="text-lg font-semibold text-pink-700">
               Weekend Carnival Festival
             </h2>
-            <p className="text-sm text-pink-800 mt-1">
+            <p className="text-sm text-pink-800 mt-1 mb-10">
               Carnival festival is available every Saturday and Sunday evening
               for premium members. Join the live room, meet new couples, and
               enjoy romantic games and matching sessions.
             </p>
           </div>
         </div>
-
       </div>
 
       <div className="w-full lg:hidden block">
         <Header />
       </div>
-      
     </div>
   );
 }

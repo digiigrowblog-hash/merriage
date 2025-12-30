@@ -39,7 +39,7 @@ export default function MonthlySubscriptionPage() {
         />
 
         {/* subtle inner red shine */}
-        <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500/30 
+        <span className="absolute inset-0 rounded-full bg-linear-to-tr from-red-500/30 
         via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
 
         {/* the X icon itself */}

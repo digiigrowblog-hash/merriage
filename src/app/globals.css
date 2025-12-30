@@ -18,6 +18,8 @@
   }
 }
 
+
+
 .rhodium-libre-regular {
   font-family: "Rhodium Libre", serif;
   font-weight: 800;
@@ -37,10 +39,22 @@
   font-style: normal;
 }
 
+.road-rage-regular-italic {
+  font-family: "Road Rage", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
 
-.kotta-one-regular {
-  font-family: "Kotta One", serif;
-  font-weight: 900;
+.doppio-one-regular {
+  font-family: "Doppio One", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.work-sans-regular {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -62,8 +76,24 @@
   font-style: normal;
 }
 
+.linden-hill-regular {
+  font-family: "Linden Hill", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.linden-hill-regular-italic {
+  font-family: "Linden Hill", serif;
+  font-weight: 400;
+  font-style: italic;
+}
 
 
+.pt-sans-regular {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
 
 .pt-serif-regular {
   font-family: "PT Serif", serif;

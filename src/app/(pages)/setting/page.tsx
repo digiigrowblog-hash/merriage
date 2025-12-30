@@ -41,7 +41,7 @@ export default function Setting() {
   };
 
   return (
-    <div className="min-h-screen max-w-full flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10">
+    <div className="min-h-auto max-w-full flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10">
       <div className="right-10 left-10 top-0 h-10 bg-white/60 absolute " />
 
       {/* LEFT SIDEBAR - CONTENT HEIGHT + SCROLLABLE */}
@@ -246,7 +246,7 @@ export default function Setting() {
           </div>
         </div>
         {/* Delete Account  */}
-        <div className="space-y-3 mt-3 p-2 border-t border-red-100 mb-8">
+        <div className="space-y-3 mt-3 p-2 border-t border-red-100 mb-5">
           <div className="text-center">
             <button
               className="font-medium text-gray-600 hover:text-red-700 hover:bg-red-50 px-6 py-3 

@@ -21,8 +21,8 @@ export default function ProfileEditPage() {
   const [activeTab, setActiveTab] = useState<"Edit" | "Preview">("Edit");
 
   return (
-    <main className="min-h-screen overflow-hidden">
-      <section className="max-w-4xl mx-auto px-4 pb-24 pt-6 md:pt-10">
+    <main className="min-h-auto overflow-hidden">
+      <section className="max-w-4xl mx-auto px-4 md:pb-24 pb-2 pt-6 md:pt-10">
         {/* previous Btn Icon */}
         <div className="flex items-center justify-between mb-6">
           <Link
