@@ -45,6 +45,12 @@
   font-style: italic;
 }
 
+.road-rage-regular-bold {
+  font-family: "Road Rage", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
 .doppio-one-regular {
   font-family: "Doppio One", sans-serif;
   font-weight: 700;
