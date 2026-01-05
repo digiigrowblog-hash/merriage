@@ -86,7 +86,7 @@ export default function Like() {
     <div className="min-h-screen max-w-full py-1 overflow-hidden">
        
 
-      <div className="flex mt-4 overflow-hidden">
+      <div className="flex md:mt-4 overflow-hidden">
         {/* Left header */}
         <div className="w-full md:w-auto max-h-full lg:block hidden">
           <Header />

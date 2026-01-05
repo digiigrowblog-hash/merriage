@@ -126,16 +126,20 @@ const Header = () => {
                     )}
 
                     {item.label === "Like" && (
+                      <div className="relative">
                       <Heart
-                        className={`size-7 ${
+                        className={`size-7  ${
                           isActive
                             ? "fill-red-400 stroke-red-200"
                             : "stroke-gray-600"
                         }`}
                       />
+                      <span className="absolute -top-1 left-5 px-1.5  rounded-full text-white bg-red-300 text-sm">1</span>
+                      </div>
                     )}
 
                     {item.label === "Spotlight" && (
+                      <div className="relative">
                       <Sparkles
                         className={`size-6 ${
                           isActive
@@ -143,9 +147,12 @@ const Header = () => {
                             : "stroke-gray-600"
                         }`}
                       />
+                       <span className="absolute top-0 left-5 h-4 w-4 px-1.5  rounded-full text-white bg-red-400 text-sm"></span>
+                      </div>
                     )}
 
                     {item.label === "Message" && (
+                      <div className="relative">
                       <MessageSquare
                         className={`size-6 ${
                           isActive
@@ -153,9 +160,12 @@ const Header = () => {
                             : "stroke-gray-600"
                         }`}
                       />
+                      <span className="absolute -top-1 left-4 px-1.5  rounded-full text-white bg-red-300 text-sm">1</span>
+                      </div>
                     )}
 
                     {item.label === "Profile" && (
+                      <div className="relative">
                       <Settings
                         className={`size-6 ${
                           isActive
@@ -163,6 +173,8 @@ const Header = () => {
                             : "stroke-gray-600"
                         }`}
                       />
+                      <span className="absolute -top-1 left-4 h-4 w-4 px-1.5  rounded-full text-white bg-red-400 text-sm"></span>
+                      </div>
                     )}
                   </div>
                 </Link>

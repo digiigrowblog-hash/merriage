@@ -5,7 +5,7 @@ const Images = () => {
   return (
     <div className="w-full relative ">
   <div className="relative max-w-md w-full aspect-square overflow-hidden rounded-md 
-  mx-auto shadow-lg border border-gray-200">
+  mx-auto shadow-lg ">
     <Image
       src="/images/img1.png"
       alt="img"
