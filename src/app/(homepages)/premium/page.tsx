@@ -137,7 +137,7 @@ export default function SubscriptionComparisonPage() {
             </div>
 
             {/* Mobile Tab Switcher */}
-            <div className="md:hidden flex justify-center mt-8">
+            {/* <div className="md:hidden flex justify-center mt-8">
               <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-1 shadow-xl flex border border-white/50">
                 {plans.map((plan, i) => (
                   <button
@@ -152,7 +152,7 @@ export default function SubscriptionComparisonPage() {
                   </button>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
