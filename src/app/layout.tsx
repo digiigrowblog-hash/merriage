@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import React from "react";
 import StoreProvider from "./StoreProvider";
 
 // const geistSans = Geist({
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body
         className={` antialiased`}
       >
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <React.Suspense fallback={<div />}>{children}</React.Suspense>
+        </StoreProvider>
       </body>
     </html>
   );
