@@ -18,7 +18,7 @@ export function RadioGroup({ name, options, value, onChange, title, cols = 3 }: 
   return (
     <div className="space-y-4">
       <label className="block text-sm font-medium text-gray-700">{title}</label>
-      <div className={`grid grid-cols-${cols} gap-4`}>
+      <div className={`grid grid-cols-1 md:grid-cols-${cols} gap-4 flex-wrap`}>
         {options.map((option) => (
           <label key={option.value} className="group cursor-pointer">
             <input
@@ -27,14 +27,14 @@ export function RadioGroup({ name, options, value, onChange, title, cols = 3 }: 
               value={option.value}
               checked={value === option.value}
               onChange={() => onChange(option.value)}
-              className="sr-only"
+              className="sr-only flex-wrap"
             />
             <div className={`p-4 rounded-xl border-2 transition-all duration-200 ${
               value === option.value
                 ? 'border-orange-400 bg-orange-50 ring-2 ring-orange-200'
                 : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
             }`}>
-              <div className="font-medium text-gray-900">{option.label}</div>
+              <div className="font-medium text-gray-900 ">{option.label}</div>
               {option.description && (
                 <p className="text-sm text-gray-500 mt-1">{option.description}</p>
               )}

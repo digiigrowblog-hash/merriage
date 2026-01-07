@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { CustomOTPInput } from "@/components/ui/CustomOTPInput";
-import { Check } from "lucide-react";
+import { Check, ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Stepper } from "@/components/ui/Stepper";
 import InputField from "@/components/ui/InputField";
@@ -16,7 +16,8 @@ import { TagSelector } from "@/components/ui/TagSelector";
 import { ReusableDropdown } from "@/components/ui/ReusableDropdown";
 import type { FormData as SignupFormData } from "@/types/signup";
 import { ReligionCasteStep } from "@/components/ui/ReligionCasteStep";
-import { useAppDispatch, useAppSelector } from "@/store/hook"
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import Link from "next/link";
 
 interface DropdownOption {
   value: string;
@@ -43,7 +44,7 @@ const STEPS = [
 const TOTAL_STEPS = STEPS.length;
 
 export default function SignupPage() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(1);
   const [emailOtpSent, setEmailOtpSent] = useState(false);
@@ -51,10 +52,9 @@ export default function SignupPage() {
   const [idOtpSent, setIdOtpSent] = useState(false);
   const [idOtpVerified, setIdOtpVerified] = useState(false);
   const [idOtp, setIdOtp] = useState("");
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
 
   const { status, userId, error } = useAppSelector((state) => state.auth);
-
-
 
   const [formData, setFormData] = useState<SignupFormData>({
     phone: "",
@@ -84,7 +84,6 @@ export default function SignupPage() {
     email: "",
     emailOtp: "",
     idNumber: "",
-
   });
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -94,7 +93,6 @@ export default function SignupPage() {
       }
     }
   }, []);
-
 
   // Persist to localStorage
   useEffect(() => {
@@ -107,7 +105,10 @@ export default function SignupPage() {
     dispatch(clearError());
   }, [dispatch]);
 
-  const updateField = <K extends keyof SignupFormData>(key: K, value: SignupFormData[K]) => {
+  const updateField = <K extends keyof SignupFormData>(
+    key: K,
+    value: SignupFormData[K]
+  ) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -161,38 +162,64 @@ export default function SignupPage() {
   };
 
   const isValidPassport = (passport: string): boolean => {
-    const passportRegex = /^(Z[A-Z][1-9A-Z]{6}[0-9])|([A-Z]{3}[1-9][0-9][A-Z]{3}[0-9]{3})$/;
+    const passportRegex =
+      /^(Z[A-Z][1-9A-Z]{6}[0-9])|([A-Z]{3}[1-9][0-9][A-Z]{3}[0-9]{3})$/;
     return passportRegex.test(passport);
   };
 
   const isValidID = (type: string, number: string): boolean => {
     switch (type) {
-      case "pan": return isValidPAN(number);
-      case "aadhar": return isValidAadhaar(number);
-      case "passport": return isValidPassport(number);
-      default: return false;
+      case "pan":
+        return isValidPAN(number);
+      case "aadhar":
+        return isValidAadhaar(number);
+      case "passport":
+        return isValidPassport(number);
+      default:
+        return false;
     }
   };
 
   // Inside validateStep function, fix case 10:
   const validateStep = (step: number, data: SignupFormData): boolean => {
     switch (step) {
-      case 1: return !!data.phone && !!data.phoneOtp;
-      case 2: return !!data.name && !!data.age;
-      case 3: return !!data.address.formatted;
-      case 4: return !!data.eating;
-      case 5: return !!data.gender;
-      case 6: return !!data.orientation;
-      case 7: return !!data.preference;
-      case 8: return true;
-      case 9: return !!data.religion;
+      case 1:
+        return !!data.phone && !!data.phoneOtp && isPhoneValid;
+      case 2:
+        return !!data.name && !!data.age;
+      case 3:
+        return !!data.address.formatted;
+      case 4:
+        return !!data.eating;
+      case 5:
+        return !!data.gender;
+      case 6:
+        return !!data.orientation;
+      case 7:
+        return !!data.preference;
+      case 8:
+        return true;
+      case 9:
+        return !!data.religion;
       case 10:
-        return !!data.idVerification && !!data.idNumber && isValidID(data.idVerification, data.idNumber) && idOtpVerified;
-      case 11: return !!data.health.smoking && !!data.health.drinking && !!data.health.drugs;
-      case 12: return data.hobbies.length > 0;
-      case 13: return data.images.length >= 1;
-      case 14: return isEmailVerified;
-      default: return true;
+        return (
+          !!data.idVerification &&
+          !!data.idNumber &&
+          isValidID(data.idVerification, data.idNumber) &&
+          idOtpVerified
+        );
+      case 11:
+        return (
+          !!data.health.smoking && !!data.health.drinking && !!data.health.drugs
+        );
+      case 12:
+        return data.hobbies.length > 0;
+      case 13:
+        return data.images.length >= 1;
+      case 14:
+        return isEmailVerified;
+      default:
+        return true;
     }
   };
 
@@ -232,7 +259,10 @@ export default function SignupPage() {
         heightCm: formData.height ? Number(formData.height) : null,
         salary: formData.salary ? Number(formData.salary) : null,
         idVerification: formData.idVerification
-          ? (formData.idVerification.toUpperCase() as "PAN" | "AADHAR" | "PASSPORT")
+          ? (formData.idVerification.toUpperCase() as
+              | "PAN"
+              | "AADHAR"
+              | "PASSPORT")
           : null,
         images: base64Images,
       };
@@ -254,13 +284,13 @@ export default function SignupPage() {
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-lg font-medium text-gray-700">Creating your account...</p>
+          <p className="text-lg font-medium text-gray-700">
+            Creating your account...
+          </p>
         </div>
       </div>
     );
   }
-
-
 
   const canNext = validateStep(activeStep, formData);
 
@@ -269,8 +299,10 @@ export default function SignupPage() {
       case 1:
         return (
           <PhoneInput
+            label="Phone Number"
             value={formData.phone}
             onChange={(phone) => updateField("phone", phone || "")}
+            onValidationChange={setIsPhoneValid}
             onOtpVerify={(otp) => updateField("phoneOtp", otp)}
           />
         );
@@ -321,7 +353,9 @@ export default function SignupPage() {
             name="eating"
             title="Eating Preference *"
             value={formData.eating}
-            onChange={(v) => updateField("eating", v as SignupFormData["eating"])}
+            onChange={(v) =>
+              updateField("eating", v as SignupFormData["eating"])
+            }
             options={[
               { value: "vegetarian", label: "Vegetarian" },
               { value: "non-veg", label: "Non-vegetarian" },
@@ -336,7 +370,9 @@ export default function SignupPage() {
             name="gender"
             title="Gender *"
             value={formData.gender}
-            onChange={(v) => updateField("gender", v as SignupFormData["gender"])}
+            onChange={(v) =>
+              updateField("gender", v as SignupFormData["gender"])
+            }
             options={[
               { value: "male", label: "Male" },
               { value: "female", label: "Female" },
@@ -351,7 +387,9 @@ export default function SignupPage() {
             name="orientation"
             title="Sexual Orientation *"
             value={formData.orientation}
-            onChange={(v) => updateField("orientation", v as SignupFormData["orientation"])}
+            onChange={(v) =>
+              updateField("orientation", v as SignupFormData["orientation"])
+            }
             options={[
               { value: "straight", label: "Straight" },
               { value: "gay", label: "Gay/Lesbian" },
@@ -366,7 +404,9 @@ export default function SignupPage() {
             name="preference"
             title="Who would you like to date? *"
             value={formData.preference}
-            onChange={(v) => updateField("preference", v as SignupFormData["preference"])}
+            onChange={(v) =>
+              updateField("preference", v as SignupFormData["preference"])
+            }
             options={[
               { value: "women", label: "Women" },
               { value: "men", label: "Men" },
@@ -407,26 +447,32 @@ export default function SignupPage() {
 
       case 10:
         const idOptions: DropdownOption[] = [
-          { value: "pan", label: "PAN Card" },
           { value: "aadhar", label: "Aadhaar Card" },
-          { value: "passport", label: "Passport" },
         ];
 
         const getIDInputLabel = () => {
           switch (formData.idVerification) {
-            case "pan": return "Enter PAN Number";
-            case "aadhar": return "Enter Aadhaar Number";
-            case "passport": return "Enter Passport Number";
-            default: return "";
+            case "pan":
+              return "Enter PAN Number";
+            case "aadhar":
+              return "Enter Aadhaar Number";
+            case "passport":
+              return "Enter Passport Number";
+            default:
+              return "";
           }
         };
 
         const getIDInputPlaceholder = () => {
           switch (formData.idVerification) {
-            case "pan": return "ABCDE1234F";
-            case "aadhar": return "1234 5678 9012";
-            case "passport": return "Z1234567 or ABC123456";
-            default: return "";
+            case "pan":
+              return "ABCDE1234F";
+            case "aadhar":
+              return "1234 5678 9012";
+            case "passport":
+              return "Z1234567 or ABC123456";
+            default:
+              return "";
           }
         };
 
@@ -441,7 +487,10 @@ export default function SignupPage() {
                 options={idOptions}
                 value={formData.idVerification}
                 onChange={(value) => {
-                  updateField("idVerification", value as 'pan' | 'aadhar' | 'passport' | '');
+                  updateField(
+                    "idVerification",
+                    value as "pan" | "aadhar" | "passport" | ""
+                  );
                   // Reset ID number when type changes
                   updateField("idNumber", "" as any);
                   setIdOtpSent(false);
@@ -475,21 +524,40 @@ export default function SignupPage() {
 
                 {/* Real-time Validation Feedback */}
                 {formData.idNumber && (
-                  <div className={`mt-2 text-xs p-2 rounded-lg ${isValidID(formData.idVerification, formData.idNumber)
-                    ? 'bg-green-50 text-green-700 border border-green-200'
-                    : 'bg-red-50 text-red-700 border border-red-200'
-                    }`}>
+                  <div
+                    className={`mt-2 text-xs p-2 rounded-lg ${
+                      isValidID(formData.idVerification, formData.idNumber)
+                        ? "bg-green-50 text-green-700 border border-green-200"
+                        : "bg-red-50 text-red-700 border border-red-200"
+                    }`}
+                  >
                     {isValidID(formData.idVerification, formData.idNumber) ? (
                       <>
-                        <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        <svg
+                          className="w-4 h-4 inline mr-1"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                         Valid {formData.idVerification.toUpperCase()} number
                       </>
                     ) : (
                       <>
-                        <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        <svg
+                          className="w-4 h-4 inline mr-1"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                         Invalid {formData.idVerification.toUpperCase()} format
                       </>
@@ -509,7 +577,9 @@ export default function SignupPage() {
                     }
                     className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
-                    {idOtpSent ? "Resend Verification Code" : "Send Verification Code"}
+                    {idOtpSent
+                      ? "Resend Verification Code"
+                      : "Send Verification Code"}
                   </button>
 
                   {idOtpSent && (
@@ -550,14 +620,20 @@ export default function SignupPage() {
             {/* Chronic disease toggle */}
             <div className="flex items-center justify-between rounded-2xl border border-gray-200 p-4">
               <div>
-                <p className="text-sm font-medium text-gray-800">Any chronic disease</p>
-                <p className="text-xs text-gray-500">Diabetes, hypertension, etc.</p>
+                <p className="text-sm font-medium text-gray-800">
+                  Any chronic disease
+                </p>
+                <p className="text-xs text-gray-500">
+                  Diabetes, hypertension, etc.
+                </p>
               </div>
               <input
                 type="checkbox"
                 className="h-5 w-5 accent-orange-500"
                 checked={formData.health.chronicDisease}
-                onChange={(e) => updateHealth("chronicDisease", e.target.checked)}
+                onChange={(e) =>
+                  updateHealth("chronicDisease", e.target.checked)
+                }
               />
             </div>
 
@@ -577,7 +653,10 @@ export default function SignupPage() {
                       value={option}
                       checked={formData.health.smoking === option}
                       onChange={() =>
-                        updateHealth("smoking", option as "sometimes" | "often" | "never")
+                        updateHealth(
+                          "smoking",
+                          option as "sometimes" | "often" | "never"
+                        )
                       }
                       className="h-4 w-4 accent-orange-500"
                     />
@@ -588,7 +667,9 @@ export default function SignupPage() {
 
             {/* Drinking */}
             <div className="space-y-3">
-              <p className="text-sm font-medium text-gray-800">Do you drink alcohol?</p>
+              <p className="text-sm font-medium text-gray-800">
+                Do you drink alcohol?
+              </p>
               <div className="space-y-2">
                 {["sometimes", "often", "never"].map((option) => (
                   <label
@@ -602,7 +683,10 @@ export default function SignupPage() {
                       value={option}
                       checked={formData.health.drinking === option}
                       onChange={() =>
-                        updateHealth("drinking", option as "sometimes" | "often" | "never")
+                        updateHealth(
+                          "drinking",
+                          option as "sometimes" | "often" | "never"
+                        )
                       }
                       className="h-4 w-4 accent-orange-500"
                     />
@@ -613,7 +697,9 @@ export default function SignupPage() {
 
             {/* Drugs */}
             <div className="space-y-3">
-              <p className="text-sm font-medium text-gray-800">Do you take drugs?</p>
+              <p className="text-sm font-medium text-gray-800">
+                Do you take drugs?
+              </p>
               <div className="space-y-2">
                 {["sometimes", "often", "never"].map((option) => (
                   <label
@@ -627,7 +713,10 @@ export default function SignupPage() {
                       value={option}
                       checked={formData.health.drugs === option}
                       onChange={() =>
-                        updateHealth("drugs", option as "sometimes" | "often" | "never")
+                        updateHealth(
+                          "drugs",
+                          option as "sometimes" | "often" | "never"
+                        )
                       }
                       className="h-4 w-4 accent-orange-500"
                     />
@@ -742,7 +831,15 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 py-12 px-3 sm:px-6 lg:px-8 sm:pt-6 pt-20">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 to-pink-50 py-12 px-3 sm:px-6 lg:px-8 sm:pt-6 pt-20">
+      <Link
+        href={"/"}
+        className="text-2xl font-bold text-center text-gray-300 
+      bg-linear-to-r from-orange-300 to-pink-500   absolute rounded-full top-6 left-6 
+      flex items-center space-x-2 "
+      >
+        <ChevronLeft className="size-8 " />
+      </Link>
       <div className="max-w-2xl mx-auto">
         <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-5 md:p-12">
           <Stepper
@@ -826,6 +923,17 @@ export default function SignupPage() {
                 </p>
               </div>
             )}
+          </div>
+          <div className="text-center mt-1">
+            <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <button
+                onClick={() => router.push("/login")}
+                className="font-semibold text-orange-600 hover:text-orange-700 transition-colors"
+              >
+                Login here
+              </button>
+            </p>
           </div>
         </div>
       </div>

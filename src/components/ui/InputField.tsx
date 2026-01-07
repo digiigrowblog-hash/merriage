@@ -50,7 +50,7 @@ const InputField = ({
 
         readOnly={readOnly}
         maxLength={maxLength}
-        className={`w-full px-4 py-3 border rounded-xl 
+        className={`w-full md:px-4 md:py-3 px-2 py-1 border rounded-xl 
             focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all 
             duration-200 ${error
             ? 'border-red-300 bg-red-50 ring-1 ring-red-200'
