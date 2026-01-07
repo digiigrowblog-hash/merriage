@@ -69,7 +69,7 @@ export default function Header() {
           className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 p-2 text-white md:hidden"
           aria-label="Toggle menu"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-5 w-5 text-[#432b24]" /> : <Menu className="h-5 w-5 text-[#432b24]" />}
         </button>
       </nav>
 

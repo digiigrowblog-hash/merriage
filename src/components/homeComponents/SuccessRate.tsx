@@ -23,7 +23,7 @@ const SuccessRate = () => {
               transition={{ delay: i * 0.1 }}
               className="alike-angular-regular text-center p-8 rounded-2xl bg-linear-to-b from-beige-50 to-terracotta-50 border border-teal-100"
             >
-              <stat.icon className="w-16 h-16 text-mustard-500 mx-auto mb-4" />
+              <stat.icon className="w-16 h-16 text-red-400 mx-auto mb-4" />
               <div className="text-3xl md:text-4xl font-bold text-teal-900 mb-2">{stat.num}</div>
               <div className="text-lg text-mustard-800">{stat.label}</div>
             </motion.div>

@@ -14,7 +14,7 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c] "
+    <div className="min-h-screen bg-linear-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c] overflow-hidden"
 >
      
       {/* Hero Section */}

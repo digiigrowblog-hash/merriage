@@ -96,7 +96,7 @@ export default function LoginPage() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 w-full
+      className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 
     py-12 px-3 sm:px-6 lg:px-8 "
     >
       <Link href={'/'} 
@@ -105,11 +105,13 @@ export default function LoginPage() {
       flex items-center space-x-2 ">
         <ChevronLeft className="size-8 " />
       </Link>
+           <div className="w-full">
+      <div className="space-y-8 flex flex-col justify-center w-full px-0 sm:px-6 lg:px-8">
 
-      <div className="max-w-xl w-full space-y-8 flex mx-auto flex-col items-center justify-center">
+        
         {/* Redux Error Display */}
         {error && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl mx-auto max-w-md">
+          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl mx-auto w-full max-w-4xl">
             <p className="text-red-800 text-sm">{error}</p>
             <button
               onClick={() => dispatch(clearError())}
@@ -129,7 +131,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-3 md:p-8 space-y-6">
+        <div className="bg-white/80 backdrop-blur-xl w-full rounded-3xl shadow-2xl border border-white/50 p-3 md:p-8 space-y-6">
           {/* Login Type Toggle */}
           <div className="flex bg-gray-100 rounded-2xl p-1">
             <button
@@ -367,6 +369,7 @@ export default function LoginPage() {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
