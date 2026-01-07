@@ -120,7 +120,7 @@ const Messagebox: React.FC<MessageboxProps> = ({ selectedUser, onClick }) => {
       </div>
 
       {/* Messages Container */}
-      <MessagesContainer messages={messages} ref={messagesEndRef} />
+      <MessagesContainer messages={messages} messagesEndRef={messagesEndRef} />
 
       {/* Input Bar */}
       <InputBar

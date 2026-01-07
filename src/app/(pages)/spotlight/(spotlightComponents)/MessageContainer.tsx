@@ -13,9 +13,10 @@ interface Message {
 
 interface MessagesContainerProps {
   messages: Message[];
+  messagesEndRef?: React.RefObject<HTMLDivElement>;
 }
 
-const MessagesContainer: React.FC<MessagesContainerProps> = ({ messages }) => (
+const MessagesContainer: React.FC<MessagesContainerProps> = ({ messages, messagesEndRef }) => (
   <div className="flex-1 bg-white/70 backdrop-blur-xl border border-pink-200/50 rounded-b-2xl shadow-xl sm:p-4 p-2 overflow-y-auto mb-4 space-y-3">
     <AnimatePresence>
       {messages.map((message) => (

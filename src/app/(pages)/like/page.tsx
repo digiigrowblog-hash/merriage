@@ -11,7 +11,10 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  Ellipsis,
+  Heart,
   Sparkles,
+  X,
   Zap,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
@@ -20,18 +23,56 @@ import UserInfoUI from "../profileupdate/(profileComponent)/(profileUiComponent)
 import Images from "../profileupdate/(profileComponent)/(profileUiComponent)/Images";
 
 export default function Like() {
-  const [like, setLike] = useState(1);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollContainerXRef = useRef<HTMLDivElement>(null);
   const profileScrollRef = useRef<HTMLDivElement>(null);
+  const ellipsisRef = useRef<HTMLButtonElement>(null);
+  const [like, setLike] = useState(1);
   const [likePerson, setLikePerson] = useState(false);
+  const [ellipsisOpen, setEllipsisOpen] = useState(false);
+
+  const [showSticky, setShowSticky] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      e.stopPropagation();
+      if (
+        ellipsisOpen &&
+        ellipsisRef.current &&
+        !ellipsisRef.current.contains(e.target as Node)
+      ) {
+        setEllipsisOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [ellipsisOpen]);
+
+  useEffect(() => {
+    const container = profileScrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      if (container.scrollTop > 60) {
+        setShowSticky(true);
+      } else {
+        setShowSticky(false);
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [likePerson]);
 
   const container = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.06 } },
   };
-  
-
   const item = {
     hidden: { opacity: 0, y: 14 },
     show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
@@ -95,7 +136,7 @@ export default function Like() {
         {/* Right content */}
         <div className="w-full py-4 px-4">
           {/* title */}
-          <h1 className="text-3xl text-red-600/50 font-bold mb-6 doppio-one-regular">
+          <h1 className="text-3xl text-red-600/50 font-bold mb-2 doppio-one-regular">
             Likes
           </h1>
           {/* logic if 0 like then empty content show  or it is one then main div show*/}
@@ -148,7 +189,12 @@ export default function Like() {
               </div>
 
               {/* recent likes */}
-              <h2 className="text-xl text-red-300">Recent Likes</h2>
+              <h2
+                className="text-xl text-red-200 font-medium 
+              flex gap-1 justify-start items-center"
+              >
+                Recent <Heart className="fill-red-300" />
+              </h2>
 
               {/*pc screen Images container */}
               <div
@@ -235,6 +281,43 @@ export default function Like() {
                 </div>
               </div>
 
+              {/* Most Recent Likes  in pc right side part*/}
+              <div className="lg:block hidden flex-col w-full mx-auto">
+                <div
+                  className="relative max-w-md w-full aspect-square overflow-hidden rounded-md 
+                  mx-auto shadow-lg border border-gray-200"
+                >
+                  <Image
+                    src="/images/img1.png"
+                    alt="img"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute top-0 w-full p-3 bg-[#fafaf8] text-black z-20">
+                    <span className="text-base font-medium Sans-serif ">
+                      Just felt cute might delete later
+                    </span>
+                  </div>
+                  <span
+                    className="z-30 absolute -bottom-1 left-4 w-44 h-auto 
+                    rounded-full bg-red-50 px-3 py-1 text-xs font-medium
+                    text-red-500 whitespace-nowrap shadow-lg"
+                  >
+                    Like You you voice pal
+                  </span>
+
+                  <div className="absolute bottom-5 right-8 flex items-center justify-center gap-2">
+                    <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
+                      <X className="size-9" strokeWidth={2.4} />
+                    </button>
+                    <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
+                      <Check className="size-8" strokeWidth={2.4} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* mobile view  */}
               <div className="lg:hidden relative w-full">
                 {/* Mobile left button / right button */}
 
@@ -284,102 +367,22 @@ export default function Like() {
                         Loving this vibe today 🌟
                       </span>
                     </div>
-                    <span className="absolute bottom-4 left-6 w-[85%] bg-gradient-to-r from-red-50/90 to-pink-50/90 px-4 py-2 rounded-full text-xs font-bold text-red-600 z-20 shadow-2xl border border-red-200/50 backdrop-blur-sm">
-                      Like You you voice pal ✨
+                    <span className="absolute bottom-4 left-6 w-auto bg-linear-to-r from-red-50/90 to-pink-50/90 px-4 py-2 rounded-full text-xs font-bold text-red-600 z-20 shadow-2xl border border-red-200/50 backdrop-blur-sm">
+                      Like You your voice pal ✨
                     </span>
 
                     <div
                       onClick={() => setLikePerson(!likePerson)}
-                      className="absolute top-4  right-0  w-20  rounded-full z-50"
+                      className="absolute top-4  right-0  w-20  rounded-full z-50 "
                     >
                       <Image
                         src={"/images/img4.png"}
                         alt="likeperson"
                         width={300}
                         height={300}
-                        className="object-cover w-12  rounded-full active:bg-black/90 "
+                        className="object-cover w-16 border-2 border-red-200 rounded-full active:bg-black/90"
                       />
                     </div>
-                  </div>
-{/* 
-                  <div
-                    className="shrink-0 w-full h-[65vh] snap-center rounded-2xl
-                    relative shadow-2xl border-4 border-white/50 box-border 
-                    overflow-hidden"
-                  >
-                    <Image
-                      fill
-                      src="/images/img3.png"
-                      alt="Like 2"
-                      className="object-cover rounded-2xl"
-                      priority
-                    />
-                    <div className="absolute top-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-md  shadow-lg z-20">
-                      <span className="text-sm font-semibold text-gray-800 block leading-tight">
-                        Loving this vibe today 🌟
-                      </span>
-                    </div>
-                    <span className="absolute bottom-4 left-6 w-[85%] bg-gradient-to-r from-red-50/90 to-pink-50/90 px-4 py-2 rounded-full text-xs font-bold text-red-600 z-20 shadow-2xl border border-red-200/50 backdrop-blur-sm">
-                      I like your smile ✨
-                    </span>
-                  </div> */}
-
-                  {/* <div
-                    className="shrink-0 w-full h-[65vh] snap-center rounded-2xl
-                    relative shadow-2xl border-4 border-white/50 box-border 
-                    overflow-hidden"
-                  >
-                    <Image
-                      fill
-                      src="/images/img2.png"
-                      alt="Like 2"
-                      className="object-cover rounded-2xl"
-                      priority
-                    />
-                    <div className="absolute top-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-md  shadow-lg z-20">
-                      <span className="text-sm font-semibold text-gray-800 block leading-tight">
-                        Loving this vibe today 🌟
-                      </span>
-                    </div>
-                    <span className="absolute bottom-4 left-6 w-[85%] bg-gradient-to-r from-red-50/90 to-pink-50/90 px-4 py-2 rounded-full text-xs font-bold text-red-600 z-20 shadow-2xl border border-red-200/50 backdrop-blur-sm">
-                      Like You you voice pal ✨
-                    </span>
-                  </div> */}
-                </div>
-              </div>
-
-              {/* Most Recent Likes */}
-              <div className="lg:block hidden flex-col w-full mx-auto">
-                <div
-                  className="relative max-w-md w-full aspect-square overflow-hidden rounded-md 
-                  mx-auto shadow-lg border border-gray-200"
-                >
-                  <Image
-                    src="/images/img1.png"
-                    alt="img"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-0 w-full p-3 bg-[#fafaf8] text-black z-20">
-                    <span className="text-base font-medium Sans-serif ">
-                      Just felt cute might delete later
-                    </span>
-                  </div>
-                  <span
-                    className="z-30 absolute -bottom-1 left-4 w-44 h-auto 
-                    rounded-full bg-red-50 px-3 py-1 text-xs font-medium
-                    text-red-500 whitespace-nowrap shadow-lg"
-                  >
-                    Like You you voice pal
-                  </span>
-
-                  <div className="absolute bottom-5 right-8 flex items-center justify-center gap-2">
-                    <button className="bg-white text-gray-400 font-medium px-2 py-1 rounded-md shadow-md">
-                      Accept
-                    </button>
-                    <button className="bg-white text-red-400 font-medium px-2 py-1 rounded-md shadow-md">
-                      Cancel
-                    </button>
                   </div>
                 </div>
               </div>
@@ -389,32 +392,71 @@ export default function Like() {
       </div>
 
       {likePerson && (
-        <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
+        <div
+          ref={profileScrollRef}
+          className="fixed inset-0 bg-white z-50 overflow-y-auto"
+        >
           {/* Top nav (always visible) */}
-          <div className="sticky top-0 z-30 bg-white border-b">
-            <div className="flex items-center gap-2 p-4">
+
+          <div
+            className={`sticky top-0 z-30 bg-white flex items-center justify-between px-4 py-2
+            transition-all duration-300 ease-in-out ${
+              showSticky
+                ? "opacity-100 translate-y-0 shadow-md backdrop-blur-md"
+                : "opacity-0 -translate-y-4 pointer-events-none"
+            }
+
+          `}
+          >
+            {/* left: back*/}
+            <div className="flex items-center gap-2">
               <button onClick={() => setLikePerson(false)}>
                 <ChevronLeft className="size-6 text-red-300" />
               </button>
-              <h2 className="text-xl font-semibold">Profile</h2>
             </div>
-          </div>
-
-          {/* Profile content */}
-          <div className="px-4">
-            {/* Sticky name section */}
-            <div className="sticky top-[56px] z-20 bg-white py-3 w-full">
-              <div className="flex justify-center items-center gap-1">
-                <h1 className="text-lg font-bold">Rahul</h1>
+            {/* middle: name + badge */}
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-1">
+                <h1 className="text-lg font-bold">Jeez</h1>
                 <BadgeCheck
-                  size={27}
+                  size={24}
                   strokeWidth={2.25}
                   className="fill-blue-500 text-white"
                 />
               </div>
             </div>
+            {/* right: menu */}
+            <button
+              ref={ellipsisRef}
+              className="relative hover:bg-gray-400"
+              onClick={(e) => {
+                e.stopPropagation();
+                setEllipsisOpen(!ellipsisOpen);
+              }}
+            >
+              <Ellipsis strokeWidth={2.25} className="text-gray-400" />
+            </button>
 
-            {/* Scrollable content */}
+            {ellipsisOpen && (
+              <div className="absolute  right-0 top-10 w-32 bg-white rounded-lg shadow-lg">
+                <ul className="flex-col justify-end p-2 w-auto h-auto">
+                  <li className="px-4 py-2 hover:bg-gray-100  text-sm font-medium">
+                    Remove
+                  </li>
+
+                  <li className="px-4 py-2 hover:bg-gray-100 text-red-400 text-sm font-medium">
+                    Report
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 text-sm font-medium">
+                    Block
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* Profile content */}
+          <div className="px-4 md:flex md:justify-center">
             <motion.div
               variants={container}
               initial="hidden"
@@ -422,33 +464,41 @@ export default function Like() {
               className="space-y-4 pb-10"
             >
               <div className="flex-col justify-center inset-0  gap-1 ">
-                <div className="flex  items-center gap-1">
-                <h1 className="text-lg font-bold">Rahul</h1>
-                <BadgeCheck
-                  size={27}
-                  strokeWidth={2.25}
-                  className="fill-blue-500 text-white"
-                />
+                <div className=" flex  items-center gap-1">
+                  <h1 className="text-lg font-bold">Jezz</h1>
+                  <BadgeCheck
+                    size={27}
+                    strokeWidth={2.25}
+                    className="fill-blue-500 text-white"
+                  />
                 </div>
                 <span className="text-sm text-red-400">active now</span>
               </div>
-              <Images />
-              <PropmtUI />
-              <UserInfoUI />
-              <Images />
-              <Images />
-              <PropmtUI />
-              <Images />
-              <PropmtUI />
-              <Images />
+              
+                <Images />
+                <PropmtUI />
+                <UserInfoUI />
+                <Images />
+                <Images />
+                <PropmtUI />
+                <Images />
+                <PropmtUI />
+                <Images />
+              
             </motion.div>
           </div>
 
-          <button className=""></button>
-          {/* <button className="absolute"><Check /></button> */}
+          <div className="fixed  md:gap-124 w-full px-4 bottom-1/3 z-50 
+          flex md:justify-center justify-between items-center">
+            <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
+              <X className="size-9" strokeWidth={2.4} />
+            </button>
+            <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
+              <Check className="size-8" strokeWidth={2.4} />
+            </button>
+          </div>
         </div>
       )}
-
       {/* Mobile Header */}
       <div className="w-full lg:hidden block">
         <Header />

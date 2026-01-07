@@ -11,8 +11,8 @@ export default function MonthlySubscriptionPage() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const subscriptionId = searchParams.get("from")!;
-  const membershipPage = searchParams.get("membership")!
+  const subscriptionId = searchParams.get("from") || "";
+  const membershipPage = searchParams.get("membership") || "";
   const handleSubscription = () => {
     // Priority: membership > from > default
     const redirectTo = membershipPage || subscriptionId || "/home";
@@ -20,7 +20,7 @@ export default function MonthlySubscriptionPage() {
   };
   return (
     <div className="min-h-screen bg-gray-50 px-2 py-3 bg-red-400/10 space-y-4">
-      <motion.button
+      <motion.button onClick={handleSubscription}
         type="button"
         className="relative inline-flex items-center justify-center rounded-full p-2 focus:outline-none"
         whileHover={{ scale: 1.1, rotate: -5 }}
@@ -43,7 +43,7 @@ export default function MonthlySubscriptionPage() {
         via-transparent to-red-500/40 mix-blend-screen pointer-events-none" />
 
         {/* the X icon itself */}
-        <button onClick={handleSubscription}>
+        <button >
         <X className="relative size-5 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
         </button>
       </motion.button>

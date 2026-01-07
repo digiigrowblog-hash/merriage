@@ -7,7 +7,6 @@ import Link from "next/link";
 import DistenceFilter from "../spotlight/(spotlightComponents)/DistenceFilter";
 import AllMemberCard from "../spotlight/(spotlightComponents)/AllMember";
 import Messagebox from "../spotlight/(spotlightComponents)/Messagebox";
-import Notification from "../spotlight/(spotlightComponents)/Notification";
 
 interface User {
   id: number;
@@ -170,8 +169,6 @@ export default function CarnivalFest() {
           <div className="w-full">
             <Messagebox
               selectedUser={selectedUser}
-              onClose={closeMessageBox}
-              className="h-[calc(100vh-220px)]"
             />
           </div>
         )}

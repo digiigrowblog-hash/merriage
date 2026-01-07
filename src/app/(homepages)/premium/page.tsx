@@ -11,13 +11,13 @@ import {
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import Header from "@/components/Header"; // Adjust your Header path
+import HeaderMain from "@/components/mainHeaderFooter/HeaderMain";
 
 export default function SubscriptionComparisonPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const subscriptionId = searchParams.get("from")!;
-  const membershipPage = searchParams.get("membership")!;
+  const subscriptionId = searchParams.get("from") || "";
+  const membershipPage = searchParams.get("membership") || "";;
 
   const handleSubscription = (plan: "monthly" | "yearly") => {
     const redirectTo = membershipPage || subscriptionId || "/home";
@@ -85,7 +85,7 @@ export default function SubscriptionComparisonPage() {
 
       <div className="min-h-screen bg-gradient-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c]">
         {/* ✅ Header with proper spacing */}
-        <Header />
+        <HeaderMain />
 
         <div className="pt-24 pb-12 px-4 space-y-8 bg-white/70">
           {" "}

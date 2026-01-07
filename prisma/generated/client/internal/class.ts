@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "C:\\Users\\digii\\OneDrive\\Desktop\\marriage\\prisma\\generated\\client",
+      "value": "C:\\marriage\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -37,7 +37,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\digii\\OneDrive\\Desktop\\marriage\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\marriage\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../..",

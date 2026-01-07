@@ -131,7 +131,7 @@ const UserInfo: UserInfoType[] = [
 
 const UserInfoUI = () => {
   return (
-    <section className="w-full max-w-4xl">
+    <section className="w-full md:max-w-3xl ">
       <div className="w-full border border-gray-300 rounded-xl overflow-hidden bg-white">
         {/* TOP STRIP – horizontal scroll only for icons */}
         <ul className="flex items-center overflow-x-auto no-scrollbar px-3 py-2 gap-0 snap-x snap-mandatory">
