@@ -101,7 +101,7 @@ export default function Like() {
             }`}
           >
             <div className="w-full py-4 px-4">
-              <h1 className="text-3xl text-red-600/50 font-bold mb-4 doppio-one-regular">
+              <h1 className="text-3xl text-[#fd4f87] font-bold mb-4 doppio-one-regular">
                 Matches
               </h1>
 

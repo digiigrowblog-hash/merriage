@@ -11,7 +11,7 @@ export function Toggle({ checked, onChange }: ToggleProps) {
       type="button"
       onClick={() => onChange(!checked)}
       className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ${
-        checked ? "bg-red-400" : "bg-gray-300"
+        checked ? "bg-[#fd4f87]" : "bg-gray-300"
       }`}
     >
       <div

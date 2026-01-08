@@ -28,14 +28,17 @@ export default function Setting() {
   const handlecarnival = () => {
     alert("Carnival event added to your calendar!");
   };
-  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]>("1m-subscription");
+  const [activeTab, setActiveTab] =
+    useState<(typeof tabs)[number]>("1m-subscription");
   return (
     <div
       className="min-h-auto max-w-full
     flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10"
     >
       {/* header part */}
-      <div className="w-full lg:w-[10%] max-w-full lg:block hidden"><Header/></div>
+      <div className="w-full lg:w-[10%] max-w-full lg:block hidden">
+        <Header />
+      </div>
 
       <div className="w-full lg:w-[40%] max-w-full mx-auto ">
         <div className="flex items-center justify-between mt-2 md:p-4 p-3 ">
@@ -61,8 +64,11 @@ export default function Setting() {
         {/* profile shows */}
         <div className="flex flex-col md:items-start md:justify-start items-center justify-center mx-auto relative md:px-8">
           {/* Avatar */}
-          <div onClick={handleProfile} className="cursor-pointer w-34 h-34 relative flex items-center md:justify-start justify-center">
-            <div className="w-32 h-32 rounded-full border-4 border-[#FF5F6B] flex items-center justify-center">
+          <div
+            onClick={handleProfile}
+            className="cursor-pointer w-34 h-34 relative flex items-center md:justify-start justify-center"
+          >
+            <div className="w-32 h-32 rounded-full border-4 border-[#fd4f87] flex items-center justify-center">
               <div className="w-30 h-30 rounded-full border-3 border-white overflow-hidden ">
                 <Image
                   src="/images/img1.png"
@@ -75,7 +81,7 @@ export default function Setting() {
             </div>
 
             <div className="absolute top-4 right-4 bg-gray-100 w-5 h-5 rounded-full flex items-center justify-center z-10">
-              <Pencil size={12} strokeWidth={3.2} className="text-red-400" />
+              <Pencil size={12} strokeWidth={3.2} className="text-[#fd4f87]" />
             </div>
           </div>
 
@@ -93,7 +99,7 @@ export default function Setting() {
         {/* Subscription */}
         <div className="w-full max-w-md mx-auto md:mx-0">
           {/* Tabs */}
-          <div className="flex border-b border-gray-200">
+          <div className="flex border-b border-[#feb4cc]">
             <Tab
               label="1M Subscription"
               isActive={activeTab === "1m-subscription"}
@@ -119,11 +125,10 @@ export default function Setting() {
             {/* Rose Icon */}
             <div
               className="
-        w-12 h-12 rounded-full relative
-        bg-linear-to-br from-rose-200 via-pink-200 to-rose-200
-        shadow-md ring-2 ring-rose-200/60
-        flex items-center justify-center
-      "
+                w-12 h-12 rounded-full relative
+                bg-linear-to-br from-rose-200 via-pink-200 to-rose-200
+                shadow-md ring-2 ring-rose-200/60
+                flex items-center justify-center"
             >
               <Rose
                 size={28}
@@ -134,15 +139,16 @@ export default function Setting() {
               {/* Count Badge */}
               <div
                 className="
-          absolute -top-1 -right-1
-          bg-white text-rose-600
-          w-5 h-5 rounded-full
-          flex items-center justify-center
-          text-xs font-semibold
-          shadow-sm
-        "
+                  absolute -top-1 -right-1
+                  bg-white text-rose-600
+                  w-5 h-5 rounded-full
+                  flex items-center justify-center
+                  text-xs font-semibold
+                  shadow-sm
+                "
               >
-                <span className="bg-pink-400 w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-white">
+                <span className="bg-pink-400 w-4 h-4 rounded-full flex items-center justify-center 
+                text-[10px] text-white">
                   1
                 </span>
               </div>
@@ -161,44 +167,49 @@ export default function Setting() {
 
       {/* Right column - CHANGED h-screen to h-auto */}
       <div className="w-full lg:w-[50%] max-w-full h-auto px-2 md:py-4 mx-auto pt-4">
-
         {/* Top heading bar */}
-        <div className="relative bg-red-400/40 rounded-xl border border-pink-200 
-        px-5 py-3 shadow-lg overflow-hidden">
+        <div
+          className="relative bg-[#feb4cc] rounded-xl border border-pink-200 
+        px-5 py-3 shadow-lg overflow-hidden"
+        >
           {/* glow */}
-          <div className="pointer-events-none absolute inset-0 opacity-40 
-          bg-[radial-gradient(circle_at_top,white,transparent_60%)]" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40 
+          bg-[radial-gradient(circle_at_top,white,transparent_60%)]"
+          />
 
           <div className="relative flex items-center justify-between gap-3">
             {/* left: title + subtitle */}
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-rose-100 font-semibold">
+              <p className="text-xs uppercase tracking-[0.25em] text-white font-semibold">
                 Weekend special
               </p>
-              <h1 className="text-2xl md:text-3xl font-extrabold text-rose-900/60 drop-shadow-sm">
-                Carnival <span className="text-rose-900/60">Festival</span>
+              <h1 className="text-2xl md:text-3xl font-extrabold text-[#7e022a]/90 drop-shadow-sm">
+                Carnival <span className="text-[#7e022a]/90">Festival</span>
               </h1>
-              <p className="text-xs md:text-sm text-rose-50/90 mt-1">
+              <p className="text-xs md:text-sm text-white mt-1">
                 Live matching • Music • Lights • Fun nights
               </p>
             </div>
 
             {/* right: glass pill with icon */}
-            <div className="backdrop-blur-xl bg-white/15 border border-white/40 
-            rounded-full px-4 py-2 flex items-center gap-2 shadow-md">
+            <div
+              className="backdrop-blur-xl bg-[#ffe6ee] border border-white/40 
+            rounded-full px-4 py-2 flex items-center gap-2 shadow-md"
+            >
               <span
                 className="inline-flex h-6 w-6 items-center justify-center 
-        rounded-full bg-violet-500/20 text-[10px] font-bold text-white shadow"
+        rounded-full bg-[#e2034b] text-[10px] font-bold text-white shadow"
               >
                 Sat
               </span>
               <span
                 className="inline-flex h-6 w-6 items-center justify-center 
-        rounded-full bg-pink-500/20 text-[10px] font-bold text-white shadow"
+        rounded-full bg-[#e2034b]/90 text-[10px] font-bold text-white shadow"
               >
                 Sun
               </span>
-              <span className="text-xs font-semibold text-white whitespace-nowrap">
+              <span className="text-xs font-semibold text-[#fd4f87] whitespace-nowrap">
                 8 PM - 12 AM
               </span>
             </div>
@@ -206,11 +217,11 @@ export default function Setting() {
         </div>
 
         {/* Main carnival card */}
-        <div className="mt-4 bg-red-400/40 rounded-xl p-3 ">
+        <div className="mt-4 bg-[#feb4cc] rounded-xl p-3 ">
           <div className="relative w-full h-72 rounded-xl overflow-hidden">
             {/* Your carnival image */}
             <Image
-              src="/images/carnivalFest.png" 
+              src="/images/carnivalFest.png"
               alt="Carnival couple"
               fill
               className="object-cover"
@@ -226,7 +237,10 @@ export default function Setting() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -4 }}
             >
-              <button onClick={handlecarnival} className="backdrop-blur-md bg-white/20 border border-white/40 rounded-full px-1 py-1 shadow-lg">
+              <button
+                onClick={handlecarnival}
+                className="backdrop-blur-md bg-white/20 border border-white/40 rounded-full px-1 py-1 shadow-lg"
+              >
                 <Plus className="w-8 h-8 text-white bg-red-500/30 rounded-full p-1" />
               </button>
             </motion.div>
@@ -246,11 +260,11 @@ export default function Setting() {
           </div>
 
           {/* Text content under image */}
-          <div className="mt-4 bg-white/70 rounded-xl p-4 border border-pink-100 ">
+          <div className="mt-4 bg-bg-[#ffe6ee] rounded-xl p-4 border border-pink-100 ">
             <h2 className="text-lg font-semibold text-pink-700">
               Weekend Carnival Festival
             </h2>
-            <p className="text-sm text-pink-800 mt-1 mb-10">
+            <p className="text-sm text-black mt-1 mb-10">
               Carnival festival is available every Saturday and Sunday evening
               for premium members. Join the live room, meet new couples, and
               enjoy romantic games and matching sessions.
@@ -279,13 +293,13 @@ function Tab({
     <button
       onClick={onClick}
       className={`flex-1 py-3 text-sm font-medium text-center relative
-        ${isActive ? "text-red-400" : "text-gray-400"}
+        ${isActive ? "text-[#fc1d65]" : "text-gray-400"}
       `}
     >
       {label}
 
       {isActive && (
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-red-500" />
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#fc1d65]" />
       )}
     </button>
   );

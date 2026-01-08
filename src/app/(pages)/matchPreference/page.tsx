@@ -117,7 +117,7 @@ const handlePrevPage = () => {
 
       {/* free preferences */}
       <div className="flex-col px-2">
-        <h1 className="rhodium-libre-regular mt-3 text-xl font-semibold text-gray-300">
+        <h1 className="rhodium-libre-regular mt-3 text-xl font-semibold text-[#7e022a]">
           Member Preferences
         </h1>
         {/* preference */}
@@ -129,7 +129,7 @@ const handlePrevPage = () => {
             className="w-full text-left"
           >
             <div className="flex-col border-b border-red-50 p-2 mb-1">
-              <span className="text-red-300 text-sm ">{interestedIn}</span>
+              <span className="text-[#fd81a9] text-sm ">{interestedIn}</span>
             </div>
           </button>
           <GenderPreference
@@ -149,7 +149,7 @@ const handlePrevPage = () => {
               className="w-full text-left"
             >
               <div className="flex-col border-b border-red-50 p-2 mb-1">
-                <span className="text-red-300 text-sm ">{locationLabel}</span>
+                <span className="text-[#fd81a9] text-sm ">{locationLabel}</span>
               </div>
             </button>
           </div>
@@ -175,7 +175,7 @@ const handlePrevPage = () => {
             className="w-full text-left"
           >
             <div className="flex-col border-b border-red-50 p-2 mb-1">
-              <span className="text-red-300 text-sm ">{distanceKm} km</span>
+              <span className="text-[#fd81a9] text-sm ">{distanceKm} km</span>
             </div>
           </button>
 
@@ -196,7 +196,7 @@ const handlePrevPage = () => {
             className="w-full text-left"
           >
             <div className="flex-col border-b border-red-50 p-2 mb-1">
-              <span className="text-red-300 text-sm ">{ageLabel()}</span>
+              <span className="text-[#fd81a9] text-sm ">{ageLabel()}</span>
             </div>
           </button>
 
@@ -221,7 +221,7 @@ const handlePrevPage = () => {
             className="w-full text-left"
           >
             <div className="flex-col border-b border-red-50 p-2 mb-1">
-              <span className="text-red-300 text-sm ">{religionLabel}</span>
+              <span className="text-[#fd81a9] text-sm ">{religionLabel}</span>
             </div>
           </button>
 
@@ -237,7 +237,7 @@ const handlePrevPage = () => {
       {/* paid preference */}
 
       <div className="flex-col px-2">
-        <h1 className="rhodium-libre-regular mt-3 text-xl font-semibold text-gray-300">
+        <h1 className="rhodium-libre-regular mt-3 text-xl font-semibold text-[#7e022a]">
           Subscriber Preferences
         </h1>
 
@@ -284,7 +284,7 @@ const handlePrevPage = () => {
             >
               <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
                 <div className="flex flex-col">
-                  <span className="text-red-300 text-sm">
+                  <span className="text-[#fd81a9] text-sm">
                     {heightCm ? `${heightCm} cm` : "open to all"}
                   </span>
                 </div>
@@ -325,7 +325,7 @@ const handlePrevPage = () => {
               className="w-full text-left"
             >
               <div className="flex-col border-b border-red-50 p-2 mb-1">
-                <span className="text-red-300 text-sm ">{familyPlan}</span>
+                <span className="text-[#fd81a9] text-sm ">{familyPlan}</span>
               </div>
             </button>
             <FamilyPlan
@@ -361,7 +361,7 @@ const handlePrevPage = () => {
               className="w-full text-left"
             >
               <div className="flex-col border-b border-red-50 p-2 mb-1">
-                <span className="text-red-300 text-sm ">{drug}</span>
+                <span className="text-[#fd81a9] text-sm ">{drug}</span>
               </div>
             </button>
             <Drug
@@ -395,7 +395,7 @@ const handlePrevPage = () => {
               className="w-full text-left"
             >
               <div className="flex-col border-b border-red-50 p-2 mb-1">
-                <span className="text-red-300 text-sm ">{smoking}</span>
+                <span className="text-[#fd81a9] text-sm ">{smoking}</span>
               </div>
             </button>
 
@@ -430,7 +430,7 @@ const handlePrevPage = () => {
               className="w-full text-left"
             >
               <div className="flex-col border-b border-red-50 p-2 mb-1">
-                <span className="text-red-300 text-sm ">{drinking}</span>
+                <span className="text-[#fd81a9] text-sm ">{drinking}</span>
               </div>
             </button>
 
@@ -467,7 +467,7 @@ const handlePrevPage = () => {
               className="w-full text-left"
             >
               <div className="flex-col border-b border-red-50 p-2 mb-1">
-                <span className="text-red-300 text-sm ">{education}</span>
+                <span className="text-[#fd81a9] text-sm ">{education}</span>
               </div>
             </button>
             <Education
@@ -502,7 +502,7 @@ const handlePrevPage = () => {
             >
               <div className="flex justify-between items-center border-b border-red-50 p-2 mb-1">
                 <div className="flex flex-col">
-                  <span className="text-red-300 text-sm">{formatRange()}</span>
+                  <span className="text-[#fd81a9] text-sm">{formatRange()}</span>
                 </div>
               </div>
             </button>

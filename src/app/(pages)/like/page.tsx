@@ -27,7 +27,7 @@ export default function Like() {
   const scrollContainerXRef = useRef<HTMLDivElement>(null);
   const profileScrollRef = useRef<HTMLDivElement>(null);
   const ellipsisRef = useRef<HTMLButtonElement>(null);
-  const [like, setLike] = useState(1);
+  const [like, setLike] = useState(2);
   const [likePerson, setLikePerson] = useState(false);
   const [ellipsisOpen, setEllipsisOpen] = useState(false);
 
@@ -136,7 +136,7 @@ export default function Like() {
         {/* Right content */}
         <div className="w-full py-4 px-4">
           {/* title */}
-          <h1 className="text-3xl text-red-600/50 font-bold mb-2 doppio-one-regular">
+          <h1 className="text-3xl text-[#fd4f87] font-bold mb-2 doppio-one-regular">
             Likes
           </h1>
           {/* logic if 0 like then empty content show  or it is one then main div show*/}
@@ -190,10 +190,10 @@ export default function Like() {
 
               {/* recent likes */}
               <h2
-                className="text-xl text-red-200 font-medium 
+                className="text-xl text-pink-200 font-medium 
               flex gap-1 justify-start items-center"
               >
-                Recent <Heart className="fill-red-300" />
+                Recent <Heart className="fill-[#fd4f87]" />
               </h2>
 
               {/*pc screen Images container */}
@@ -371,18 +371,20 @@ export default function Like() {
                       Like You your voice pal ✨
                     </span>
 
-                    <div
-                      onClick={() => setLikePerson(!likePerson)}
-                      className="absolute top-4  right-0  w-20  rounded-full z-50 "
-                    >
-                      <Image
-                        src={"/images/img4.png"}
-                        alt="likeperson"
-                        width={300}
-                        height={300}
-                        className="object-cover w-16 border-2 border-red-200 rounded-full active:bg-black/90"
-                      />
-                    </div>
+
+                    
+                  </div>
+                  <div
+                    onClick={() => setLikePerson(!likePerson)}
+                    className="absolute bottom-4  -left-1  w-12  rounded-full z-50 p-1"
+                  >
+                    <Image
+                      src={"/images/img4.png"}
+                      alt="likeperson"
+                      width={300}
+                      height={300}
+                      className="object-cover w-16 border border-red-200 rounded-full active:bg-black/90"
+                    />
                   </div>
                 </div>
               </div>
@@ -474,22 +476,23 @@ export default function Like() {
                 </div>
                 <span className="text-sm text-red-400">active now</span>
               </div>
-              
-                <Images />
-                <PropmtUI />
-                <UserInfoUI />
-                <Images />
-                <Images />
-                <PropmtUI />
-                <Images />
-                <PropmtUI />
-                <Images />
-              
+
+              <Images />
+              <PropmtUI />
+              <UserInfoUI />
+              <Images />
+              <Images />
+              <PropmtUI />
+              <Images />
+              <PropmtUI />
+              <Images />
             </motion.div>
           </div>
 
-          <div className="fixed  md:gap-124 w-full px-4 bottom-1/3 z-50 
-          flex md:justify-center justify-between items-center">
+          <div
+            className="fixed  md:gap-124 w-full px-4 bottom-1/3 z-50 
+          flex md:justify-center justify-between items-center"
+          >
             <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
               <X className="size-9" strokeWidth={2.4} />
             </button>

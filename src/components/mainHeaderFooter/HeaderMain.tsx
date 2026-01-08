@@ -48,7 +48,7 @@ const Header = () => {
                         <Heart
                           className={`size-7 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
@@ -58,7 +58,7 @@ const Header = () => {
                         <Sparkles
                           className={`size-6 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
@@ -68,7 +68,7 @@ const Header = () => {
                         <MessageSquare
                           className={`size-6 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
@@ -78,7 +78,7 @@ const Header = () => {
                         <Settings
                           className={`size-6 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
@@ -87,7 +87,7 @@ const Header = () => {
                   </Link>
                   <p
                     className={` font-semibold ${
-                      isActive ? "text-red-400" : "text-gray-600"
+                      isActive ? "text-[#fd4f87]" : "text-gray-600"
                     }`}
                   >
                     {item.label}
@@ -128,7 +128,7 @@ const Header = () => {
                         />
                         {/* <div
                           className="absolute -top-1 left-4  w-5 h-5  rounded-full   text-center text-white
-                       border-white border-2 bg-red-400 "
+                       border-white border-2 bg-[#fd4f87]"
                         ></div> */}
                       </div>
                     )}
@@ -138,15 +138,17 @@ const Header = () => {
                         <Heart
                           className={`size-7  ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
                         <div
                           className="absolute -top-1 left-4  w-7 h-7  rounded-full   text-center text-white
-                       border-white border-2 bg-red-400 "
+                       border-white border-2 bg-[#fd4f87]"
                         >
-                          <span className="text-xs flex justify-center py-1">1</span>
+                          <span className="text-xs flex justify-center py-1">
+                            1
+                          </span>
                         </div>
                       </div>
                     )}
@@ -156,13 +158,13 @@ const Header = () => {
                         <Sparkles
                           className={`size-6 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
                         <div
                           className="absolute -top-1 left-4  w-5 h-5  rounded-full   text-center text-white
-                       border-white border-2 bg-red-400 "
+                       border-white border-2 bg-[#fd4f87] "
                         ></div>
                       </div>
                     )}
@@ -172,16 +174,16 @@ const Header = () => {
                         <MessageSquare
                           className={`size-6 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
-                        {/* <div
+                        <div
                           className="absolute -top-1 left-4  w-7 h-7  rounded-full   text-center text-white
-                       border-white border-2 bg-red-400 "
+                       border-white border-2 bg-[#fd4f87]"
                         >
                           <span className="text-xs flex justify-center py-1">13</span>
-                        </div> */}
+                        </div>
                       </div>
                     )}
 
@@ -190,13 +192,13 @@ const Header = () => {
                         <Settings
                           className={`size-6 ${
                             isActive
-                              ? "fill-red-400 stroke-red-200"
+                              ? "fill-[#fd4f87] stroke-[#feb4cc]"
                               : "stroke-gray-600"
                           }`}
                         />
                         <div
                           className="absolute -top-1 left-4  w-5 h-5  rounded-full   text-center text-white
-                       border-white border-2 bg-red-400 "
+                       border-white border-2 bg-[#fd4f87]"
                         ></div>
                       </div>
                     )}

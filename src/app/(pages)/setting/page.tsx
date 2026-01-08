@@ -76,7 +76,7 @@ export default function Setting() {
             <div className="border-b-1 border-red-100 flex justify-between items-center w-full">
               <div className="flex flex-col">
                 <h1 className="text-gray-400">Hide Profile</h1>
-                <p className="text-sm text-black">
+                <p className="md:text-sm text-xs text-black">
                   Hide your profile from other users and when you ready then
                   unhide it.
                 </p>
@@ -89,7 +89,7 @@ export default function Setting() {
             <div className="border-b-1 border-red-100 flex justify-between items-center w-full">
               <div className="flex flex-col">
                 <h1 className="text-gray-400">Last Active</h1>
-                <p className="text-sm text-black">
+                <p className="md:text-sm text-xs text-black">
                   Hide your profile from other users and when you ready then
                   unhide it.
                 </p>
@@ -113,7 +113,7 @@ export default function Setting() {
             <div className="border-b-1 border-red-100 flex justify-between items-center w-full">
               <div className="flex flex-col">
                 <h1 className="text-gray-400">Block List</h1>
-                <p className="text-sm text-black">
+                <p className="md:text-sm text-xs text-black">
                   Hide your profile from other users and when you ready then
                   unhide it.
                 </p>
@@ -125,7 +125,7 @@ export default function Setting() {
             <div className="border-b-1 border-red-100 flex justify-between items-center w-full">
               <div className="flex flex-col">
                 <h1 className="text-gray-400">PAN Verification</h1>
-                <p className="text-sm text-black">
+                <p className="md:text-sm text-xs text-black">
                   Hide your profile from other users and when you ready then
                   unhide it.
                 </p>
@@ -143,7 +143,7 @@ export default function Setting() {
                   className="fill-blue-500 text-white"
                 />
               </div>
-              <p className="text-sm text-black">
+              <p className="md:text-sm text-xs text-black">
                 Hide your profile from other users and when you ready then
                 unhide it.
               </p>
