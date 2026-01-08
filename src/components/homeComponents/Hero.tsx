@@ -59,11 +59,11 @@ export default function Hero() {
               </motion.span>
 
               <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
-              font-bold bg-linear-to-r from-[#fd4f89] via-[#fd81ab] to-[#fd81ab] bg-clip-text 
+              font-bold bg-linear-to-r from-[#fd4f89] via-[#fd4f89] to-[#e2034b] bg-clip-text 
               text-transparent leading-tight z-70 ">
                 Discover Your <br />
                 <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl  ">Perfect</span> <br />
-                <span className="bg-linear-to-r from-[#fd4f89] via-[#fd81ab] to-[#fd81ab] bg-clip-text">Match</span>
+                <span className="bg-linear-to-r from-[#fd4f89] via-[#fd4f89] to-[#e2034b] bg-clip-text ">Match</span>
               </motion.h1>
 
               <motion.p variants={itemVariants} className="text-lg md:text-xl text-[#190009]/90 leading-relaxed 
