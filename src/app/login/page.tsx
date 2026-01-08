@@ -131,7 +131,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl w-full rounded-3xl shadow-2xl border border-white/50 p-3 md:p-8 space-y-6">
+        <div className="bg-white/80 backdrop-blur-xl max-w-lg w-full mx-auto rounded-3xl shadow-2xl border border-white/50 p-3 md:p-8 space-y-6">
           {/* Login Type Toggle */}
           <div className="flex bg-gray-100 rounded-2xl p-1">
             <button

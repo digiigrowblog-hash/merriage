@@ -13,7 +13,7 @@ type HeartConfig = {
   color: string
 }
 
-const COLORS = ["#f3c871", "#f3b886", "#e89b7c", "#ffd7aa"]
+const COLORS = ["#fd4f87", "#feb4cc", "#fc1d65", "##ffe6ee"]
 
 function createWave(waveId: number): HeartConfig[] {
   const count = 3 + Math.floor(Math.random() * 3) // 3,4,5
@@ -141,7 +141,7 @@ function Sparkles() {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#ffe3b5"
+        color="#fd4f87"
         size={0.04}
         sizeAttenuation
         transparent

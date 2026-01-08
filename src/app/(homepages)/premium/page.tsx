@@ -84,11 +84,11 @@ export default function SubscriptionComparisonPage() {
         }
       `}</style>
 
-      <div className="min-h-screen bg-gradient-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c]">
+      <div className="min-h-screen bg-linear-to-br from-[#ffe6ee] via-[#fd81ab] to-[#fd4f89]">
         {/* ✅ Header with proper spacing */}
         <Header />
 
-        <div className="pt-24 pb-12 px-4 space-y-8 bg-white/70">
+        <div className="pt-24 pb-12 px-4 space-y-8 bg-[#ffe6ee]">
           {" "}
           {/* pt-24 for header space */}
           {/* Close Button - Centered Top */}
@@ -107,7 +107,7 @@ export default function SubscriptionComparisonPage() {
               onClick={() => router.back()}
             >
               <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-rose-500/20 to-pink-500/20 blur-sm sparkle-glow" />
-              <X className="relative size-6 text-rose-500 drop-shadow-lg z-10" />
+              <X className="relative size-6 text-rose-500 drop-shadow-lg " />
             </motion.button>
           </motion.div>
           <div className="max-w-6xl mx-auto">

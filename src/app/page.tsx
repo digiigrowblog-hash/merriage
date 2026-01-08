@@ -14,13 +14,13 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c] overflow-hidden"
+    <div className="min-h-screen bg-linear-to-br from-[#ffe6ee] via-[#fd81ab] to-[#fd4f89] overflow-hidden"
 >
      
       {/* Hero Section */}
       <Hero/>
 
-      <div className="relative z-[20]">
+      <div className="relative z-20">
         {/* Stats Section */}
          <SuccessRate/>
 

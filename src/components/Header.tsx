@@ -45,8 +45,8 @@ export default function Header() {
               href={link.href}
               className={
                 isActive(link.href)
-                  ? "relative text-white after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white"
-                  : "text-white/80 hover:text-white transition"
+                  ? "relative text-[#e2034e] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white"
+                  : "text-white hover:text-[#ffe6ee] transition"
               }
             >
               <p className="rosarivo-regular-italic">{link.label}</p>
@@ -56,8 +56,8 @@ export default function Header() {
           <Link
              href={`/signup`}
             
-            className="rosarivo-regular rounded-full bg-white/95 px-5 py-2 text-xs font-semibold 
-            uppercase tracking-wide text-[#c45340] shadow-md hover:bg-white "
+            className="rosarivo-regular rounded-full bg-[#ffe6ee]/95 px-5 py-2 text-xs font-semibold 
+            uppercase tracking-wide text-[#fd4f89] shadow-md hover:bg-white "
           >
             Get Started
           </Link>
@@ -69,13 +69,14 @@ export default function Header() {
           className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 p-2 text-white md:hidden"
           aria-label="Toggle menu"
         >
-          {open ? <X className="h-5 w-5 text-[#432b24]" /> : <Menu className="h-5 w-5 text-[#432b24]" />}
+          {open ? <X className="h-5 w-5 text-[#b0023c]" /> : <Menu className="h-5 w-5 text-[#b0023c]" />}
         </button>
       </nav>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-white/15 bg-linear-to-b from-[#f3b886] to-[#e89b7c] text-sm text-white">
+        <div className="md:hidden border-t border-white/15 
+        bg-linear-to-b from-[#fd81ab] to-[#fd81ab] text-sm text-[#ffe6ee] ">
           <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4">
             {navLinks.map((link) => (
               <Link
@@ -93,7 +94,7 @@ export default function Header() {
             <Link
               href={`/signup`}
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-white/95 px-4 py-2 text-center text-xs font-semibold uppercase tracking-wide text-[#c45340] shadow-md"
+              className="mt-2 rounded-full bg-[#ffe6ee] px-4 py-2 text-center text-xs font-semibold uppercase tracking-wide text-[#fd4f89] shadow-md"
             >
               Get Started
             </Link>

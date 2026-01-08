@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <>
     
-    <footer className="relative bg-linear-to-t from-[#3a2520] via-[#4b3027] to-[#4b3027] ">
+    <footer className="relative bg-linear-to-t from-[#b0023b] via-[#7e022a] to-[#fd4f87] ">
         <div className="pointer-events-none  inset-x-0 top-0 h-40 opacity-80 overflow-hidden">
         <FloatingOrbs />
       </div>
@@ -22,7 +22,7 @@ export default function Footer() {
                 <Heart className="h-5 w-5" />
               </div>
               <span className="text-lg font-semibold tracking-[0.18em] uppercase">
-                FinD<span className="text-[#f3c871]">Me</span>
+                FinD<span className="text-[#fd81a9]">Me</span>
               </span>
             </div>
             <p className="text-sm text-white/70 road-rage-regular">
@@ -38,7 +38,7 @@ export default function Footer() {
           {/* Links */}
           <div className="grid flex-1 gap-10 text-sm md:grid-cols-3">
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871] rosarivo-regular">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#feb4cc] rosarivo-regular">
                 Explore
               </h4>
               <ul className="space-y-2 text-white/75 road-rage-regular">
@@ -61,7 +61,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871] rosarivo-regular">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#feb4cc] rosarivo-regular">
                 Company
               </h4>
               <ul className="space-y-2 text-white/75 road-rage-regular">
@@ -84,7 +84,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#f3c871] rosarivo-regular">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#feb4cc] rosarivo-regular">
                 Connect
               </h4>
               <ul className="space-y-2 text-white/75 road-rage-regular">

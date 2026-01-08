@@ -76,7 +76,7 @@ const Matching = () => {
           className="md:text-4xl text-xl font-bold text-center text-mustard-900 mb-16"
         >
           <span
-            className="bg-white/80 backdrop-blur-sm rounded-2xl 
+            className="bg-[#ffe6ee] backdrop-blur-sm rounded-2xl 
            md:px-4 px-3 py-1 shadow-xl berkshire-swash-regular"
           >
             Perfect Matches Waiting
@@ -91,7 +91,7 @@ const Matching = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`alike-angular-regular md:px-8 md:py-3 px-5 py-2 rounded-xl font-semibold transition-all ${
                   activeTab === tab
-                    ? "bg-linear-to-r from-mustard-500 to-terracotta-500 text-orange-600 shadow-md"
+                    ? "bg-linear-to-r from-mustard-500 to-terracotta-500 text-[#fc1d65] shadow-md"
                     : "text-teal-800 hover:text-mustard-600"
                 }`}
               >

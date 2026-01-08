@@ -44,11 +44,11 @@ const focusAreas = [
 
 export default function LabsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#f3c871] via-[#f3b886] to-[#e89b7c]">
+    <main className="min-h-screen bg-gradient-to-br from-[#ffe6ee] via-[#fd81ab] to-[#fd4f89]">
       <Header />
 
       {/* Mission – left heading, right copy */}
-      <section className="px-4 lg:px-20 pt-24 pb-16 bg-white/70">
+      <section className="px-4 lg:px-20 pt-24 pb-16 bg-[#feb4cc]/95 text-gray-800">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.4fr,1fr] gap-12 items-start">
           <motion.div
             variants={containerVariants}
@@ -101,7 +101,7 @@ export default function LabsPage() {
       </section>
 
       {/* Research hero: text left, image / visual right */}
-      <section className="px-4 lg:px-20 py-20 bg-gradient-to-r from-white/80 via-beige-50/80 to-white/60">
+      <section className="px-4 lg:px-20 py-20 bg-gradient-to-r from-white/80 via-beige-50/80 to-white/70 text-gray-800">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr,1fr] gap-12 items-center">
           <motion.div
             variants={containerVariants}
@@ -164,7 +164,7 @@ export default function LabsPage() {
       </section>
 
       {/* Focus / What the team researches */}
-      <section className="px-4 lg:px-20 py-24 bg-white">
+      <section className="px-4 lg:px-20 py-24 bg-[#ffe6ee] text-gray-700">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -216,7 +216,7 @@ export default function LabsPage() {
       </section>
 
       {/* Small CTA bar like “designed to be deleted” */}
-      <section className="px-4 lg:px-20 py-20 bg-gradient-to-r from-[#f3c871] via-[#f3b886] to-[#e89b7c]">
+      <section className="px-4 lg:px-20 py-20 bg-gradient-to-r from-[#feb4cc] via-[#fd81ab] to-[#fd4f89] text-gray-800">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="text-sm font-semibold tracking-[0.18em] uppercase text-terracotta-700 mb-3">

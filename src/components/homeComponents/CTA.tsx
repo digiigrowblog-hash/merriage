@@ -14,10 +14,10 @@ const CTA = () => {
             whileInView={{ scale: 1, opacity: 1 }}
             className=""
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-mustard-900 mb-6 rhodium-libre-regular">
+            <h2 className="text-4xl text-[#7e022a] md:text-5xl font-bold text-mustard-900 mb-6 rhodium-libre-regular">
               Ready to Start Your Journey?
             </h2>
-            <p className="text-xl text-teal-800 mb-12 max-w-2xl mx-auto rosarivo-regular">
+            <p className="text-xl text-[#190008] mb-12 max-w-2xl mx-auto rosarivo-regular">
               Join thousands finding their perfect match. Free registration, verified profiles.
             </p>
             <motion.button 
@@ -26,8 +26,8 @@ const CTA = () => {
                text-white px-16 py-6 rounded-3xl font-bold text-xl 
                transition-all duration-300 flex items-center gap-3 mx-auto"
             >
-             <p className="flex gap-2 px-5 py-2 bg-orange-100 
-              rounded-3xl text-black text-sm md:text-base rosarivo-regular"> <Link href="/signup">Create Free Profile </Link>
+             <p className="flex gap-2 px-5 py-2 bg-[#ffe6ee] items-center
+              rounded-3xl text-[#b0023b] text-sm md:text-base rosarivo-regular"> <Link href="/signup">Create Free Profile </Link>
                 <ArrowRight className="md:w-6 md:h-6 w-5 h-5 md:mt-1" /></p>
               
             </motion.button>
