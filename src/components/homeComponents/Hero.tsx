@@ -34,7 +34,7 @@ export default function Hero() {
       </div>
 
       <section className="relative min-h-[80vh] overflow-hidden 
-      bg-linear-to-t from-[#fd81ab] via-[#feb4cc] to-[#feb4cc]">
+      bg-linear-to-t from-[#fee6fc] via-[#fee6fc] to-[#fee6fc]">
         {/* ✅ LAYER 2: Header (z-50) */}
         <Header />
 

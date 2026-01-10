@@ -31,8 +31,8 @@ export default function Header() {
             <Heart className="h-5 w-5 text-[#d45b4a]" />
           </div>
           <span className="text-xl md:text-2xl font-semibold tracking-[0.18em] 
-          uppercase text-white">
-            FinD<span className="text-[#4d2b22]">Me</span>
+          uppercase text-[#4a0244]">
+            FinD<span className="">Me</span>
           </span>
         </Link>
 
@@ -45,8 +45,8 @@ export default function Header() {
               href={link.href}
               className={
                 isActive(link.href)
-                  ? "relative text-[#e2034e] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white"
-                  : "text-white hover:text-[#ffe6ee] transition"
+                  ? "relative  text-[#4a0244] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white"
+                  : "text-[#e2034e] hover:text-[#c20443] transition"
               }
             >
               <p className="rosarivo-regular-italic">{link.label}</p>
@@ -57,7 +57,7 @@ export default function Header() {
              href={`/signup`}
             
             className="rosarivo-regular rounded-full bg-[#ffe6ee]/95 px-5 py-2 text-xs font-semibold 
-            uppercase tracking-wide text-[#fd4f89] shadow-md hover:bg-white "
+            uppercase tracking-wide text-[#e2034e] shadow-md hover:bg-white "
           >
             Get Started
           </Link>

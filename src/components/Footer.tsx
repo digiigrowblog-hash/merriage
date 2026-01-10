@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <>
     
-    <footer className="relative bg-linear-to-t from-[#b0023b] via-[#7e022a] to-[#fd4f87] ">
+    <footer className="relative bg-linear-to-t from-[#b0023b] via-[#7e022a] to-[#7e022a] ">
         <div className="pointer-events-none  inset-x-0 top-0 h-40 opacity-80 overflow-hidden">
         <FloatingOrbs />
       </div>
@@ -17,12 +17,12 @@ export default function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           {/* Brand */}
           <div className="max-w-sm space-y-4">
-            <div className="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
+            <div className="inline-flex items-center gap-3 rounded-full bg-white/70 px-4 py-2 backdrop-blur-md">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#d45b4a] shadow-md">
                 <Heart className="h-5 w-5" />
               </div>
-              <span className="text-lg font-semibold tracking-[0.18em] uppercase">
-                FinD<span className="text-[#fd81a9]">Me</span>
+              <span className="text-lg font-semibold tracking-[0.18em] uppercase  ">
+                FinD<span className="text-[#190117]">Me</span>
               </span>
             </div>
             <p className="text-sm text-white/70 road-rage-regular">

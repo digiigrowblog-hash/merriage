@@ -831,17 +831,17 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-orange-50 to-pink-50 py-12 px-3 sm:px-6 lg:px-8 sm:pt-6 pt-20">
+    <div className="min-h-screen bg-linear-to-br from-[#fee6fc] to-[#fee6fc] py-12 px-3 sm:px-6 lg:px-8 sm:pt-6 pt-20">
       <Link
         href={"/"}
         className="text-2xl font-bold text-center text-gray-300 
-      bg-linear-to-r from-orange-300 to-pink-500   absolute rounded-full top-6 left-6 
+      bg-linear-to-r from-orange-300 to-pink-500   absolute rounded-full top-6 left-3 
       flex items-center space-x-2 "
       >
-        <ChevronLeft className="size-8 " />
+        <ChevronLeft className="md:size-8 size-6 " />
       </Link>
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-5 md:p-12">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-md border border-white/50 p-5 md:p-12">
           <Stepper
             activeStep={activeStep}
             totalSteps={TOTAL_STEPS}
