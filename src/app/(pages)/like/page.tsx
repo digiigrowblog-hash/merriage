@@ -167,33 +167,33 @@ export default function Like() {
     }
   }, [likePerson]);
 
-  const handleScroll = (direction: "next" | "prev") => {
-    if (!scrollContainerRef.current) return;
+const handleScroll = (direction: "next" | "prev") => {
+  if (!scrollContainerRef.current) return;
 
-    const container = scrollContainerRef.current;
+  const container = scrollContainerRef.current;
+  const cardWidth = 180;
+  
+  if (window.innerWidth >= 768) {
+    // Mobile: horizontal scroll
+    const currentScroll = container.scrollLeft;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    const offset = direction === "next" ? cardWidth : -cardWidth;
+    
+    container.scrollTo({
+      left: Math.max(0, Math.min(maxScroll, currentScroll + offset)),
+      behavior: "smooth",
+    });
+  }
+};
 
-    // Desktop (lg and above): vertical scroll
-    if (window.innerWidth >= 1024) {
-      const cardHeight = 320; // same as before
-      const currentScroll = container.scrollTop;
-      const offset = direction === "next" ? cardHeight : -cardHeight;
-
-      container.scrollTo({
-        top: Math.max(0, currentScroll + offset),
-        behavior: "smooth",
-      });
-      return;
-    }
-  };
-
-  const handleDown = () => handleScroll("next");
-  const handleUp = () => handleScroll("prev");
+  const handleLeft = () => handleScroll("prev");
+  const handleRight = () => handleScroll("next");
 
   return (
     <div className="min-h-screen max-w-full py-1 bg-[#fbfbfb]">
       <div className="flex lg:mt-3 mt-0 overflow-hidden">
         {/* Left header */}
-        <div className="w-full md:w-auto max-h-auto lg:block hidden mt-6">
+        <div className="w-full md:w-auto max-h-auto lg:block hidden mt-3">
           <Header />
         </div>
         {/* Right content */}
@@ -245,7 +245,7 @@ export default function Like() {
                   ref={scrollContainerRef}
                   className="md:flex hidden w-full md:gap-4 md:max-w-4xl overflow-x-auto max-w-[70vh]  
                   snap-x snap-mandatory lg:snap-y lg:snap-mandatory scroll-smooth
-                  scrollbar-hide overscroll-x-contain relative border-l-3 border-l-[#fc1d65] py-2 rounded-xl"
+                  scrollbar-hide overscroll-x-contain relative border-l-3 border-l-[#fc1d65] py-2 rounded-xl pl-2" 
                   style={{
                     scrollbarWidth: "none",
                     msOverflowStyle: "none",
@@ -264,14 +264,14 @@ export default function Like() {
                 {/* Scroll buttons */}
                 <div className="hidden md:flex  items-start  gap-4 mt-8">
                   <button
-                    onClick={handleUp}
+                    onClick={handleLeft}
                     className="w-10 h-10 rounded-full bg-[#eee6e6] flex items-center justify-center hover:bg-[#e0dcdc] 
                   transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {<ChevronLeft className="size-5" />}
                   </button>
                   <button
-                    onClick={handleDown}
+                    onClick={handleRight}
                     className="w-10 h-10 rounded-full bg-[#eee6e6] flex items-center justify-center hover:bg-[#e0dcdc] 
                   transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -280,7 +280,7 @@ export default function Like() {
                 </div>
 
                 {/* Most Recent Likes  in pc right side part*/}
-                <div className="md:block hidden flex-col w-full mx-auto">
+                <div className="md:block hidden flex-col w-full mx-auto ">
                   <ImageSingleCard
                     setLikePerson={setLikePerson}
                     likePerson={likePerson}
@@ -288,7 +288,7 @@ export default function Like() {
                 </div>
               </div>
 
-              {like > 1 ? (
+              {like > 1 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -347,19 +347,6 @@ export default function Like() {
                     View Profile Details
                   </motion.button>
                 </motion.div>
-              ) : (
-                <div className="md:block hidden">
-                  <LikeYouProfile
-                    profileScrollRef={profileScrollRef}
-                    showSticky={showSticky}
-                    setLikePerson={setLikePerson}
-                    container={container}
-                    ellipsisOpen={ellipsisOpen}
-                    setEllipsisOpen={setEllipsisOpen}
-                    ellipsisRef={ellipsisRef}
-                    likePerson={likePerson}
-                  />
-                </div>
               )}
 
               {/* mobile view  */}
@@ -424,13 +411,13 @@ export default function Like() {
             {/* left: back*/}
             <div className="flex items-center gap-2">
               <button onClick={() => setLikePerson(false)}>
-                <ChevronLeft className="size-6 text-red-300" />
+                <ChevronLeft className="size-6 text-[#fd4f87]" />
               </button>
             </div>
             {/* middle: name + badge */}
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-1">
-                <h1 className="text-lg font-bold">Jeez</h1>
+                <h1 className="text-lg font-bold">MonaLisa</h1>
                 <BadgeCheck
                   size={24}
                   strokeWidth={2.25}
@@ -476,16 +463,22 @@ export default function Like() {
               animate="show"
               className="space-y-4 pb-10"
             >
-              <div className="flex-col justify-center inset-0  gap-1 ">
+              <div className="flex-col justify-center inset-0  gap-1 relative">
+                <div className="flex items-center justify-center gap-2 md:bg-pink-50 absolute lg:-left-16 -top-8 
+                  -left-2  shadow-amber-400 w-7 h-7 rounded-full ">
+                  <button onClick={() => setLikePerson(false)}>
+                    <ChevronLeft strokeWidth={2.45} className="size-6 text-[#fd4f87] cursor-pointer" />
+                  </button>
+                </div>
                 <div className=" flex  items-center gap-1">
-                  <h1 className="text-lg font-bold">Jezz</h1>
+                  <h1 className="text-lg font-bold">MonaLisa</h1>
                   <BadgeCheck
                     size={27}
                     strokeWidth={2.25}
                     className="fill-blue-500 text-white"
                   />
                 </div>
-                <span className="text-sm text-red-400">active now</span>
+                <span className="text-sm text-[#fd4f87]">active now</span>
               </div>
 
               <Images />
@@ -603,131 +596,10 @@ function ImageSingleCard({ setLikePerson, likePerson }: Props) {
           alt="likeperson"
           width={1200}
           height={1200}
-          className="object-cover w-12  border border-red-200 rounded-full active:bg-black/90"
+          className="object-cover w-12   rounded-full active:bg-black/90"
         />
       </div>
     </div>
   );
 }
 
-function LikeYouProfile({
-  likePerson,
-  profileScrollRef,
-  showSticky,
-  setLikePerson,
-  container,
-  ellipsisOpen,
-  setEllipsisOpen,
-  ellipsisRef,
-}: LikeYouProfileProps) {
-  return (
-    <div>
-      {likePerson && (
-        <div
-          ref={profileScrollRef}
-          className="fixed inset-0 bg-white z-50 overflow-y-auto"
-        >
-          {/* Top nav (always visible) */}
-
-          <div
-            className={`sticky top-0 z-30 bg-white flex items-center justify-between px-4 py-2
-            transition-all duration-300 ease-in-out ${
-              showSticky
-                ? "opacity-100 translate-y-0 shadow-md backdrop-blur-md"
-                : "opacity-0 -translate-y-4 pointer-events-none"
-            } `}
-          >
-            {/* left: back*/}
-            <div className="flex items-center gap-2">
-              <button onClick={() => setLikePerson(false)}>
-                <ChevronLeft className="size-6 text-red-300" />
-              </button>
-            </div>
-            {/* middle: name + badge */}
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-1">
-                <h1 className="text-lg font-bold">Jeez</h1>
-                <BadgeCheck
-                  size={24}
-                  strokeWidth={2.25}
-                  className="fill-blue-500 text-white"
-                />
-              </div>
-            </div>
-            {/* right: menu */}
-            <button
-              ref={ellipsisRef}
-              className="relative hover:bg-gray-400"
-              onClick={(e) => {
-                e.stopPropagation();
-                setEllipsisOpen(!ellipsisOpen);
-              }}
-            >
-              <Ellipsis strokeWidth={2.25} className="text-gray-400" />
-            </button>
-
-            {ellipsisOpen && (
-              <div className="absolute  right-0 top-10 w-32 bg-white rounded-lg shadow-lg">
-                <ul className="flex-col justify-end p-2 w-auto h-auto">
-                  <li className="px-4 py-2 hover:bg-gray-100  text-sm font-medium">
-                    Remove
-                  </li>
-
-                  <li className="px-4 py-2 hover:bg-gray-100 text-red-400 text-sm font-medium">
-                    Report
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 text-sm font-medium">
-                    Block
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-
-          {/* Profile content */}
-          <div className="px-4 md:flex md:justify-center">
-            <motion.div
-              variants={container}
-              initial="hidden"
-              animate="show"
-              className="space-y-4 pb-10"
-            >
-              <div className="flex-col justify-center inset-0  gap-1 ">
-                <div className=" flex  items-center gap-1">
-                  <h1 className="text-lg font-bold">Jezz</h1>
-                  <BadgeCheck
-                    size={27}
-                    strokeWidth={2.25}
-                    className="fill-blue-500 text-white"
-                  />
-                </div>
-                <span className="text-sm text-red-400">active now</span>
-              </div>
-              <Images />
-              <PropmtUI />
-              <UserInfoUI />
-              <Images />
-              <Images />
-              <PropmtUI />
-              <Images />
-              <PropmtUI />
-              <Images />
-            </motion.div>
-          </div>
-
-          <div
-            className="fixed  md:gap-124 w-full px-4 bottom-1/3 z-50 
-          flex md:justify-center justify-between items-center"
-          >
-            <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
-              <X className="size-9" strokeWidth={2.4} />
-            </button>
-            <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">
-              <Check className="size-8" strokeWidth={2.4} />
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}

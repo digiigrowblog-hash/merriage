@@ -19,8 +19,7 @@ const PropmtUI = () => {
          flex items-center justify-center shadow-lg"
         >
           <Heart
-            className="size-8 text-red-200 active:fill-red-400
-                    hover:fill-red-400 hover:stroke-red-400 "
+            className="size-8 text-[#feb3cb]"
             strokeWidth={2.9}
           />
         </div>

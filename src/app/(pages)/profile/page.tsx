@@ -36,7 +36,7 @@ export default function Setting() {
     flex flex-col lg:flex-row bg-linear-to-br from-rose-50/30 via-pink-50/20 to-orange-50/10"
     >
       {/* header part */}
-      <div className="w-full lg:w-[10%] max-w-full lg:block hidden">
+      <div className="w-full lg:w-[10%] max-w-full lg:block hidden mt-7">
         <Header />
       </div>
 

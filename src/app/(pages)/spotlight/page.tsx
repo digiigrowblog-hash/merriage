@@ -30,7 +30,7 @@ export default function Settings() {
     <div className="min-h-screen max-w-full py-1">
       <div className="flex md:mt-4">
         {/* Left header */}
-        <div className="w-full md:w-auto max-h-full lg:block hidden">
+        <div className="w-full md:w-auto max-h-full lg:block hidden mt-2">
           <Header />
         </div>
 

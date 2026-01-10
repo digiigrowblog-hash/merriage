@@ -88,7 +88,7 @@ export default function Like() {
 
       <div className="flex md:mt-4 overflow-hidden">
         {/* Left header */}
-        <div className="w-full md:w-auto max-h-full lg:block hidden">
+        <div className="w-full md:w-auto max-h-full lg:block hidden mt-2">
           <Header />
         </div>
 
