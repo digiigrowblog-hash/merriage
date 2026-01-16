@@ -142,7 +142,7 @@ export default function Home() {
           </div>
 
           <div
-            className="fixed  w-full md:left-1/3 left-4 bottom-20 z-50 
+            className="fixed  w-full md:left-1/3 left-4 bottom-20 z-20 
           flex  justify-start items-center"
           >
             <button className=" bg-[#ffffff] rounded-full p-2 shadow-xl">

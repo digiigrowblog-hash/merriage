@@ -305,10 +305,10 @@ const handleScroll = (direction: "next" | "prev") => {
                     </div>
                     <div>
                       <h2 className="text-xl font-bold bg-linear-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                        Matching Partner Found!
+                        Matching Partner Can't See!
                       </h2>
                       <p className="text-xs text-pink-500 font-medium">
-                        Click profile to view details
+                        Click here to  view the rest profile
                       </p>
                     </div>
                   </div>
@@ -344,7 +344,7 @@ const handleScroll = (direction: "next" | "prev") => {
                     whileTap={{ scale: 0.95 }}
                     className="mt-6 w-full bg-linear-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-300"
                   >
-                    View Profile Details
+                    Update Now
                   </motion.button>
                 </motion.div>
               )}

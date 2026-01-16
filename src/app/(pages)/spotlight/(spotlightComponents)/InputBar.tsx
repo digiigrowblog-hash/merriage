@@ -49,7 +49,7 @@ const InputBar: React.FC<InputBarProps> = ({
   return (
     <>
       {/* Mobile Input */}
-      <div className="sm:hidden bg-white/90 backdrop-blur-xl border border-pink-200/50 rounded-3xl shadow-2xl p-2">
+      <div className="sm:hidden bg-white/90 backdrop-blur-xl border border-pink-200/50 md:rounded-3xl rounded-2xl  p-2">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1">
             <motion.button

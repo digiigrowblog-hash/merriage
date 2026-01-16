@@ -4,7 +4,7 @@ import Footer from "@/components/mainHeaderFooter/FooterMain";
 import Image from "next/image";
 import { Flame, Sparkle, Sparkles, Zap, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MessagesContainer from "../../(pages)/spotlight/(spotlightComponents)/MessageContainer";
 import InputBar from "../../(pages)/spotlight/(spotlightComponents)/InputBar";
 
@@ -32,6 +32,23 @@ export default function Like() {
   const [inputText, setInputText] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+    const setVH = () => {
+      if (!window.visualViewport) return;
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${window.visualViewport.height}px`
+      );
+    };
+
+    setVH();
+    window.visualViewport?.addEventListener("resize", setVH);
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", setVH);
+    };
+  }, []);
 
   const users: Member[] = [
     {
@@ -84,15 +101,15 @@ export default function Like() {
   };
 
   return (
-    <div className="min-h-auto max-w-full py-1 overflow-hidden">
-      <div className="flex md:mt-4 overflow-hidden">
+      <div className=" w-full overflow-hidden" style={{ height: "var(--vh)" }}>
+      <div className="flex md:mt-4 overflow-hidden ">
         {/* Left header */}
         <div className="w-full md:w-auto max-h-full lg:block hidden mt-2">
           <Header />
         </div>
 
         {/* Right content */}
-        <div className="flex-1 flex lg:flex-row flex-col">
+        <div className="flex-1 flex lg:flex-row flex-col h-full"  >
           {/* Matches List (Desktop + Mobile) */}
           <div
             className={`w-full lg:w-80 lg:border-r border-gray-100 ${
@@ -222,16 +239,18 @@ export default function Like() {
             }`}
           >
             {messageBox && selectedUser ? (
-              <div className="relative flex flex-col h-[90vh] md:h-[85vh] lg:h-[95vh] overflow-hidden bg-white/70 backdrop-blur-xl rounded-2xl">
+              <div className="relative flex flex-col h-[85vh] lg:h-[95vh] overflow-hidden
+               bg-white/70 backdrop-blur-xl rounded-2xl">
                 {/* Header - Fixed */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 
-                  backdrop-blur-xl border-b border-pink-200/50 rounded-t-2xl px-6 py-4 shadow-2xl 
-                  flex items-center justify-between shrink-0 "
+                  className="bg-linear-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 
+                           backdrop-blur-xl border-b border-pink-200/50 rounded-t-2xl px-6 py-4 
+                           shadow-2xl bg-white/95 shrink-0
+                           flex items-center justify-between "
                 >
-                  {/* Your existing header content */}
+                  {/* header  */}
 
                   <div className="flex items-center gap-3">
                     <Image
@@ -271,8 +290,10 @@ export default function Like() {
                 </motion.div>
 
                 {/* Messages - Scrollable flex-1 */}
-                <div className="flex-1 overflow-y-auto px-4 py-2 scrollbar-thin 
-                scrollbar-thumb-gray-300 scrollbar-track-transparent no-scrollbar">
+                <div
+                  className="flex-1 overflow-y-auto px-4 py-2 scrollbar-thin 
+                scrollbar-thumb-gray-300 scrollbar-track-transparent no-scrollbar"
+                >
                   <MessagesContainer
                     messages={messages}
                     messagesEndRef={messagesEndRef}
@@ -282,7 +303,7 @@ export default function Like() {
                 {/* Input - Fixed bottom */}
                 <div
                   className="border-t border-gray-200 bg-white/90 backdrop-blur-sm 
-                md:px-4 px-1 py-2 shrink-0 z-10"
+                md:px-4 px-1 py-2 shrink-0 z-10 sticky bottom-0 left-0 right-0"
                 >
                   <InputBar
                     inputText={inputText}

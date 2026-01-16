@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
+/* @tailwind base;
+@tailwind components; */
 @tailwind utilities;
+
 
 /* custom utilities */
 @layer utilities {
@@ -270,4 +271,23 @@
 
 .phone-input-wrapper .PhoneInputCountrySelect {
   @apply rounded-l-xl border-r-0;
+}
+
+
+
+@supports (height: 100dvh) {
+  .chat-container {
+    height: 100dvh;
+  }
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  height: 100dvh;
+  overscroll-behavior: none; /* Prevents rubber-banding */
 }

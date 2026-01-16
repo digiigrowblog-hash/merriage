@@ -109,7 +109,8 @@ export default function CarnivalFest() {
         <div className="md:col-span-4">
           <Messagebox selectedUser={selectedUser}  />
           {isClicked && (
-            <div className="z-50 absolute  h-52 max-w-sm overflow-auto md:right-48 lg:right-96 top-40 rounded-lg ">
+            <div className="z-50 absolute  h-52 max-w-sm overflow-auto
+             md:right-48 lg:right-96 top-40 rounded-lg ">
               <div className="flex flex-col gap-2 bg-pink-200 p-2">
 
                 <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">

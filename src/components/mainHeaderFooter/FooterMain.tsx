@@ -54,7 +54,7 @@ const Footer = () => {
           {/* Age */}
           <div
             onClick={() => setShowAgePopup(true)}
-            className="flex-shrink-0 flex gap-1 px-2 py-1 rounded-full border border-gray-600"
+            className="flex-shrink-0 flex gap-1 px-2 py-1 rounded-full border border-gray-600 z-30"
           >
             <h1>Age</h1>
             <button type="button">

@@ -63,7 +63,8 @@ const Messagebox: React.FC<MessageboxProps> = ({ selectedUser, onClick }) => {
 
   if (!selectedUser) {
     return (
-      <div className="lg:col-span-4 bg-gradient-to-br from-pink-100/50 to-rose-100/50 backdrop-blur-xl rounded-3xl border border-pink-200/50 flex items-center justify-center h-full">
+      <div className="lg:col-span-4 bg-gradient-to-br from-pink-100/50 to-rose-100/50 
+      backdrop-blur-xl rounded-3xl border border-pink-200/50 flex items-center justify-center h-full">
         <div className="text-center">
           <div className="w-20 h-20 bg-pink-200 rounded-3xl flex items-center justify-center mx-auto mb-4">
             <MessageCircle className="w-10 h-10 text-pink-500" />
