@@ -4,7 +4,7 @@ import Footer from "@/components/mainHeaderFooter/FooterMain";
 import Image from "next/image";
 import { Flame, Sparkle, Sparkles, Zap, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import MessagesContainer from "../../(pages)/spotlight/(spotlightComponents)/MessageContainer";
 import InputBar from "../../(pages)/spotlight/(spotlightComponents)/InputBar";
 
@@ -31,6 +31,7 @@ export default function Like() {
   ]);
   const [inputText, setInputText] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const users: Member[] = [
     {
@@ -83,9 +84,7 @@ export default function Like() {
   };
 
   return (
-    <div className="min-h-screen max-w-full py-1 overflow-hidden">
-       
-
+    <div className="min-h-auto max-w-full py-1 overflow-hidden">
       <div className="flex md:mt-4 overflow-hidden">
         {/* Left header */}
         <div className="w-full md:w-auto max-h-full lg:block hidden mt-2">
@@ -145,9 +144,9 @@ export default function Like() {
               rounded-3xl gap-2 items-center justify-center mx-auto"
                       >
                         <Zap strokeWidth={1.75} className="" />
-                        <span className="text-lg text-white">
+                        <h1 className="text-lg text-white">
                           Boost Your Profile
-                        </span>
+                        </h1>
                       </div>
                     </div>
                   </div>
@@ -161,7 +160,9 @@ export default function Like() {
                       setSelectedUser(user);
                       setMessageBox(true);
                     }}
-                    className="p-3 border-b border-gray-100 group relative flex items-center gap-3 cursor-pointer hover:bg-gradient-to-r from-pink-50/50 to-rose-50/50 rounded-xl transition-all duration-200 hover:shadow-sm"
+                    className="p-3 border-b border-gray-100 group relative flex items-center 
+                    gap-3 cursor-pointer hover:bg-gradient-to-r from-pink-50/50 to-rose-50/50 rounded-xl 
+                    transition-all duration-200 hover:shadow-sm h-full"
                   >
                     {/* Profile Image with Online Status */}
                     <div className="relative shrink-0">
@@ -173,9 +174,10 @@ export default function Like() {
                         className="w-14 h-14 rounded-2xl ring-2 ring-white/50 shadow-md object-cover"
                       />
                       <div
-                        className={`absolute -bottom-1 -right-1 w-5 h-5 border-3 border-white rounded-full ring-2 ring-green-400/50 animate-pulse ${
-                          user.online ? "bg-green-400" : "bg-gray-400"
-                        }`}
+                        className={`absolute -bottom-1 -right-1 w-5 h-5 border-3 border-white 
+                          rounded-full ring-2 ring-green-400/50 animate-pulse ${
+                            user.online ? "bg-green-400" : "bg-gray-400"
+                          }`}
                       />
                     </div>
 
@@ -197,7 +199,11 @@ export default function Like() {
                     {/* Notification Badge */}
                     <div className="relative flex-shrink-0 ml-2">
                       <div className="w-2 h-2 bg-gradient-to-r from-red-400 to-pink-500 rounded-full animate-ping opacity-75" />
-                      <div className="absolute -top-1 -right-1 flex items-center justify-center w-6 h-6 bg-red-500 border-3 border-white shadow-lg rounded-full group-hover:scale-110 transition-transform">
+                      <div
+                        className="absolute -top-1 -right-1 flex items-center justify-center w-6 h-6
+                       bg-red-500 border-3 border-white shadow-lg rounded-full group-hover:scale-110 
+                       transition-transform"
+                      >
                         <span className="text-xs font-bold text-white drop-shadow-sm road-rage-regular-bold">
                           1
                         </span>
@@ -211,18 +217,22 @@ export default function Like() {
 
           {/* Chat Area */}
           <div
-            className={`flex-1 flex  flex-col ${
+            className={`flex-1 flex flex-col ${
               messageBox ? "flex" : "hidden lg:flex"
             }`}
           >
             {messageBox && selectedUser ? (
-              <div className="flex flex-col h-screen md:max-h-[90%] ">
-                {/* Header */}
+              <div className="relative flex flex-col h-[90vh] md:h-[85vh] lg:h-[95vh] overflow-hidden bg-white/70 backdrop-blur-xl rounded-2xl">
+                {/* Header - Fixed */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 backdrop-blur-xl border-b border-pink-200/50 rounded-t-2xl px-6 py-4 shadow-2xl flex items-center justify-between"
+                  className="bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 
+                  backdrop-blur-xl border-b border-pink-200/50 rounded-t-2xl px-6 py-4 shadow-2xl 
+                  flex items-center justify-between shrink-0 "
                 >
+                  {/* Your existing header content */}
+
                   <div className="flex items-center gap-3">
                     <Image
                       src={selectedUser.image}
@@ -260,19 +270,28 @@ export default function Like() {
                   </motion.button>
                 </motion.div>
 
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto px-4 py-2">
-                  <MessagesContainer messages={messages} />
+                {/* Messages - Scrollable flex-1 */}
+                <div className="flex-1 overflow-y-auto px-4 py-2 scrollbar-thin 
+                scrollbar-thumb-gray-300 scrollbar-track-transparent no-scrollbar">
+                  <MessagesContainer
+                    messages={messages}
+                    messagesEndRef={messagesEndRef}
+                  />
                 </div>
 
-                {/* Input */}
-                <InputBar
-                  inputText={inputText}
-                  showEmoji={showEmoji}
-                  onTextChange={setInputText}
-                  onEmojiToggle={() => setShowEmoji(!showEmoji)}
-                  onSendMessage={sendMessage}
-                />
+                {/* Input - Fixed bottom */}
+                <div
+                  className="border-t border-gray-200 bg-white/90 backdrop-blur-sm 
+                md:px-4 px-1 py-2 shrink-0 z-10"
+                >
+                  <InputBar
+                    inputText={inputText}
+                    showEmoji={showEmoji}
+                    onTextChange={setInputText}
+                    onEmojiToggle={() => setShowEmoji(!showEmoji)}
+                    onSendMessage={sendMessage}
+                  />
+                </div>
               </div>
             ) : (
               <div className="flex-1 flex items-center justify-center p-8 text-center">
