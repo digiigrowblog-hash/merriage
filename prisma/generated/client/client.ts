@@ -54,3 +54,18 @@ export type User = Prisma.UserModel
  * 
  */
 export type Session = Prisma.SessionModel
+/**
+ * Model FestivalPass
+ * 
+ */
+export type FestivalPass = Prisma.FestivalPassModel
+/**
+ * Model Plan
+ * 
+ */
+export type Plan = Prisma.PlanModel
+/**
+ * Model Membership
+ * 
+ */
+export type Membership = Prisma.MembershipModel

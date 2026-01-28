@@ -28,8 +28,22 @@ const InputBar: React.FC<InputBarProps> = ({
       className="mt-2 grid grid-cols-6 sm:grid-cols-8 gap-1.5 p-2 max-h-44 sm:max-h-48 overflow-y-auto rounded-2xl bg-white/80 border border-pink-100"
     >
       {[
-        "❤️", "✨", "😍", "🎉", "💕", "🎈", "🌹", "💖",
-        "😘", "🥰", "🎊", "💝", "🎁", "🌟", "😊", "🙌",
+        "❤️",
+        "✨",
+        "😍",
+        "🎉",
+        "💕",
+        "🎈",
+        "🌹",
+        "💖",
+        "😘",
+        "🥰",
+        "🎊",
+        "💝",
+        "🎁",
+        "🌟",
+        "😊",
+        "🙌",
       ].map((emoji, i) => (
         <motion.button
           key={i}
@@ -49,7 +63,10 @@ const InputBar: React.FC<InputBarProps> = ({
   return (
     <>
       {/* Mobile Input */}
-      <div className="sm:hidden bg-white/90 backdrop-blur-xl border border-pink-200/50 md:rounded-3xl rounded-2xl  p-2">
+      <div
+        className="lg:hidden bg-white/90 backdrop-blur-xl border border-pink-200/50 
+      md:rounded-3xl rounded-2xl  p-2"
+      >
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1">
             <motion.button
@@ -59,17 +76,29 @@ const InputBar: React.FC<InputBarProps> = ({
             >
               <Smile className="w-4 h-4" />
             </motion.button>
-            <motion.button whileTap={{ scale: 0.95 }} className="p-1.5 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-xl transition-all">
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="p-1.5 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-xl transition-all"
+            >
               <Mic className="w-4 h-4" />
             </motion.button>
-            <motion.button whileTap={{ scale: 0.95 }} className="p-1.5 text-blue-500 hover:bg-blue-50 rounded-xl transition-all">
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="p-1.5 text-blue-500 hover:bg-blue-50 rounded-xl transition-all"
+            >
               <Video className="w-4 h-4" />
             </motion.button>
-            <motion.button whileTap={{ scale: 0.95 }} className="p-1.5 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-xl transition-all">
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="p-1.5 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-xl transition-all"
+            >
               <Paperclip className="w-4 h-4" />
             </motion.button>
           </div>
-          <motion.button whileTap={{ scale: 0.95 }} className="p-1.5 text-green-500 hover:bg-green-50 rounded-xl transition-all">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="p-1.5 text-green-500 hover:bg-green-50 rounded-xl transition-all"
+          >
             <Phone className="w-4 h-4" />
           </motion.button>
         </div>
@@ -92,14 +121,16 @@ const InputBar: React.FC<InputBarProps> = ({
                 : "text-gray-400 bg-gray-100"
             }`}
           >
-            <Send className={`w-4 h-4 ${inputText.trim() ? "" : "rotate-45"}`} />
+            <Send
+              className={`w-4 h-4 ${inputText.trim() ? "" : "rotate-45"}`}
+            />
           </motion.button>
         </div>
         <AnimatePresence>{showEmoji && <EmojiPicker />}</AnimatePresence>
       </div>
 
       {/* Desktop Input */}
-      <div className="hidden sm:block bg-white/90 backdrop-blur-xl border border-pink-200/50 rounded-3xl p-3 shadow-2xl">
+      <div className="hidden lg:block  bg-white/90 backdrop-blur-xl border border-pink-200/50 rounded-3xl p-3 shadow-2xl">
         <div className="flex items-center gap-1">
           <motion.button
             whileTap={{ scale: 0.95 }}
@@ -108,7 +139,10 @@ const InputBar: React.FC<InputBarProps> = ({
           >
             <Smile className="w-5 h-5" />
           </motion.button>
-          <motion.button whileTap={{ scale: 0.95 }} className="p-2 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-2xl transition-all">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="p-2 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-2xl transition-all"
+          >
             <Mic className="w-5 h-5" />
           </motion.button>
           <input
@@ -119,10 +153,16 @@ const InputBar: React.FC<InputBarProps> = ({
             placeholder="Type your message..."
             className="flex-1 bg-transparent outline-none text-sm py-2.5 px-3 rounded-2xl placeholder-gray-400"
           />
-          <motion.button whileTap={{ scale: 0.95 }} className="p-2 text-blue-500 hover:bg-blue-50 rounded-2xl transition-all">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="p-2 text-blue-500 hover:bg-blue-50 rounded-2xl transition-all"
+          >
             <Video className="w-5 h-5" />
           </motion.button>
-          <motion.button whileTap={{ scale: 0.95 }} className="p-2 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-2xl transition-all">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="p-2 text-gray-500 hover:text-pink-500 hover:bg-pink-50 rounded-2xl transition-all"
+          >
             <Paperclip className="w-5 h-5" />
           </motion.button>
           <motion.button

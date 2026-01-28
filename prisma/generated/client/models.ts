@@ -10,4 +10,7 @@
  */
 export type * from './models/User'
 export type * from './models/Session'
+export type * from './models/FestivalPass'
+export type * from './models/Plan'
+export type * from './models/Membership'
 export type * from './commonInputTypes'

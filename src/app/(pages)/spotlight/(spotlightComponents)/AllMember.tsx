@@ -35,7 +35,9 @@ const AllMemberCard: React.FC<AllMemberCardProps> = ({
   pitch
 }) => {
   return (
-    <div className="lg:col-span-1 space-y-3 px-1 py-4 bg-white/70 backdrop-blur-xl rounded-2xl border border-pink-200/50 shadow-xl lg:sticky lg:top-4 max-h-125 flex flex-col">
+    <div className="md:col-span-1 space-y-3 px-1 py-4 bg-white/70 backdrop-blur-xl 
+    rounded-2xl border border-pink-200/50 shadow-xl 
+    md:sticky lg:top-4 lg:max-h-125 md:h-96 flex flex-col w-auto">
       <div className="flex justify-between items-center">
         <h3 className="font-semibold text-lg text-pink-700 flex items-center gap-2 px-2">
           All Hearts Welcome ✨

@@ -63,8 +63,10 @@ const Messagebox: React.FC<MessageboxProps> = ({ selectedUser, onClick }) => {
 
   if (!selectedUser) {
     return (
-      <div className="lg:col-span-4 bg-gradient-to-br from-pink-100/50 to-rose-100/50 
-      backdrop-blur-xl rounded-3xl border border-pink-200/50 flex items-center justify-center h-full">
+      <div
+        className="md:col-span-4 bg-gradient-to-br from-pink-100/50 to-rose-100/50 
+      backdrop-blur-xl rounded-3xl border border-pink-200/50 flex items-center justify-center h-full"
+      >
         <div className="text-center">
           <div className="w-20 h-20 bg-pink-200 rounded-3xl flex items-center justify-center mx-auto mb-4">
             <MessageCircle className="w-10 h-10 text-pink-500" />
@@ -79,11 +81,14 @@ const Messagebox: React.FC<MessageboxProps> = ({ selectedUser, onClick }) => {
       </div>
     );
   }
-
+  // h-[calc(100vh-200px)] max-h-[calc(100vh-200px)]
   return (
-    <div className="flex flex-col h-[calc(100vh-200px)] max-h-[calc(100vh-200px)]">
+    <div className="flex flex-col h-[calc(100vh-100px)] max-h-[calc(100vh-100px)] w-auto">
       {/* Hero Section - Dynamic user */}
-      <div className="bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 backdrop-blur-xl border border-pink-200/50 rounded-t-2xl md:px-6 py-3 shadow-2xl">
+      <div
+        className="bg-linear-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 
+         backdrop-blur-xl border border-pink-200/50 rounded-t-2xl md:px-6 py-3 shadow-2xl"
+      >
         <div className="flex items-center gap-3 mb-2">
           <Image
             src={selectedUser.image}
@@ -98,7 +103,9 @@ const Messagebox: React.FC<MessageboxProps> = ({ selectedUser, onClick }) => {
             </h2>
             <p className="text-sm text-green-600 flex items-center gap-1">
               <div
-                className={`w-2 h-2 bg-${selectedUser.online ? "green" : "gray"}-400 rounded-full ${
+                className={`w-2 h-2 bg-${
+                  selectedUser.online ? "green" : "gray"
+                }-400 rounded-full ${
                   selectedUser.online ? "animate-pulse" : ""
                 }`}
               ></div>
@@ -121,16 +128,29 @@ const Messagebox: React.FC<MessageboxProps> = ({ selectedUser, onClick }) => {
       </div>
 
       {/* Messages Container */}
-      <MessagesContainer messages={messages} messagesEndRef={messagesEndRef} />
+      <div
+        className="flex-1 overflow-y-auto px-4 py-2 scrollbar-thin 
+                scrollbar-thumb-gray-300 scrollbar-track-transparent no-scrollbar"
+      >
+        <MessagesContainer
+          messages={messages}
+          messagesEndRef={messagesEndRef}
+        />
+      </div>
 
-      {/* Input Bar */}
-      <InputBar
-        inputText={inputText}
-        showEmoji={showEmoji}
-        onTextChange={setInputText}
-        onEmojiToggle={() => setShowEmoji(!showEmoji)}
-        onSendMessage={sendMessage}
-      />
+      {/* Input Bar - fixed at bottom */}
+      <div
+        className="backdrop-blur-sm md:px-4 px-1 py-2 shrink-0 z-10 sticky 
+        bottom-0 left-0 right-0"
+      >
+        <InputBar
+          inputText={inputText}
+          showEmoji={showEmoji}
+          onTextChange={setInputText}
+          onEmojiToggle={() => setShowEmoji(!showEmoji)}
+          onSendMessage={sendMessage}
+        />
+      </div>
     </div>
   );
 };

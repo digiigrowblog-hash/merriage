@@ -33,7 +33,7 @@ export default function Like() {
   const [showEmoji, setShowEmoji] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
+  useEffect(() => {
     const setVH = () => {
       if (!window.visualViewport) return;
       document.documentElement.style.setProperty(
@@ -101,7 +101,7 @@ export default function Like() {
   };
 
   return (
-      <div className=" w-full overflow-hidden" style={{ height: "var(--vh)" }}>
+    <div className=" w-full overflow-hidden" style={{ height: "var(--vh)" }}>
       <div className="flex md:mt-4 overflow-hidden ">
         {/* Left header */}
         <div className="w-full md:w-auto max-h-full lg:block hidden mt-2">
@@ -109,7 +109,7 @@ export default function Like() {
         </div>
 
         {/* Right content */}
-        <div className="flex-1 flex lg:flex-row flex-col h-full"  >
+        <div className="flex-1 flex lg:flex-row flex-col h-full">
           {/* Matches List (Desktop + Mobile) */}
           <div
             className={`w-full lg:w-80 lg:border-r border-gray-100 ${
@@ -239,8 +239,10 @@ export default function Like() {
             }`}
           >
             {messageBox && selectedUser ? (
-              <div className="relative flex flex-col h-[85vh] lg:h-[95vh] overflow-hidden
-               bg-white/70 backdrop-blur-xl rounded-2xl">
+              <div
+                className="relative flex flex-col h-[85vh] lg:h-[95vh] overflow-hidden
+               bg-white/70 backdrop-blur-xl rounded-2xl"
+              >
                 {/* Header - Fixed */}
                 <motion.div
                   initial={{ opacity: 0 }}

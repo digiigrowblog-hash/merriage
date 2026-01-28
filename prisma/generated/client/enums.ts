@@ -25,3 +25,12 @@ export const IdVerificationType = {
 } as const
 
 export type IdVerificationType = (typeof IdVerificationType)[keyof typeof IdVerificationType]
+
+
+export const PlanType = {
+  monthly: 'monthly',
+  yearly: 'yearly',
+  carnival_weekly: 'carnival_weekly'
+} as const
+
+export type PlanType = (typeof PlanType)[keyof typeof PlanType]

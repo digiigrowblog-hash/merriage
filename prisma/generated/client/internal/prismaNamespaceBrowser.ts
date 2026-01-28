@@ -50,7 +50,10 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Session: 'Session'
+  Session: 'Session',
+  FestivalPass: 'FestivalPass',
+  Plan: 'Plan',
+  Membership: 'Membership'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -118,6 +121,42 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const FestivalPassScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  isFree: 'isFree',
+  used: 'used',
+  weekOf: 'weekOf',
+  createdAt: 'createdAt'
+} as const
+
+export type FestivalPassScalarFieldEnum = (typeof FestivalPassScalarFieldEnum)[keyof typeof FestivalPassScalarFieldEnum]
+
+
+export const PlanScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  planType: 'planType',
+  price: 'price',
+  duration: 'duration',
+  createdAt: 'createdAt'
+} as const
+
+export type PlanScalarFieldEnum = (typeof PlanScalarFieldEnum)[keyof typeof PlanScalarFieldEnum]
+
+
+export const MembershipScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  planId: 'planId',
+  status: 'status',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt'
+} as const
+
+export type MembershipScalarFieldEnum = (typeof MembershipScalarFieldEnum)[keyof typeof MembershipScalarFieldEnum]
 
 
 export const SortOrder = {

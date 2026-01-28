@@ -429,6 +429,8 @@ export type UserWhereInput = {
   phoneOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   phoneVerified?: Prisma.BoolFilter<"User"> | boolean
   sessions?: Prisma.SessionListRelationFilter
+  festivalPasses?: Prisma.FestivalPassListRelationFilter
+  memberships?: Prisma.MembershipListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -465,6 +467,8 @@ export type UserOrderByWithRelationInput = {
   phoneOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneVerified?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
+  festivalPasses?: Prisma.FestivalPassOrderByRelationAggregateInput
+  memberships?: Prisma.MembershipOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -504,6 +508,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   phoneOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   phoneVerified?: Prisma.BoolFilter<"User"> | boolean
   sessions?: Prisma.SessionListRelationFilter
+  festivalPasses?: Prisma.FestivalPassListRelationFilter
+  memberships?: Prisma.MembershipListRelationFilter
 }, "id" | "phone" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -617,6 +623,8 @@ export type UserCreateInput = {
   phoneOtpExpiresAt?: Date | string | null
   phoneVerified?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -653,6 +661,8 @@ export type UserUncheckedCreateInput = {
   phoneOtpExpiresAt?: Date | string | null
   phoneVerified?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -688,6 +698,8 @@ export type UserUpdateInput = {
   phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -724,6 +736,8 @@ export type UserUncheckedUpdateInput = {
   phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1026,6 +1040,34 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsInput, Prisma.UserUpdateWithoutSessionsInput>, Prisma.UserUncheckedUpdateWithoutSessionsInput>
 }
 
+export type UserCreateNestedOneWithoutFestivalPassesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFestivalPassesInput, Prisma.UserUncheckedCreateWithoutFestivalPassesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFestivalPassesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFestivalPassesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFestivalPassesInput, Prisma.UserUncheckedCreateWithoutFestivalPassesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFestivalPassesInput
+  upsert?: Prisma.UserUpsertWithoutFestivalPassesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFestivalPassesInput, Prisma.UserUpdateWithoutFestivalPassesInput>, Prisma.UserUncheckedUpdateWithoutFestivalPassesInput>
+}
+
+export type UserCreateNestedOneWithoutMembershipsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMembershipsInput, Prisma.UserUncheckedCreateWithoutMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMembershipsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMembershipsInput, Prisma.UserUncheckedCreateWithoutMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMembershipsInput
+  upsert?: Prisma.UserUpsertWithoutMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMembershipsInput, Prisma.UserUpdateWithoutMembershipsInput>, Prisma.UserUncheckedUpdateWithoutMembershipsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   phone: string
   phoneOtp: string
@@ -1058,6 +1100,8 @@ export type UserCreateWithoutSessionsInput = {
   idVerificationStatus?: string | null
   phoneOtpExpiresAt?: Date | string | null
   phoneVerified?: boolean
+  festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -1093,6 +1137,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   idVerificationStatus?: string | null
   phoneOtpExpiresAt?: Date | string | null
   phoneVerified?: boolean
+  festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1143,6 +1189,8 @@ export type UserUpdateWithoutSessionsInput = {
   idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1178,6 +1226,332 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutFestivalPassesInput = {
+  phone: string
+  phoneOtp: string
+  name: string
+  age: number
+  heightCm?: number | null
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  email: string
+  emailOtp?: string | null
+  emailVerified?: boolean
+  idVerification?: $Enums.IdVerificationType | null
+  createdAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  emailOtpExpiresAt?: Date | string | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFestivalPassesInput = {
+  id?: number
+  phone: string
+  phoneOtp: string
+  name: string
+  age: number
+  heightCm?: number | null
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  email: string
+  emailOtp?: string | null
+  emailVerified?: boolean
+  idVerification?: $Enums.IdVerificationType | null
+  createdAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  emailOtpExpiresAt?: Date | string | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFestivalPassesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFestivalPassesInput, Prisma.UserUncheckedCreateWithoutFestivalPassesInput>
+}
+
+export type UserUpsertWithoutFestivalPassesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFestivalPassesInput, Prisma.UserUncheckedUpdateWithoutFestivalPassesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFestivalPassesInput, Prisma.UserUncheckedCreateWithoutFestivalPassesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFestivalPassesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFestivalPassesInput, Prisma.UserUncheckedUpdateWithoutFestivalPassesInput>
+}
+
+export type UserUpdateWithoutFestivalPassesInput = {
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFestivalPassesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMembershipsInput = {
+  phone: string
+  phoneOtp: string
+  name: string
+  age: number
+  heightCm?: number | null
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  email: string
+  emailOtp?: string | null
+  emailVerified?: boolean
+  idVerification?: $Enums.IdVerificationType | null
+  createdAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  emailOtpExpiresAt?: Date | string | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMembershipsInput = {
+  id?: number
+  phone: string
+  phoneOtp: string
+  name: string
+  age: number
+  heightCm?: number | null
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  email: string
+  emailOtp?: string | null
+  emailVerified?: boolean
+  idVerification?: $Enums.IdVerificationType | null
+  createdAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  emailOtpExpiresAt?: Date | string | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMembershipsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMembershipsInput, Prisma.UserUncheckedCreateWithoutMembershipsInput>
+}
+
+export type UserUpsertWithoutMembershipsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMembershipsInput, Prisma.UserUncheckedUpdateWithoutMembershipsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMembershipsInput, Prisma.UserUncheckedCreateWithoutMembershipsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMembershipsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMembershipsInput, Prisma.UserUncheckedUpdateWithoutMembershipsInput>
+}
+
+export type UserUpdateWithoutMembershipsInput = {
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMembershipsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1187,10 +1561,14 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 
 export type UserCountOutputType = {
   sessions: number
+  festivalPasses: number
+  memberships: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+  festivalPasses?: boolean | UserCountOutputTypeCountFestivalPassesArgs
+  memberships?: boolean | UserCountOutputTypeCountMembershipsArgs
 }
 
 /**
@@ -1208,6 +1586,20 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFestivalPassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FestivalPassWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MembershipWhereInput
 }
 
 
@@ -1245,6 +1637,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   phoneOtpExpiresAt?: boolean
   phoneVerified?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  festivalPasses?: boolean | Prisma.User$festivalPassesArgs<ExtArgs>
+  memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1356,6 +1750,8 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "phone" | "phoneOtp" | "name" | "age" | "heightCm" | "address" | "eating" | "gender" | "orientation" | "preference" | "company" | "jobRole" | "salary" | "health" | "hobbies" | "images" | "religion" | "caste" | "email" | "emailOtp" | "emailVerified" | "idVerification" | "createdAt" | "isActive" | "isHiddenByUser" | "lastActiveAt" | "emailOtpExpiresAt" | "idVerificationRef" | "idVerificationStatus" | "phoneOtpExpiresAt" | "phoneVerified", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  festivalPasses?: boolean | Prisma.User$festivalPassesArgs<ExtArgs>
+  memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1365,6 +1761,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     sessions: Prisma.$SessionPayload<ExtArgs>[]
+    festivalPasses: Prisma.$FestivalPassPayload<ExtArgs>[]
+    memberships: Prisma.$MembershipPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1794,6 +2192,8 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  festivalPasses<T extends Prisma.User$festivalPassesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$festivalPassesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FestivalPassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  memberships<T extends Prisma.User$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2264,6 +2664,54 @@ export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.festivalPasses
+ */
+export type User$festivalPassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FestivalPass
+   */
+  select?: Prisma.FestivalPassSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FestivalPass
+   */
+  omit?: Prisma.FestivalPassOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FestivalPassInclude<ExtArgs> | null
+  where?: Prisma.FestivalPassWhereInput
+  orderBy?: Prisma.FestivalPassOrderByWithRelationInput | Prisma.FestivalPassOrderByWithRelationInput[]
+  cursor?: Prisma.FestivalPassWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FestivalPassScalarFieldEnum | Prisma.FestivalPassScalarFieldEnum[]
+}
+
+/**
+ * User.memberships
+ */
+export type User$membershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Membership
+   */
+  select?: Prisma.MembershipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Membership
+   */
+  omit?: Prisma.MembershipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MembershipInclude<ExtArgs> | null
+  where?: Prisma.MembershipWhereInput
+  orderBy?: Prisma.MembershipOrderByWithRelationInput | Prisma.MembershipOrderByWithRelationInput[]
+  cursor?: Prisma.MembershipWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MembershipScalarFieldEnum | Prisma.MembershipScalarFieldEnum[]
 }
 
 /**

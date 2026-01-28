@@ -22,15 +22,13 @@ interface MessageboxProps {
   className?: string;
 }
 
-
 export default function CarnivalFest() {
   const [isClicked, setIsClicked] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [pitch , setPitch] = useState(false)
+  const [pitch, setPitch] = useState(false);
 
   const [showMessageBox, setShowMessageBox] = useState(false); // Controls mobile layout
- 
 
   const members = [
     {
@@ -45,7 +43,7 @@ export default function CarnivalFest() {
       name: "Priya Sharma",
       image: "/images/img2.png",
       online: false,
-      premium: true,
+      premium: false,
     },
     {
       id: 3,
@@ -74,7 +72,8 @@ export default function CarnivalFest() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-linear-to-br from-pink-50 to-rose-50 relative">
+    <div className="min-h-auto w-full bg-linear-to-br from-pink-50 to-rose-50 relative over ">
+
       {/* Header */}
       <div className="flex items-center  gap-2 px-4 pt-4 pb-2  bg-white/80 backdrop-blur-sm">
         <Link href="/spotlight">
@@ -98,69 +97,86 @@ export default function CarnivalFest() {
       <DistenceFilter isClicked={isClicked} setIsClicked={setIsClicked} />
 
       {/* DESKTOP: 20/80 Layout */}
-      <div className="hidden md:grid px-3 sm:px-4 max-w-7xl mx-auto grid-cols-1 lg:grid-cols-5 mt-5 gap-4 pb-20 lg:pb-8">
-        <AllMemberCard members={members} 
-        onMessageClick={handleMessageClick} 
-        isClicked={isClicked} 
-        setIsClicked={setIsClicked} 
-        setPitch={setPitch} 
-        pitch={pitch}/>
+      <div
+        className=" hidden md:grid px-3 sm:px-4 max-w-7xl mx-auto grid-cols-1
+       lg:grid-cols-5 md:grid-cols-2 mt-5 gap-4 pb-20 lg:pb-8"
+      >
+        <AllMemberCard
+          members={members}
+          onMessageClick={handleMessageClick}
+          isClicked={isClicked}
+          setIsClicked={setIsClicked}
+          setPitch={setPitch}
+          pitch={pitch}
+        />
 
-        <div className="md:col-span-4">
-          <Messagebox selectedUser={selectedUser}  />
+        <div className="lg:col-span-4 ">
+          <Messagebox selectedUser={selectedUser} />
           {isClicked && (
-            <div className="z-50 absolute  h-52 max-w-sm overflow-auto
-             md:right-48 lg:right-96 top-40 rounded-lg ">
+            <div
+              className="z-50 absolute h-52 max-w-sm overflow-auto no-scrollbar
+             md:right-48 lg:right-96 top-40 rounded-lg "
+            >
               <div className="flex flex-col gap-2 bg-pink-200 p-2">
-
                 <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
                   <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
                     <button className="w-6 h-6 text-gray-500" />
                   </div>
-                  <span className="text-xs truncate">hello how are you guys!</span>
+                  <span className="text-xs truncate">
+                    hello how are you guys!
+                  </span>
                 </div>
-                 <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
+                <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
                   <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
                     <button className="w-6 h-6 text-gray-500" />
                   </div>
-                  <span className="text-xs truncate">hello how are you guys!</span>
+                  <span className="text-xs truncate">
+                    hello how are you guys!
+                  </span>
                 </div>
-                 <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
+                <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
                   <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
                     <button className="w-6 h-6 text-gray-500" />
                   </div>
-                  <span className="text-xs truncate">hello how are you guys!</span>
+                  <span className="text-xs truncate">
+                    hello how are you guys!
+                  </span>
                 </div>
-                 <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
+                <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
                   <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
                     <button className="w-6 h-6 text-gray-500" />
                   </div>
-                  <span className="text-xs truncate">hello how are you guys!</span>
+                  <span className="text-xs truncate">
+                    hello how are you guys!
+                  </span>
                 </div>
-                 <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
+                <div className="flex items-center gap-2 bg-pink-100 p-2 rounded-lg">
                   <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
                     <button className="w-6 h-6 text-gray-500" />
                   </div>
-                  <span className="text-xs truncate">hello how are you guys!</span>
+                  <span className="text-xs truncate">
+                    hello how are you guys!
+                  </span>
                 </div>
               </div>
             </div>
           )}
         </div>
+
       </div>
 
       {/* MOBILE: Fullscreen Layout */}
-      <div className="md:hidden w-full px-3 sm:px-4 max-w-7xl mx-auto mt-5 pb-20">
+      <div className="md:hidden w-full px-3 sm:px-4  max-w-7xl mx-auto mt-5 ">
         {/* Users List (Hide when chat open) */}
         {!showMessageBox && (
           <div className="w-full">
             <AllMemberCard
               members={members}
               onMessageClick={handleMessageClick}
-              isClicked={isClicked} setIsClicked={setIsClicked}
-               pitch={pitch}
-               setPitch={setPitch} 
-
+              isClicked={isClicked}
+              setIsClicked={setIsClicked}
+              pitch={pitch}
+              setPitch={setPitch}
             />
           </div>
         )}
@@ -168,9 +184,7 @@ export default function CarnivalFest() {
         {/* Message Box (Fullscreen when open) */}
         {showMessageBox && selectedUser && (
           <div className="w-full">
-            <Messagebox
-              selectedUser={selectedUser}
-            />
+            <Messagebox selectedUser={selectedUser} />
           </div>
         )}
       </div>
@@ -259,24 +273,30 @@ export default function CarnivalFest() {
       )}
 
       {/* pitch info */}
-      {
-        pitch && (
-          <div className="max-w-sm h-auto z-50 px-2.5 py-1.5 bg-pink-200 shadow-lg rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-            <div className="flex-col items-center bg-white justify-center rounded-xl px-4 py-2">
-              <h1 className=" text-sm text-justify px-2">"Hii Sid👋 I'm interested in you! Would you love to connect for a chat?"</h1>
-              <div className="flex gap-2 items-center justify-center px-2 py-2">
-                  
-                   <button className="hover:bg-pink-600 bg-pink-500 text-white px-4 py-2 rounded-md">Send</button>
-                   <button className="hover:bg-pink-400 bg-pink-300 text-white px-4 py-2 rounded-md" onClick={(e)=>{
-                     e.stopPropagation();
-                     setPitch(!pitch)
-                   }}>Cancel</button>
-              </div>
+      {pitch && (
+        <div className="max-w-sm h-auto z-50 px-2.5 py-1.5 bg-pink-200 shadow-lg rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <div className="flex-col items-center bg-white justify-center rounded-xl px-4 py-2">
+            <h1 className=" text-sm text-justify px-2">
+              "Hii Sid👋 I'm interested in you! Would you love to connect for a
+              chat?"
+            </h1>
+            <div className="flex gap-2 items-center justify-center px-2 py-2">
+              <button className="hover:bg-pink-600 bg-pink-500 text-white px-4 py-2 rounded-md">
+                Send
+              </button>
+              <button
+                className="hover:bg-pink-400 bg-pink-300 text-white px-4 py-2 rounded-md"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPitch(!pitch);
+                }}
+              >
+                Cancel
+              </button>
             </div>
           </div>
-        )
- 
-      }
+        </div>
+      )}
     </div>
   );
 }
