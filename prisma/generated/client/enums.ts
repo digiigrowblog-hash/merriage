@@ -30,7 +30,25 @@ export type IdVerificationType = (typeof IdVerificationType)[keyof typeof IdVeri
 export const PlanType = {
   monthly: 'monthly',
   yearly: 'yearly',
-  carnival_weekly: 'carnival_weekly'
+  carnival_weekly: 'carnival_weekly',
+  Free: 'Free'
 } as const
 
 export type PlanType = (typeof PlanType)[keyof typeof PlanType]
+
+
+export const SwipeAction = {
+  LIKE: 'LIKE',
+  PASS: 'PASS'
+} as const
+
+export type SwipeAction = (typeof SwipeAction)[keyof typeof SwipeAction]
+
+
+export const MembershipStatus = {
+  active: 'active',
+  expired: 'expired',
+  cancelled: 'cancelled'
+} as const
+
+export type MembershipStatus = (typeof MembershipStatus)[keyof typeof MembershipStatus]

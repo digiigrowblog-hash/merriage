@@ -37,7 +37,7 @@ const Header = () => {
                           width={10}
                           height={10}
                           alt={"p"}
-                          src={"/images/p.png"}
+                          src={"/images/P.png"}
                           className={`size-9 ${
                             isActive ? "grayscale-0" : "grayscale"
                           }`}

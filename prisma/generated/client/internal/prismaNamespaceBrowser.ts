@@ -53,7 +53,9 @@ export const ModelName = {
   Session: 'Session',
   FestivalPass: 'FestivalPass',
   Plan: 'Plan',
-  Membership: 'Membership'
+  Membership: 'Membership',
+  Preference: 'Preference',
+  Swipe: 'Swipe'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,11 +77,21 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   phone: 'phone',
-  phoneOtp: 'phoneOtp',
+  phoneOtpHash: 'phoneOtpHash',
+  phoneOtpExpiresAt: 'phoneOtpExpiresAt',
+  phoneVerified: 'phoneVerified',
+  email: 'email',
+  emailOtpHash: 'emailOtpHash',
+  emailOtpExpiresAt: 'emailOtpExpiresAt',
+  emailVerified: 'emailVerified',
   name: 'name',
   age: 'age',
   heightCm: 'heightCm',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  city: 'city',
   address: 'address',
+  health: 'health',
   eating: 'eating',
   gender: 'gender',
   orientation: 'orientation',
@@ -87,24 +99,18 @@ export const UserScalarFieldEnum = {
   company: 'company',
   jobRole: 'jobRole',
   salary: 'salary',
-  health: 'health',
   hobbies: 'hobbies',
   images: 'images',
   religion: 'religion',
   caste: 'caste',
-  email: 'email',
-  emailOtp: 'emailOtp',
-  emailVerified: 'emailVerified',
   idVerification: 'idVerification',
-  createdAt: 'createdAt',
-  isActive: 'isActive',
-  isHiddenByUser: 'isHiddenByUser',
-  lastActiveAt: 'lastActiveAt',
-  emailOtpExpiresAt: 'emailOtpExpiresAt',
   idVerificationRef: 'idVerificationRef',
   idVerificationStatus: 'idVerificationStatus',
-  phoneOtpExpiresAt: 'phoneOtpExpiresAt',
-  phoneVerified: 'phoneVerified'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isActive: 'isActive',
+  isHiddenByUser: 'isHiddenByUser',
+  lastActiveAt: 'lastActiveAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -157,6 +163,34 @@ export const MembershipScalarFieldEnum = {
 } as const
 
 export type MembershipScalarFieldEnum = (typeof MembershipScalarFieldEnum)[keyof typeof MembershipScalarFieldEnum]
+
+
+export const PreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  minAge: 'minAge',
+  maxAge: 'maxAge',
+  maxDistanceKm: 'maxDistanceKm',
+  religion: 'religion',
+  caste: 'caste',
+  isAgeStrict: 'isAgeStrict',
+  isDistanceStrict: 'isDistanceStrict',
+  isReligionStrict: 'isReligionStrict',
+  isCasteStrict: 'isCasteStrict'
+} as const
+
+export type PreferenceScalarFieldEnum = (typeof PreferenceScalarFieldEnum)[keyof typeof PreferenceScalarFieldEnum]
+
+
+export const SwipeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetUserId: 'targetUserId',
+  action: 'action',
+  createdAt: 'createdAt'
+} as const
+
+export type SwipeScalarFieldEnum = (typeof SwipeScalarFieldEnum)[keyof typeof SwipeScalarFieldEnum]
 
 
 export const SortOrder = {

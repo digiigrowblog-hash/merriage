@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
         status: "active",
         expiresAt,
       },
+
     });
 
     return NextResponse.json(membership, { status: 201 });
@@ -59,7 +60,6 @@ export async function POST(req: NextRequest) {
 }
 
 
-
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -68,7 +68,7 @@ export async function GET(req: NextRequest) {
     if (!userId) {
       return NextResponse.json(
         { error: "userId is required" },
-        { status: 400 }
+        { status: 400 } 
       );
     }
 
@@ -91,5 +91,6 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
 
 

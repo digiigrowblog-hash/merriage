@@ -42,3 +42,13 @@ export type Plan = Prisma.PlanModel
  * 
  */
 export type Membership = Prisma.MembershipModel
+/**
+ * Model Preference
+ * 
+ */
+export type Preference = Prisma.PreferenceModel
+/**
+ * Model Swipe
+ * 
+ */
+export type Swipe = Prisma.SwipeModel

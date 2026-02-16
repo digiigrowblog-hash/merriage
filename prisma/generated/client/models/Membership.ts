@@ -42,7 +42,7 @@ export type MembershipMinAggregateOutputType = {
   id: number | null
   userId: number | null
   planId: number | null
-  status: string | null
+  status: $Enums.MembershipStatus | null
   createdAt: Date | null
   expiresAt: Date | null
 }
@@ -51,7 +51,7 @@ export type MembershipMaxAggregateOutputType = {
   id: number | null
   userId: number | null
   planId: number | null
-  status: string | null
+  status: $Enums.MembershipStatus | null
   createdAt: Date | null
   expiresAt: Date | null
 }
@@ -197,7 +197,7 @@ export type MembershipGroupByOutputType = {
   id: number
   userId: number
   planId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt: Date
   expiresAt: Date
   _count: MembershipCountAggregateOutputType | null
@@ -229,7 +229,7 @@ export type MembershipWhereInput = {
   id?: Prisma.IntFilter<"Membership"> | number
   userId?: Prisma.IntFilter<"Membership"> | number
   planId?: Prisma.IntFilter<"Membership"> | number
-  status?: Prisma.StringFilter<"Membership"> | string
+  status?: Prisma.EnumMembershipStatusFilter<"Membership"> | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFilter<"Membership"> | Date | string
   expiresAt?: Prisma.DateTimeFilter<"Membership"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -249,18 +249,17 @@ export type MembershipOrderByWithRelationInput = {
 
 export type MembershipWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  userId_planId?: Prisma.MembershipUserIdPlanIdCompoundUniqueInput
   AND?: Prisma.MembershipWhereInput | Prisma.MembershipWhereInput[]
   OR?: Prisma.MembershipWhereInput[]
   NOT?: Prisma.MembershipWhereInput | Prisma.MembershipWhereInput[]
   userId?: Prisma.IntFilter<"Membership"> | number
   planId?: Prisma.IntFilter<"Membership"> | number
-  status?: Prisma.StringFilter<"Membership"> | string
+  status?: Prisma.EnumMembershipStatusFilter<"Membership"> | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFilter<"Membership"> | Date | string
   expiresAt?: Prisma.DateTimeFilter<"Membership"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-}, "id" | "userId_planId">
+}, "id">
 
 export type MembershipOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -283,13 +282,13 @@ export type MembershipScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Membership"> | number
   userId?: Prisma.IntWithAggregatesFilter<"Membership"> | number
   planId?: Prisma.IntWithAggregatesFilter<"Membership"> | number
-  status?: Prisma.StringWithAggregatesFilter<"Membership"> | string
+  status?: Prisma.EnumMembershipStatusWithAggregatesFilter<"Membership"> | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Membership"> | Date | string
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"Membership"> | Date | string
 }
 
 export type MembershipCreateInput = {
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
@@ -300,13 +299,13 @@ export type MembershipUncheckedCreateInput = {
   id?: number
   userId: number
   planId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
 }
 
 export type MembershipUpdateInput = {
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
@@ -317,7 +316,7 @@ export type MembershipUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   planId?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -326,13 +325,13 @@ export type MembershipCreateManyInput = {
   id?: number
   userId: number
   planId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
 }
 
 export type MembershipUpdateManyMutationInput = {
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -341,7 +340,7 @@ export type MembershipUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   planId?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -354,11 +353,6 @@ export type MembershipListRelationFilter = {
 
 export type MembershipOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type MembershipUserIdPlanIdCompoundUniqueInput = {
-  userId: number
-  planId: number
 }
 
 export type MembershipCountOrderByAggregateInput = {
@@ -484,8 +478,12 @@ export type MembershipUncheckedUpdateManyWithoutPlanNestedInput = {
   deleteMany?: Prisma.MembershipScalarWhereInput | Prisma.MembershipScalarWhereInput[]
 }
 
+export type EnumMembershipStatusFieldUpdateOperationsInput = {
+  set?: $Enums.MembershipStatus
+}
+
 export type MembershipCreateWithoutUserInput = {
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutMembershipsInput
@@ -494,7 +492,7 @@ export type MembershipCreateWithoutUserInput = {
 export type MembershipUncheckedCreateWithoutUserInput = {
   id?: number
   planId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
 }
@@ -532,13 +530,13 @@ export type MembershipScalarWhereInput = {
   id?: Prisma.IntFilter<"Membership"> | number
   userId?: Prisma.IntFilter<"Membership"> | number
   planId?: Prisma.IntFilter<"Membership"> | number
-  status?: Prisma.StringFilter<"Membership"> | string
+  status?: Prisma.EnumMembershipStatusFilter<"Membership"> | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFilter<"Membership"> | Date | string
   expiresAt?: Prisma.DateTimeFilter<"Membership"> | Date | string
 }
 
 export type MembershipCreateWithoutPlanInput = {
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
@@ -547,7 +545,7 @@ export type MembershipCreateWithoutPlanInput = {
 export type MembershipUncheckedCreateWithoutPlanInput = {
   id?: number
   userId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
 }
@@ -581,13 +579,13 @@ export type MembershipUpdateManyWithWhereWithoutPlanInput = {
 export type MembershipCreateManyUserInput = {
   id?: number
   planId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
 }
 
 export type MembershipUpdateWithoutUserInput = {
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutMembershipsNestedInput
@@ -596,7 +594,7 @@ export type MembershipUpdateWithoutUserInput = {
 export type MembershipUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   planId?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -604,7 +602,7 @@ export type MembershipUncheckedUpdateWithoutUserInput = {
 export type MembershipUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   planId?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -612,13 +610,13 @@ export type MembershipUncheckedUpdateManyWithoutUserInput = {
 export type MembershipCreateManyPlanInput = {
   id?: number
   userId: number
-  status: string
+  status: $Enums.MembershipStatus
   createdAt?: Date | string
   expiresAt: Date | string
 }
 
 export type MembershipUpdateWithoutPlanInput = {
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
@@ -627,7 +625,7 @@ export type MembershipUpdateWithoutPlanInput = {
 export type MembershipUncheckedUpdateWithoutPlanInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -635,7 +633,7 @@ export type MembershipUncheckedUpdateWithoutPlanInput = {
 export type MembershipUncheckedUpdateManyWithoutPlanInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -708,7 +706,7 @@ export type $MembershipPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: number
     userId: number
     planId: number
-    status: string
+    status: $Enums.MembershipStatus
     createdAt: Date
     expiresAt: Date
   }, ExtArgs["result"]["membership"]>
@@ -1139,7 +1137,7 @@ export interface MembershipFieldRefs {
   readonly id: Prisma.FieldRef<"Membership", 'Int'>
   readonly userId: Prisma.FieldRef<"Membership", 'Int'>
   readonly planId: Prisma.FieldRef<"Membership", 'Int'>
-  readonly status: Prisma.FieldRef<"Membership", 'String'>
+  readonly status: Prisma.FieldRef<"Membership", 'MembershipStatus'>
   readonly createdAt: Prisma.FieldRef<"Membership", 'DateTime'>
   readonly expiresAt: Prisma.FieldRef<"Membership", 'DateTime'>
 }

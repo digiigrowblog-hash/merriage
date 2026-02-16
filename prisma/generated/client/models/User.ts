@@ -30,6 +30,8 @@ export type UserAvgAggregateOutputType = {
   id: number | null
   age: number | null
   heightCm: number | null
+  latitude: number | null
+  longitude: number | null
   salary: number | null
 }
 
@@ -37,16 +39,27 @@ export type UserSumAggregateOutputType = {
   id: number | null
   age: number | null
   heightCm: number | null
+  latitude: number | null
+  longitude: number | null
   salary: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: number | null
   phone: string | null
-  phoneOtp: string | null
+  phoneOtpHash: string | null
+  phoneOtpExpiresAt: Date | null
+  phoneVerified: boolean | null
+  email: string | null
+  emailOtpHash: string | null
+  emailOtpExpiresAt: Date | null
+  emailVerified: boolean | null
   name: string | null
   age: number | null
   heightCm: number | null
+  latitude: number | null
+  longitude: number | null
+  city: string | null
   eating: string | null
   gender: string | null
   orientation: string | null
@@ -56,28 +69,32 @@ export type UserMinAggregateOutputType = {
   salary: number | null
   religion: string | null
   caste: string | null
-  email: string | null
-  emailOtp: string | null
-  emailVerified: boolean | null
   idVerification: $Enums.IdVerificationType | null
+  idVerificationRef: string | null
+  idVerificationStatus: string | null
   createdAt: Date | null
+  updatedAt: Date | null
   isActive: boolean | null
   isHiddenByUser: boolean | null
   lastActiveAt: Date | null
-  emailOtpExpiresAt: Date | null
-  idVerificationRef: string | null
-  idVerificationStatus: string | null
-  phoneOtpExpiresAt: Date | null
-  phoneVerified: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: number | null
   phone: string | null
-  phoneOtp: string | null
+  phoneOtpHash: string | null
+  phoneOtpExpiresAt: Date | null
+  phoneVerified: boolean | null
+  email: string | null
+  emailOtpHash: string | null
+  emailOtpExpiresAt: Date | null
+  emailVerified: boolean | null
   name: string | null
   age: number | null
   heightCm: number | null
+  latitude: number | null
+  longitude: number | null
+  city: string | null
   eating: string | null
   gender: string | null
   orientation: string | null
@@ -87,29 +104,34 @@ export type UserMaxAggregateOutputType = {
   salary: number | null
   religion: string | null
   caste: string | null
-  email: string | null
-  emailOtp: string | null
-  emailVerified: boolean | null
   idVerification: $Enums.IdVerificationType | null
+  idVerificationRef: string | null
+  idVerificationStatus: string | null
   createdAt: Date | null
+  updatedAt: Date | null
   isActive: boolean | null
   isHiddenByUser: boolean | null
   lastActiveAt: Date | null
-  emailOtpExpiresAt: Date | null
-  idVerificationRef: string | null
-  idVerificationStatus: string | null
-  phoneOtpExpiresAt: Date | null
-  phoneVerified: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
   phone: number
-  phoneOtp: number
+  phoneOtpHash: number
+  phoneOtpExpiresAt: number
+  phoneVerified: number
+  email: number
+  emailOtpHash: number
+  emailOtpExpiresAt: number
+  emailVerified: number
   name: number
   age: number
   heightCm: number
+  latitude: number
+  longitude: number
+  city: number
   address: number
+  health: number
   eating: number
   gender: number
   orientation: number
@@ -117,24 +139,18 @@ export type UserCountAggregateOutputType = {
   company: number
   jobRole: number
   salary: number
-  health: number
   hobbies: number
   images: number
   religion: number
   caste: number
-  email: number
-  emailOtp: number
-  emailVerified: number
   idVerification: number
+  idVerificationRef: number
+  idVerificationStatus: number
   createdAt: number
+  updatedAt: number
   isActive: number
   isHiddenByUser: number
   lastActiveAt: number
-  emailOtpExpiresAt: number
-  idVerificationRef: number
-  idVerificationStatus: number
-  phoneOtpExpiresAt: number
-  phoneVerified: number
   _all: number
 }
 
@@ -143,6 +159,8 @@ export type UserAvgAggregateInputType = {
   id?: true
   age?: true
   heightCm?: true
+  latitude?: true
+  longitude?: true
   salary?: true
 }
 
@@ -150,16 +168,27 @@ export type UserSumAggregateInputType = {
   id?: true
   age?: true
   heightCm?: true
+  latitude?: true
+  longitude?: true
   salary?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
   phone?: true
-  phoneOtp?: true
+  phoneOtpHash?: true
+  phoneOtpExpiresAt?: true
+  phoneVerified?: true
+  email?: true
+  emailOtpHash?: true
+  emailOtpExpiresAt?: true
+  emailVerified?: true
   name?: true
   age?: true
   heightCm?: true
+  latitude?: true
+  longitude?: true
+  city?: true
   eating?: true
   gender?: true
   orientation?: true
@@ -169,28 +198,32 @@ export type UserMinAggregateInputType = {
   salary?: true
   religion?: true
   caste?: true
-  email?: true
-  emailOtp?: true
-  emailVerified?: true
   idVerification?: true
+  idVerificationRef?: true
+  idVerificationStatus?: true
   createdAt?: true
+  updatedAt?: true
   isActive?: true
   isHiddenByUser?: true
   lastActiveAt?: true
-  emailOtpExpiresAt?: true
-  idVerificationRef?: true
-  idVerificationStatus?: true
-  phoneOtpExpiresAt?: true
-  phoneVerified?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
   phone?: true
-  phoneOtp?: true
+  phoneOtpHash?: true
+  phoneOtpExpiresAt?: true
+  phoneVerified?: true
+  email?: true
+  emailOtpHash?: true
+  emailOtpExpiresAt?: true
+  emailVerified?: true
   name?: true
   age?: true
   heightCm?: true
+  latitude?: true
+  longitude?: true
+  city?: true
   eating?: true
   gender?: true
   orientation?: true
@@ -200,29 +233,34 @@ export type UserMaxAggregateInputType = {
   salary?: true
   religion?: true
   caste?: true
-  email?: true
-  emailOtp?: true
-  emailVerified?: true
   idVerification?: true
+  idVerificationRef?: true
+  idVerificationStatus?: true
   createdAt?: true
+  updatedAt?: true
   isActive?: true
   isHiddenByUser?: true
   lastActiveAt?: true
-  emailOtpExpiresAt?: true
-  idVerificationRef?: true
-  idVerificationStatus?: true
-  phoneOtpExpiresAt?: true
-  phoneVerified?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
   phone?: true
-  phoneOtp?: true
+  phoneOtpHash?: true
+  phoneOtpExpiresAt?: true
+  phoneVerified?: true
+  email?: true
+  emailOtpHash?: true
+  emailOtpExpiresAt?: true
+  emailVerified?: true
   name?: true
   age?: true
   heightCm?: true
+  latitude?: true
+  longitude?: true
+  city?: true
   address?: true
+  health?: true
   eating?: true
   gender?: true
   orientation?: true
@@ -230,24 +268,18 @@ export type UserCountAggregateInputType = {
   company?: true
   jobRole?: true
   salary?: true
-  health?: true
   hobbies?: true
   images?: true
   religion?: true
   caste?: true
-  email?: true
-  emailOtp?: true
-  emailVerified?: true
   idVerification?: true
+  idVerificationRef?: true
+  idVerificationStatus?: true
   createdAt?: true
+  updatedAt?: true
   isActive?: true
   isHiddenByUser?: true
   lastActiveAt?: true
-  emailOtpExpiresAt?: true
-  idVerificationRef?: true
-  idVerificationStatus?: true
-  phoneOtpExpiresAt?: true
-  phoneVerified?: true
   _all?: true
 }
 
@@ -340,11 +372,21 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: number
   phone: string
-  phoneOtp: string
+  phoneOtpHash: string | null
+  phoneOtpExpiresAt: Date | null
+  phoneVerified: boolean
+  email: string
+  emailOtpHash: string | null
+  emailOtpExpiresAt: Date | null
+  emailVerified: boolean
   name: string
   age: number
   heightCm: number | null
+  latitude: number | null
+  longitude: number | null
+  city: string
   address: runtime.JsonValue
+  health: runtime.JsonValue
   eating: string
   gender: string
   orientation: string
@@ -352,24 +394,18 @@ export type UserGroupByOutputType = {
   company: string | null
   jobRole: string | null
   salary: number | null
-  health: runtime.JsonValue
   hobbies: string[]
   images: string[]
   religion: string
   caste: string
-  email: string
-  emailOtp: string | null
-  emailVerified: boolean
   idVerification: $Enums.IdVerificationType | null
+  idVerificationRef: string | null
+  idVerificationStatus: string | null
   createdAt: Date
+  updatedAt: Date
   isActive: boolean
   isHiddenByUser: boolean
   lastActiveAt: Date | null
-  emailOtpExpiresAt: Date | null
-  idVerificationRef: string | null
-  idVerificationStatus: string | null
-  phoneOtpExpiresAt: Date | null
-  phoneVerified: boolean
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -398,11 +434,21 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.IntFilter<"User"> | number
   phone?: Prisma.StringFilter<"User"> | string
-  phoneOtp?: Prisma.StringFilter<"User"> | string
+  phoneOtpHash?: Prisma.StringNullableFilter<"User"> | string | null
+  phoneOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phoneVerified?: Prisma.BoolFilter<"User"> | boolean
+  email?: Prisma.StringFilter<"User"> | string
+  emailOtpHash?: Prisma.StringNullableFilter<"User"> | string | null
+  emailOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   name?: Prisma.StringFilter<"User"> | string
   age?: Prisma.IntFilter<"User"> | number
   heightCm?: Prisma.FloatNullableFilter<"User"> | number | null
+  latitude?: Prisma.FloatNullableFilter<"User"> | number | null
+  longitude?: Prisma.FloatNullableFilter<"User"> | number | null
+  city?: Prisma.StringFilter<"User"> | string
   address?: Prisma.JsonFilter<"User">
+  health?: Prisma.JsonFilter<"User">
   eating?: Prisma.StringFilter<"User"> | string
   gender?: Prisma.StringFilter<"User"> | string
   orientation?: Prisma.StringFilter<"User"> | string
@@ -410,37 +456,44 @@ export type UserWhereInput = {
   company?: Prisma.StringNullableFilter<"User"> | string | null
   jobRole?: Prisma.StringNullableFilter<"User"> | string | null
   salary?: Prisma.FloatNullableFilter<"User"> | number | null
-  health?: Prisma.JsonFilter<"User">
   hobbies?: Prisma.StringNullableListFilter<"User">
   images?: Prisma.StringNullableListFilter<"User">
   religion?: Prisma.StringFilter<"User"> | string
   caste?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  emailOtp?: Prisma.StringNullableFilter<"User"> | string | null
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   idVerification?: Prisma.EnumIdVerificationTypeNullableFilter<"User"> | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.StringNullableFilter<"User"> | string | null
+  idVerificationStatus?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
   isHiddenByUser?: Prisma.BoolFilter<"User"> | boolean
   lastActiveAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  emailOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  idVerificationRef?: Prisma.StringNullableFilter<"User"> | string | null
-  idVerificationStatus?: Prisma.StringNullableFilter<"User"> | string | null
-  phoneOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  phoneVerified?: Prisma.BoolFilter<"User"> | boolean
   sessions?: Prisma.SessionListRelationFilter
   festivalPasses?: Prisma.FestivalPassListRelationFilter
   memberships?: Prisma.MembershipListRelationFilter
+  preferences?: Prisma.XOR<Prisma.PreferenceNullableScalarRelationFilter, Prisma.PreferenceWhereInput> | null
+  swipesGiven?: Prisma.SwipeListRelationFilter
+  swipesReceived?: Prisma.SwipeListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  phoneOtp?: Prisma.SortOrder
+  phoneOtpHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneVerified?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  emailOtpHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrderInput | Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  health?: Prisma.SortOrder
   eating?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   orientation?: Prisma.SortOrder
@@ -448,27 +501,24 @@ export type UserOrderByWithRelationInput = {
   company?: Prisma.SortOrderInput | Prisma.SortOrder
   jobRole?: Prisma.SortOrderInput | Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
-  health?: Prisma.SortOrder
   hobbies?: Prisma.SortOrder
   images?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   caste?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  emailOtp?: Prisma.SortOrderInput | Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   idVerification?: Prisma.SortOrderInput | Prisma.SortOrder
+  idVerificationRef?: Prisma.SortOrderInput | Prisma.SortOrder
+  idVerificationStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isHiddenByUser?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  emailOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  idVerificationRef?: Prisma.SortOrderInput | Prisma.SortOrder
-  idVerificationStatus?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneVerified?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   festivalPasses?: Prisma.FestivalPassOrderByRelationAggregateInput
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
+  preferences?: Prisma.PreferenceOrderByWithRelationInput
+  swipesGiven?: Prisma.SwipeOrderByRelationAggregateInput
+  swipesReceived?: Prisma.SwipeOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -478,11 +528,20 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  phoneOtp?: Prisma.StringFilter<"User"> | string
+  phoneOtpHash?: Prisma.StringNullableFilter<"User"> | string | null
+  phoneOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phoneVerified?: Prisma.BoolFilter<"User"> | boolean
+  emailOtpHash?: Prisma.StringNullableFilter<"User"> | string | null
+  emailOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   name?: Prisma.StringFilter<"User"> | string
   age?: Prisma.IntFilter<"User"> | number
   heightCm?: Prisma.FloatNullableFilter<"User"> | number | null
+  latitude?: Prisma.FloatNullableFilter<"User"> | number | null
+  longitude?: Prisma.FloatNullableFilter<"User"> | number | null
+  city?: Prisma.StringFilter<"User"> | string
   address?: Prisma.JsonFilter<"User">
+  health?: Prisma.JsonFilter<"User">
   eating?: Prisma.StringFilter<"User"> | string
   gender?: Prisma.StringFilter<"User"> | string
   orientation?: Prisma.StringFilter<"User"> | string
@@ -490,36 +549,44 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   company?: Prisma.StringNullableFilter<"User"> | string | null
   jobRole?: Prisma.StringNullableFilter<"User"> | string | null
   salary?: Prisma.FloatNullableFilter<"User"> | number | null
-  health?: Prisma.JsonFilter<"User">
   hobbies?: Prisma.StringNullableListFilter<"User">
   images?: Prisma.StringNullableListFilter<"User">
   religion?: Prisma.StringFilter<"User"> | string
   caste?: Prisma.StringFilter<"User"> | string
-  emailOtp?: Prisma.StringNullableFilter<"User"> | string | null
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   idVerification?: Prisma.EnumIdVerificationTypeNullableFilter<"User"> | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.StringNullableFilter<"User"> | string | null
+  idVerificationStatus?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
   isHiddenByUser?: Prisma.BoolFilter<"User"> | boolean
   lastActiveAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  emailOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  idVerificationRef?: Prisma.StringNullableFilter<"User"> | string | null
-  idVerificationStatus?: Prisma.StringNullableFilter<"User"> | string | null
-  phoneOtpExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  phoneVerified?: Prisma.BoolFilter<"User"> | boolean
   sessions?: Prisma.SessionListRelationFilter
   festivalPasses?: Prisma.FestivalPassListRelationFilter
   memberships?: Prisma.MembershipListRelationFilter
+  preferences?: Prisma.XOR<Prisma.PreferenceNullableScalarRelationFilter, Prisma.PreferenceWhereInput> | null
+  swipesGiven?: Prisma.SwipeListRelationFilter
+  swipesReceived?: Prisma.SwipeListRelationFilter
 }, "id" | "phone" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  phoneOtp?: Prisma.SortOrder
+  phoneOtpHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneVerified?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  emailOtpHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrderInput | Prisma.SortOrder
+  latitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  longitude?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  health?: Prisma.SortOrder
   eating?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   orientation?: Prisma.SortOrder
@@ -527,24 +594,18 @@ export type UserOrderByWithAggregationInput = {
   company?: Prisma.SortOrderInput | Prisma.SortOrder
   jobRole?: Prisma.SortOrderInput | Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
-  health?: Prisma.SortOrder
   hobbies?: Prisma.SortOrder
   images?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   caste?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  emailOtp?: Prisma.SortOrderInput | Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   idVerification?: Prisma.SortOrderInput | Prisma.SortOrder
+  idVerificationRef?: Prisma.SortOrderInput | Prisma.SortOrder
+  idVerificationStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isHiddenByUser?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  emailOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  idVerificationRef?: Prisma.SortOrderInput | Prisma.SortOrder
-  idVerificationStatus?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneOtpExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneVerified?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -558,11 +619,21 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
   phone?: Prisma.StringWithAggregatesFilter<"User"> | string
-  phoneOtp?: Prisma.StringWithAggregatesFilter<"User"> | string
+  phoneOtpHash?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  phoneOtpExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  phoneVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  email?: Prisma.StringWithAggregatesFilter<"User"> | string
+  emailOtpHash?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  emailOtpExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   age?: Prisma.IntWithAggregatesFilter<"User"> | number
   heightCm?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  latitude?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  longitude?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  city?: Prisma.StringWithAggregatesFilter<"User"> | string
   address?: Prisma.JsonWithAggregatesFilter<"User">
+  health?: Prisma.JsonWithAggregatesFilter<"User">
   eating?: Prisma.StringWithAggregatesFilter<"User"> | string
   gender?: Prisma.StringWithAggregatesFilter<"User"> | string
   orientation?: Prisma.StringWithAggregatesFilter<"User"> | string
@@ -570,33 +641,37 @@ export type UserScalarWhereWithAggregatesInput = {
   company?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   jobRole?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   salary?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
-  health?: Prisma.JsonWithAggregatesFilter<"User">
   hobbies?: Prisma.StringNullableListFilter<"User">
   images?: Prisma.StringNullableListFilter<"User">
   religion?: Prisma.StringWithAggregatesFilter<"User"> | string
   caste?: Prisma.StringWithAggregatesFilter<"User"> | string
-  email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  emailOtp?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   idVerification?: Prisma.EnumIdVerificationTypeNullableWithAggregatesFilter<"User"> | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  idVerificationStatus?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   isHiddenByUser?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   lastActiveAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  emailOtpExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  idVerificationRef?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  idVerificationStatus?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  phoneOtpExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  phoneVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -604,37 +679,44 @@ export type UserCreateInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: number
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -642,36 +724,43 @@ export type UserUncheckedCreateInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceUncheckedCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeUncheckedCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeUncheckedCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -679,37 +768,44 @@ export type UserUpdateInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -717,37 +813,44 @@ export type UserUncheckedUpdateInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUncheckedUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUncheckedUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUncheckedUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: number
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -755,33 +858,37 @@ export type UserCreateManyInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -789,34 +896,38 @@ export type UserUpdateManyMutationInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -824,24 +935,18 @@ export type UserUncheckedUpdateManyInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -855,11 +960,21 @@ export type StringNullableListFilter<$PrismaModel = never> = {
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  phoneOtp?: Prisma.SortOrder
+  phoneOtpHash?: Prisma.SortOrder
+  phoneOtpExpiresAt?: Prisma.SortOrder
+  phoneVerified?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  emailOtpHash?: Prisma.SortOrder
+  emailOtpExpiresAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
+  city?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  health?: Prisma.SortOrder
   eating?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   orientation?: Prisma.SortOrder
@@ -867,40 +982,45 @@ export type UserCountOrderByAggregateInput = {
   company?: Prisma.SortOrder
   jobRole?: Prisma.SortOrder
   salary?: Prisma.SortOrder
-  health?: Prisma.SortOrder
   hobbies?: Prisma.SortOrder
   images?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   caste?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  emailOtp?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   idVerification?: Prisma.SortOrder
+  idVerificationRef?: Prisma.SortOrder
+  idVerificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isHiddenByUser?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrder
-  emailOtpExpiresAt?: Prisma.SortOrder
-  idVerificationRef?: Prisma.SortOrder
-  idVerificationStatus?: Prisma.SortOrder
-  phoneOtpExpiresAt?: Prisma.SortOrder
-  phoneVerified?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   salary?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  phoneOtp?: Prisma.SortOrder
+  phoneOtpHash?: Prisma.SortOrder
+  phoneOtpExpiresAt?: Prisma.SortOrder
+  phoneVerified?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  emailOtpHash?: Prisma.SortOrder
+  emailOtpExpiresAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
+  city?: Prisma.SortOrder
   eating?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   orientation?: Prisma.SortOrder
@@ -910,28 +1030,32 @@ export type UserMaxOrderByAggregateInput = {
   salary?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   caste?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  emailOtp?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   idVerification?: Prisma.SortOrder
+  idVerificationRef?: Prisma.SortOrder
+  idVerificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isHiddenByUser?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrder
-  emailOtpExpiresAt?: Prisma.SortOrder
-  idVerificationRef?: Prisma.SortOrder
-  idVerificationStatus?: Prisma.SortOrder
-  phoneOtpExpiresAt?: Prisma.SortOrder
-  phoneVerified?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  phoneOtp?: Prisma.SortOrder
+  phoneOtpHash?: Prisma.SortOrder
+  phoneOtpExpiresAt?: Prisma.SortOrder
+  phoneVerified?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  emailOtpHash?: Prisma.SortOrder
+  emailOtpExpiresAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
   name?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
+  city?: Prisma.SortOrder
   eating?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   orientation?: Prisma.SortOrder
@@ -941,25 +1065,22 @@ export type UserMinOrderByAggregateInput = {
   salary?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   caste?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  emailOtp?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   idVerification?: Prisma.SortOrder
+  idVerificationRef?: Prisma.SortOrder
+  idVerificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isHiddenByUser?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrder
-  emailOtpExpiresAt?: Prisma.SortOrder
-  idVerificationRef?: Prisma.SortOrder
-  idVerificationStatus?: Prisma.SortOrder
-  phoneOtpExpiresAt?: Prisma.SortOrder
-  phoneVerified?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  latitude?: Prisma.SortOrder
+  longitude?: Prisma.SortOrder
   salary?: Prisma.SortOrder
 }
 
@@ -980,6 +1101,18 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -996,10 +1129,6 @@ export type NullableFloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type UserUpdatehobbiesInput = {
   set?: string[]
   push?: string | string[]
@@ -1010,20 +1139,12 @@ export type UserUpdateimagesInput = {
   push?: string | string[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type NullableEnumIdVerificationTypeFieldUpdateOperationsInput = {
   set?: $Enums.IdVerificationType | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -1068,13 +1189,65 @@ export type UserUpdateOneRequiredWithoutMembershipsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMembershipsInput, Prisma.UserUpdateWithoutMembershipsInput>, Prisma.UserUncheckedUpdateWithoutMembershipsInput>
 }
 
+export type UserCreateNestedOneWithoutPreferencesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPreferencesInput, Prisma.UserUncheckedCreateWithoutPreferencesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPreferencesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPreferencesInput, Prisma.UserUncheckedCreateWithoutPreferencesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPreferencesInput
+  upsert?: Prisma.UserUpsertWithoutPreferencesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPreferencesInput, Prisma.UserUpdateWithoutPreferencesInput>, Prisma.UserUncheckedUpdateWithoutPreferencesInput>
+}
+
+export type UserCreateNestedOneWithoutSwipesGivenInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSwipesGivenInput, Prisma.UserUncheckedCreateWithoutSwipesGivenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSwipesGivenInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutSwipesReceivedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSwipesReceivedInput, Prisma.UserUncheckedCreateWithoutSwipesReceivedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSwipesReceivedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSwipesGivenNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSwipesGivenInput, Prisma.UserUncheckedCreateWithoutSwipesGivenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSwipesGivenInput
+  upsert?: Prisma.UserUpsertWithoutSwipesGivenInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSwipesGivenInput, Prisma.UserUpdateWithoutSwipesGivenInput>, Prisma.UserUncheckedUpdateWithoutSwipesGivenInput>
+}
+
+export type UserUpdateOneRequiredWithoutSwipesReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSwipesReceivedInput, Prisma.UserUncheckedCreateWithoutSwipesReceivedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSwipesReceivedInput
+  upsert?: Prisma.UserUpsertWithoutSwipesReceivedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSwipesReceivedInput, Prisma.UserUpdateWithoutSwipesReceivedInput>, Prisma.UserUncheckedUpdateWithoutSwipesReceivedInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -1082,36 +1255,43 @@ export type UserCreateWithoutSessionsInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
   id?: number
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -1119,26 +1299,23 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceUncheckedCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeUncheckedCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeUncheckedCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1159,11 +1336,21 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 
 export type UserUpdateWithoutSessionsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1171,36 +1358,43 @@ export type UserUpdateWithoutSessionsInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1208,35 +1402,42 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUncheckedUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUncheckedUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUncheckedUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserCreateWithoutFestivalPassesInput = {
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -1244,36 +1445,43 @@ export type UserCreateWithoutFestivalPassesInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserUncheckedCreateWithoutFestivalPassesInput = {
   id?: number
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -1281,26 +1489,23 @@ export type UserUncheckedCreateWithoutFestivalPassesInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceUncheckedCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeUncheckedCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeUncheckedCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserCreateOrConnectWithoutFestivalPassesInput = {
@@ -1321,11 +1526,21 @@ export type UserUpdateToOneWithWhereWithoutFestivalPassesInput = {
 
 export type UserUpdateWithoutFestivalPassesInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1333,36 +1548,43 @@ export type UserUpdateWithoutFestivalPassesInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFestivalPassesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1370,35 +1592,42 @@ export type UserUncheckedUpdateWithoutFestivalPassesInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUncheckedUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUncheckedUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUncheckedUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -1406,36 +1635,43 @@ export type UserCreateWithoutMembershipsInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
   id?: number
   phone: string
-  phoneOtp: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
   name: string
   age: number
   heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
   address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating: string
   gender: string
   orientation: string
@@ -1443,26 +1679,23 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   company?: string | null
   jobRole?: string | null
   salary?: number | null
-  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserCreatehobbiesInput | string[]
   images?: Prisma.UserCreateimagesInput | string[]
   religion: string
   caste: string
-  email: string
-  emailOtp?: string | null
-  emailVerified?: boolean
   idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: Date | string | null
-  emailOtpExpiresAt?: Date | string | null
-  idVerificationRef?: string | null
-  idVerificationStatus?: string | null
-  phoneOtpExpiresAt?: Date | string | null
-  phoneVerified?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceUncheckedCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeUncheckedCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeUncheckedCreateNestedManyWithoutTargetUserInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1483,11 +1716,21 @@ export type UserUpdateToOneWithWhereWithoutMembershipsInput = {
 
 export type UserUpdateWithoutMembershipsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1495,36 +1738,43 @@ export type UserUpdateWithoutMembershipsInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUpdateManyWithoutTargetUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneOtp?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
   heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   eating?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   orientation?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1532,26 +1782,593 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   hobbies?: Prisma.UserUpdatehobbiesInput | string[]
   images?: Prisma.UserUpdateimagesInput | string[]
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   caste?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUncheckedUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUncheckedUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUncheckedUpdateManyWithoutTargetUserNestedInput
+}
+
+export type UserCreateWithoutPreferencesInput = {
+  phone: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
+  name: string
+  age: number
+  heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  swipesGiven?: Prisma.SwipeCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeCreateNestedManyWithoutTargetUserInput
+}
+
+export type UserUncheckedCreateWithoutPreferencesInput = {
+  id?: number
+  phone: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
+  name: string
+  age: number
+  heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  swipesGiven?: Prisma.SwipeUncheckedCreateNestedManyWithoutUserInput
+  swipesReceived?: Prisma.SwipeUncheckedCreateNestedManyWithoutTargetUserInput
+}
+
+export type UserCreateOrConnectWithoutPreferencesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPreferencesInput, Prisma.UserUncheckedCreateWithoutPreferencesInput>
+}
+
+export type UserUpsertWithoutPreferencesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPreferencesInput, Prisma.UserUncheckedUpdateWithoutPreferencesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPreferencesInput, Prisma.UserUncheckedCreateWithoutPreferencesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPreferencesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPreferencesInput, Prisma.UserUncheckedUpdateWithoutPreferencesInput>
+}
+
+export type UserUpdateWithoutPreferencesInput = {
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUpdateManyWithoutTargetUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPreferencesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUncheckedUpdateManyWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUncheckedUpdateManyWithoutTargetUserNestedInput
+}
+
+export type UserCreateWithoutSwipesGivenInput = {
+  phone: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
+  name: string
+  age: number
+  heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceCreateNestedOneWithoutUserInput
+  swipesReceived?: Prisma.SwipeCreateNestedManyWithoutTargetUserInput
+}
+
+export type UserUncheckedCreateWithoutSwipesGivenInput = {
+  id?: number
+  phone: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
+  name: string
+  age: number
+  heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceUncheckedCreateNestedOneWithoutUserInput
+  swipesReceived?: Prisma.SwipeUncheckedCreateNestedManyWithoutTargetUserInput
+}
+
+export type UserCreateOrConnectWithoutSwipesGivenInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSwipesGivenInput, Prisma.UserUncheckedCreateWithoutSwipesGivenInput>
+}
+
+export type UserCreateWithoutSwipesReceivedInput = {
+  phone: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
+  name: string
+  age: number
+  heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSwipesReceivedInput = {
+  id?: number
+  phone: string
+  phoneOtpHash?: string | null
+  phoneOtpExpiresAt?: Date | string | null
+  phoneVerified?: boolean
+  email: string
+  emailOtpHash?: string | null
+  emailOtpExpiresAt?: Date | string | null
+  emailVerified?: boolean
+  name: string
+  age: number
+  heightCm?: number | null
+  latitude?: number | null
+  longitude?: number | null
+  city: string
+  address: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating: string
+  gender: string
+  orientation: string
+  preference: string
+  company?: string | null
+  jobRole?: string | null
+  salary?: number | null
+  hobbies?: Prisma.UserCreatehobbiesInput | string[]
+  images?: Prisma.UserCreateimagesInput | string[]
+  religion: string
+  caste: string
+  idVerification?: $Enums.IdVerificationType | null
+  idVerificationRef?: string | null
+  idVerificationStatus?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isActive?: boolean
+  isHiddenByUser?: boolean
+  lastActiveAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  festivalPasses?: Prisma.FestivalPassUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferenceUncheckedCreateNestedOneWithoutUserInput
+  swipesGiven?: Prisma.SwipeUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSwipesReceivedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSwipesReceivedInput, Prisma.UserUncheckedCreateWithoutSwipesReceivedInput>
+}
+
+export type UserUpsertWithoutSwipesGivenInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSwipesGivenInput, Prisma.UserUncheckedUpdateWithoutSwipesGivenInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSwipesGivenInput, Prisma.UserUncheckedCreateWithoutSwipesGivenInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSwipesGivenInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSwipesGivenInput, Prisma.UserUncheckedUpdateWithoutSwipesGivenInput>
+}
+
+export type UserUpdateWithoutSwipesGivenInput = {
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUpdateOneWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUpdateManyWithoutTargetUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSwipesGivenInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUncheckedUpdateOneWithoutUserNestedInput
+  swipesReceived?: Prisma.SwipeUncheckedUpdateManyWithoutTargetUserNestedInput
+}
+
+export type UserUpsertWithoutSwipesReceivedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSwipesReceivedInput, Prisma.UserUncheckedUpdateWithoutSwipesReceivedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSwipesReceivedInput, Prisma.UserUncheckedCreateWithoutSwipesReceivedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSwipesReceivedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSwipesReceivedInput, Prisma.UserUncheckedUpdateWithoutSwipesReceivedInput>
+}
+
+export type UserUpdateWithoutSwipesReceivedInput = {
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSwipesReceivedInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailOtpHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOtpExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
+  heightCm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  health?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  eating?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  orientation?: Prisma.StringFieldUpdateOperationsInput | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  hobbies?: Prisma.UserUpdatehobbiesInput | string[]
+  images?: Prisma.UserUpdateimagesInput | string[]
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  caste?: Prisma.StringFieldUpdateOperationsInput | string
+  idVerification?: Prisma.NullableEnumIdVerificationTypeFieldUpdateOperationsInput | $Enums.IdVerificationType | null
+  idVerificationRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idVerificationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHiddenByUser?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  festivalPasses?: Prisma.FestivalPassUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferenceUncheckedUpdateOneWithoutUserNestedInput
+  swipesGiven?: Prisma.SwipeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1563,12 +2380,16 @@ export type UserCountOutputType = {
   sessions: number
   festivalPasses: number
   memberships: number
+  swipesGiven: number
+  swipesReceived: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   festivalPasses?: boolean | UserCountOutputTypeCountFestivalPassesArgs
   memberships?: boolean | UserCountOutputTypeCountMembershipsArgs
+  swipesGiven?: boolean | UserCountOutputTypeCountSwipesGivenArgs
+  swipesReceived?: boolean | UserCountOutputTypeCountSwipesReceivedArgs
 }
 
 /**
@@ -1602,15 +2423,39 @@ export type UserCountOutputTypeCountMembershipsArgs<ExtArgs extends runtime.Type
   where?: Prisma.MembershipWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSwipesGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SwipeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSwipesReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SwipeWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   phone?: boolean
-  phoneOtp?: boolean
+  phoneOtpHash?: boolean
+  phoneOtpExpiresAt?: boolean
+  phoneVerified?: boolean
+  email?: boolean
+  emailOtpHash?: boolean
+  emailOtpExpiresAt?: boolean
+  emailVerified?: boolean
   name?: boolean
   age?: boolean
   heightCm?: boolean
+  latitude?: boolean
+  longitude?: boolean
+  city?: boolean
   address?: boolean
+  health?: boolean
   eating?: boolean
   gender?: boolean
   orientation?: boolean
@@ -1618,38 +2463,45 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   company?: boolean
   jobRole?: boolean
   salary?: boolean
-  health?: boolean
   hobbies?: boolean
   images?: boolean
   religion?: boolean
   caste?: boolean
-  email?: boolean
-  emailOtp?: boolean
-  emailVerified?: boolean
   idVerification?: boolean
+  idVerificationRef?: boolean
+  idVerificationStatus?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: boolean
-  emailOtpExpiresAt?: boolean
-  idVerificationRef?: boolean
-  idVerificationStatus?: boolean
-  phoneOtpExpiresAt?: boolean
-  phoneVerified?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   festivalPasses?: boolean | Prisma.User$festivalPassesArgs<ExtArgs>
   memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
+  preferences?: boolean | Prisma.User$preferencesArgs<ExtArgs>
+  swipesGiven?: boolean | Prisma.User$swipesGivenArgs<ExtArgs>
+  swipesReceived?: boolean | Prisma.User$swipesReceivedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   phone?: boolean
-  phoneOtp?: boolean
+  phoneOtpHash?: boolean
+  phoneOtpExpiresAt?: boolean
+  phoneVerified?: boolean
+  email?: boolean
+  emailOtpHash?: boolean
+  emailOtpExpiresAt?: boolean
+  emailVerified?: boolean
   name?: boolean
   age?: boolean
   heightCm?: boolean
+  latitude?: boolean
+  longitude?: boolean
+  city?: boolean
   address?: boolean
+  health?: boolean
   eating?: boolean
   gender?: boolean
   orientation?: boolean
@@ -1657,34 +2509,38 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   company?: boolean
   jobRole?: boolean
   salary?: boolean
-  health?: boolean
   hobbies?: boolean
   images?: boolean
   religion?: boolean
   caste?: boolean
-  email?: boolean
-  emailOtp?: boolean
-  emailVerified?: boolean
   idVerification?: boolean
+  idVerificationRef?: boolean
+  idVerificationStatus?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: boolean
-  emailOtpExpiresAt?: boolean
-  idVerificationRef?: boolean
-  idVerificationStatus?: boolean
-  phoneOtpExpiresAt?: boolean
-  phoneVerified?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   phone?: boolean
-  phoneOtp?: boolean
+  phoneOtpHash?: boolean
+  phoneOtpExpiresAt?: boolean
+  phoneVerified?: boolean
+  email?: boolean
+  emailOtpHash?: boolean
+  emailOtpExpiresAt?: boolean
+  emailVerified?: boolean
   name?: boolean
   age?: boolean
   heightCm?: boolean
+  latitude?: boolean
+  longitude?: boolean
+  city?: boolean
   address?: boolean
+  health?: boolean
   eating?: boolean
   gender?: boolean
   orientation?: boolean
@@ -1692,34 +2548,38 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   company?: boolean
   jobRole?: boolean
   salary?: boolean
-  health?: boolean
   hobbies?: boolean
   images?: boolean
   religion?: boolean
   caste?: boolean
-  email?: boolean
-  emailOtp?: boolean
-  emailVerified?: boolean
   idVerification?: boolean
+  idVerificationRef?: boolean
+  idVerificationStatus?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: boolean
-  emailOtpExpiresAt?: boolean
-  idVerificationRef?: boolean
-  idVerificationStatus?: boolean
-  phoneOtpExpiresAt?: boolean
-  phoneVerified?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
   phone?: boolean
-  phoneOtp?: boolean
+  phoneOtpHash?: boolean
+  phoneOtpExpiresAt?: boolean
+  phoneVerified?: boolean
+  email?: boolean
+  emailOtpHash?: boolean
+  emailOtpExpiresAt?: boolean
+  emailVerified?: boolean
   name?: boolean
   age?: boolean
   heightCm?: boolean
+  latitude?: boolean
+  longitude?: boolean
+  city?: boolean
   address?: boolean
+  health?: boolean
   eating?: boolean
   gender?: boolean
   orientation?: boolean
@@ -1727,31 +2587,28 @@ export type UserSelectScalar = {
   company?: boolean
   jobRole?: boolean
   salary?: boolean
-  health?: boolean
   hobbies?: boolean
   images?: boolean
   religion?: boolean
   caste?: boolean
-  email?: boolean
-  emailOtp?: boolean
-  emailVerified?: boolean
   idVerification?: boolean
+  idVerificationRef?: boolean
+  idVerificationStatus?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   isActive?: boolean
   isHiddenByUser?: boolean
   lastActiveAt?: boolean
-  emailOtpExpiresAt?: boolean
-  idVerificationRef?: boolean
-  idVerificationStatus?: boolean
-  phoneOtpExpiresAt?: boolean
-  phoneVerified?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "phone" | "phoneOtp" | "name" | "age" | "heightCm" | "address" | "eating" | "gender" | "orientation" | "preference" | "company" | "jobRole" | "salary" | "health" | "hobbies" | "images" | "religion" | "caste" | "email" | "emailOtp" | "emailVerified" | "idVerification" | "createdAt" | "isActive" | "isHiddenByUser" | "lastActiveAt" | "emailOtpExpiresAt" | "idVerificationRef" | "idVerificationStatus" | "phoneOtpExpiresAt" | "phoneVerified", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "phone" | "phoneOtpHash" | "phoneOtpExpiresAt" | "phoneVerified" | "email" | "emailOtpHash" | "emailOtpExpiresAt" | "emailVerified" | "name" | "age" | "heightCm" | "latitude" | "longitude" | "city" | "address" | "health" | "eating" | "gender" | "orientation" | "preference" | "company" | "jobRole" | "salary" | "hobbies" | "images" | "religion" | "caste" | "idVerification" | "idVerificationRef" | "idVerificationStatus" | "createdAt" | "updatedAt" | "isActive" | "isHiddenByUser" | "lastActiveAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   festivalPasses?: boolean | Prisma.User$festivalPassesArgs<ExtArgs>
   memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
+  preferences?: boolean | Prisma.User$preferencesArgs<ExtArgs>
+  swipesGiven?: boolean | Prisma.User$swipesGivenArgs<ExtArgs>
+  swipesReceived?: boolean | Prisma.User$swipesReceivedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1760,18 +2617,35 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    /**
+     * ///////////////////
+     * ///////////////////
+     */
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     festivalPasses: Prisma.$FestivalPassPayload<ExtArgs>[]
     memberships: Prisma.$MembershipPayload<ExtArgs>[]
+    preferences: Prisma.$PreferencePayload<ExtArgs> | null
+    swipesGiven: Prisma.$SwipePayload<ExtArgs>[]
+    swipesReceived: Prisma.$SwipePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     phone: string
-    phoneOtp: string
+    phoneOtpHash: string | null
+    phoneOtpExpiresAt: Date | null
+    phoneVerified: boolean
+    email: string
+    emailOtpHash: string | null
+    emailOtpExpiresAt: Date | null
+    emailVerified: boolean
     name: string
     age: number
     heightCm: number | null
+    latitude: number | null
+    longitude: number | null
+    city: string
     address: runtime.JsonValue
+    health: runtime.JsonValue
     eating: string
     gender: string
     orientation: string
@@ -1779,24 +2653,18 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     company: string | null
     jobRole: string | null
     salary: number | null
-    health: runtime.JsonValue
     hobbies: string[]
     images: string[]
     religion: string
     caste: string
-    email: string
-    emailOtp: string | null
-    emailVerified: boolean
     idVerification: $Enums.IdVerificationType | null
+    idVerificationRef: string | null
+    idVerificationStatus: string | null
     createdAt: Date
+    updatedAt: Date
     isActive: boolean
     isHiddenByUser: boolean
     lastActiveAt: Date | null
-    emailOtpExpiresAt: Date | null
-    idVerificationRef: string | null
-    idVerificationStatus: string | null
-    phoneOtpExpiresAt: Date | null
-    phoneVerified: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2194,6 +3062,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   festivalPasses<T extends Prisma.User$festivalPassesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$festivalPassesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FestivalPassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberships<T extends Prisma.User$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  preferences<T extends Prisma.User$preferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$preferencesArgs<ExtArgs>>): Prisma.Prisma__PreferenceClient<runtime.Types.Result.GetResult<Prisma.$PreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  swipesGiven<T extends Prisma.User$swipesGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$swipesGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SwipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  swipesReceived<T extends Prisma.User$swipesReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$swipesReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SwipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2225,11 +3096,21 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'Int'>
   readonly phone: Prisma.FieldRef<"User", 'String'>
-  readonly phoneOtp: Prisma.FieldRef<"User", 'String'>
+  readonly phoneOtpHash: Prisma.FieldRef<"User", 'String'>
+  readonly phoneOtpExpiresAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly phoneVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly email: Prisma.FieldRef<"User", 'String'>
+  readonly emailOtpHash: Prisma.FieldRef<"User", 'String'>
+  readonly emailOtpExpiresAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly age: Prisma.FieldRef<"User", 'Int'>
   readonly heightCm: Prisma.FieldRef<"User", 'Float'>
+  readonly latitude: Prisma.FieldRef<"User", 'Float'>
+  readonly longitude: Prisma.FieldRef<"User", 'Float'>
+  readonly city: Prisma.FieldRef<"User", 'String'>
   readonly address: Prisma.FieldRef<"User", 'Json'>
+  readonly health: Prisma.FieldRef<"User", 'Json'>
   readonly eating: Prisma.FieldRef<"User", 'String'>
   readonly gender: Prisma.FieldRef<"User", 'String'>
   readonly orientation: Prisma.FieldRef<"User", 'String'>
@@ -2237,24 +3118,18 @@ export interface UserFieldRefs {
   readonly company: Prisma.FieldRef<"User", 'String'>
   readonly jobRole: Prisma.FieldRef<"User", 'String'>
   readonly salary: Prisma.FieldRef<"User", 'Float'>
-  readonly health: Prisma.FieldRef<"User", 'Json'>
   readonly hobbies: Prisma.FieldRef<"User", 'String[]'>
   readonly images: Prisma.FieldRef<"User", 'String[]'>
   readonly religion: Prisma.FieldRef<"User", 'String'>
   readonly caste: Prisma.FieldRef<"User", 'String'>
-  readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly emailOtp: Prisma.FieldRef<"User", 'String'>
-  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly idVerification: Prisma.FieldRef<"User", 'IdVerificationType'>
+  readonly idVerificationRef: Prisma.FieldRef<"User", 'String'>
+  readonly idVerificationStatus: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
   readonly isHiddenByUser: Prisma.FieldRef<"User", 'Boolean'>
   readonly lastActiveAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly emailOtpExpiresAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly idVerificationRef: Prisma.FieldRef<"User", 'String'>
-  readonly idVerificationStatus: Prisma.FieldRef<"User", 'String'>
-  readonly phoneOtpExpiresAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly phoneVerified: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 
@@ -2712,6 +3587,73 @@ export type User$membershipsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.MembershipScalarFieldEnum | Prisma.MembershipScalarFieldEnum[]
+}
+
+/**
+ * User.preferences
+ */
+export type User$preferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Preference
+   */
+  select?: Prisma.PreferenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Preference
+   */
+  omit?: Prisma.PreferenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PreferenceInclude<ExtArgs> | null
+  where?: Prisma.PreferenceWhereInput
+}
+
+/**
+ * User.swipesGiven
+ */
+export type User$swipesGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Swipe
+   */
+  select?: Prisma.SwipeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Swipe
+   */
+  omit?: Prisma.SwipeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SwipeInclude<ExtArgs> | null
+  where?: Prisma.SwipeWhereInput
+  orderBy?: Prisma.SwipeOrderByWithRelationInput | Prisma.SwipeOrderByWithRelationInput[]
+  cursor?: Prisma.SwipeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SwipeScalarFieldEnum | Prisma.SwipeScalarFieldEnum[]
+}
+
+/**
+ * User.swipesReceived
+ */
+export type User$swipesReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Swipe
+   */
+  select?: Prisma.SwipeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Swipe
+   */
+  omit?: Prisma.SwipeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SwipeInclude<ExtArgs> | null
+  where?: Prisma.SwipeWhereInput
+  orderBy?: Prisma.SwipeOrderByWithRelationInput | Prisma.SwipeOrderByWithRelationInput[]
+  cursor?: Prisma.SwipeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SwipeScalarFieldEnum | Prisma.SwipeScalarFieldEnum[]
 }
 
 /**

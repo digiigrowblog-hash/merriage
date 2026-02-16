@@ -394,7 +394,9 @@ export const ModelName = {
   Session: 'Session',
   FestivalPass: 'FestivalPass',
   Plan: 'Plan',
-  Membership: 'Membership'
+  Membership: 'Membership',
+  Preference: 'Preference',
+  Swipe: 'Swipe'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "festivalPass" | "plan" | "membership"
+    modelProps: "user" | "session" | "festivalPass" | "plan" | "membership" | "preference" | "swipe"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -784,6 +786,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Preference: {
+      payload: Prisma.$PreferencePayload<ExtArgs>
+      fields: Prisma.PreferenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PreferenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PreferenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>
+        }
+        findFirst: {
+          args: Prisma.PreferenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PreferenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>
+        }
+        findMany: {
+          args: Prisma.PreferenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>[]
+        }
+        create: {
+          args: Prisma.PreferenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>
+        }
+        createMany: {
+          args: Prisma.PreferenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PreferenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>[]
+        }
+        delete: {
+          args: Prisma.PreferenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>
+        }
+        update: {
+          args: Prisma.PreferenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>
+        }
+        deleteMany: {
+          args: Prisma.PreferenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PreferenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PreferenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>[]
+        }
+        upsert: {
+          args: Prisma.PreferenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PreferencePayload>
+        }
+        aggregate: {
+          args: Prisma.PreferenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePreference>
+        }
+        groupBy: {
+          args: Prisma.PreferenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PreferenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PreferenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PreferenceCountAggregateOutputType> | number
+        }
+      }
+    }
+    Swipe: {
+      payload: Prisma.$SwipePayload<ExtArgs>
+      fields: Prisma.SwipeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SwipeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SwipeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>
+        }
+        findFirst: {
+          args: Prisma.SwipeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SwipeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>
+        }
+        findMany: {
+          args: Prisma.SwipeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>[]
+        }
+        create: {
+          args: Prisma.SwipeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>
+        }
+        createMany: {
+          args: Prisma.SwipeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SwipeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>[]
+        }
+        delete: {
+          args: Prisma.SwipeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>
+        }
+        update: {
+          args: Prisma.SwipeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>
+        }
+        deleteMany: {
+          args: Prisma.SwipeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SwipeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SwipeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>[]
+        }
+        upsert: {
+          args: Prisma.SwipeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SwipePayload>
+        }
+        aggregate: {
+          args: Prisma.SwipeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSwipe>
+        }
+        groupBy: {
+          args: Prisma.SwipeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SwipeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SwipeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SwipeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -826,11 +976,21 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   phone: 'phone',
-  phoneOtp: 'phoneOtp',
+  phoneOtpHash: 'phoneOtpHash',
+  phoneOtpExpiresAt: 'phoneOtpExpiresAt',
+  phoneVerified: 'phoneVerified',
+  email: 'email',
+  emailOtpHash: 'emailOtpHash',
+  emailOtpExpiresAt: 'emailOtpExpiresAt',
+  emailVerified: 'emailVerified',
   name: 'name',
   age: 'age',
   heightCm: 'heightCm',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  city: 'city',
   address: 'address',
+  health: 'health',
   eating: 'eating',
   gender: 'gender',
   orientation: 'orientation',
@@ -838,24 +998,18 @@ export const UserScalarFieldEnum = {
   company: 'company',
   jobRole: 'jobRole',
   salary: 'salary',
-  health: 'health',
   hobbies: 'hobbies',
   images: 'images',
   religion: 'religion',
   caste: 'caste',
-  email: 'email',
-  emailOtp: 'emailOtp',
-  emailVerified: 'emailVerified',
   idVerification: 'idVerification',
-  createdAt: 'createdAt',
-  isActive: 'isActive',
-  isHiddenByUser: 'isHiddenByUser',
-  lastActiveAt: 'lastActiveAt',
-  emailOtpExpiresAt: 'emailOtpExpiresAt',
   idVerificationRef: 'idVerificationRef',
   idVerificationStatus: 'idVerificationStatus',
-  phoneOtpExpiresAt: 'phoneOtpExpiresAt',
-  phoneVerified: 'phoneVerified'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isActive: 'isActive',
+  isHiddenByUser: 'isHiddenByUser',
+  lastActiveAt: 'lastActiveAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -908,6 +1062,34 @@ export const MembershipScalarFieldEnum = {
 } as const
 
 export type MembershipScalarFieldEnum = (typeof MembershipScalarFieldEnum)[keyof typeof MembershipScalarFieldEnum]
+
+
+export const PreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  minAge: 'minAge',
+  maxAge: 'maxAge',
+  maxDistanceKm: 'maxDistanceKm',
+  religion: 'religion',
+  caste: 'caste',
+  isAgeStrict: 'isAgeStrict',
+  isDistanceStrict: 'isDistanceStrict',
+  isReligionStrict: 'isReligionStrict',
+  isCasteStrict: 'isCasteStrict'
+} as const
+
+export type PreferenceScalarFieldEnum = (typeof PreferenceScalarFieldEnum)[keyof typeof PreferenceScalarFieldEnum]
+
+
+export const SwipeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetUserId: 'targetUserId',
+  action: 'action',
+  createdAt: 'createdAt'
+} as const
+
+export type SwipeScalarFieldEnum = (typeof SwipeScalarFieldEnum)[keyof typeof SwipeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -985,6 +1167,27 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1013,13 +1216,6 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'IdVerificationType'
  */
 export type EnumIdVerificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IdVerificationType'>
@@ -1034,20 +1230,6 @@ export type ListEnumIdVerificationTypeFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
  * Reference to a field of type 'PlanType'
  */
 export type EnumPlanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanType'>
@@ -1058,6 +1240,34 @@ export type EnumPlanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'PlanType[]'
  */
 export type ListEnumPlanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MembershipStatus'
+ */
+export type EnumMembershipStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MembershipStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'MembershipStatus[]'
+ */
+export type ListEnumMembershipStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MembershipStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SwipeAction'
+ */
+export type EnumSwipeActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SwipeAction'>
+    
+
+
+/**
+ * Reference to a field of type 'SwipeAction[]'
+ */
+export type ListEnumSwipeActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SwipeAction[]'>
     
 
 /**
@@ -1152,6 +1362,8 @@ export type GlobalOmitConfig = {
   festivalPass?: Prisma.FestivalPassOmit
   plan?: Prisma.PlanOmit
   membership?: Prisma.MembershipOmit
+  preference?: Prisma.PreferenceOmit
+  swipe?: Prisma.SwipeOmit
 }
 
 /* Types for Logging */
